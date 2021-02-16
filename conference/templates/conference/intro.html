@@ -1,0 +1,19 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest Writing Conference{% endblock %}
+
+{% block content %}
+	<a class="conference_link" href="{% url 'annual' %}">
+		<div class="annual">
+			<p class="heading1">Writer's Digest</p>
+			<p class="heading2">Annual Writing Conference</p>
+		</div>
+	</a>
+
+	<a class="conference_link" href="{% url 'novel_writers_digest_conference' %}">
+		<div class="novel">
+			<p class="heading1">Writer's Digest</p>
+			<p class="heading2">Novel Writing Conference</p>
+		</div>
+	</a>
+{% endblock %}

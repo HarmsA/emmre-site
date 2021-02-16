@@ -1,0 +1,51 @@
+
+{% block header %}
+
+	<div class="header_background">
+		<div class="container" style="width: 100%">
+			<div class="row">
+				<div class="col-sm-8 header-left">
+					<img src="https://d1amu10dlsj3bl.cloudfront.net/wp-content/uploads/WDC-2020-LogoWhiteHorizontal.png" alt="">
+				</div>
+
+				<div class="apps col-sm-4 text-center header-right pt-2">
+					<ul class="social-media-list">
+						<li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter social-media"></i></a></li>
+						<li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f social-media"></i></a></li>
+						<li><a href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram social-media"></i></a></li>
+					</ul>
+					<ul class="conference-date text_date">
+						<li>
+							{{ conference.start_date|date:"F j"|upper}}-{{ conference.end_date|date:"j"}},
+							{{ conference.end_date|date:"Y"}}
+						<p id="location text_location">
+							{{ conference.location|upper }}
+						</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+<nav class="navbar navbar-expand-md navbar-light bg-light pb-4">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+	<ul>
+		<li class="nav-item"><a {% if request.path == '/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %} href="{% url 'home' %}">Home</a> </li>
+		<li class="nav-item"><a {% if request.path == '/schedule/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %} href="{% url 'schedule' %}">Schedule</a> </li>
+		<li class="nav-item"><a {% if request.path == '/speakers/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %}  href="{% url 'speakers' %}">Speakers</a> </li>
+		<li class="nav-item"><a {% if request.path == '/pitch-slam/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %}  href="{% url 'pitch_slam' %}">Pitch Slam</a> </li>
+		<li class="nav-item"><a {% if request.path == '/sponsor-exibitors/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %}  href="{% url 'sponsors_exhibitors' %}">Sponsors + Exhibitors</a> </li>
+		<li class="nav-item"><a {% if request.path == '/newsletter/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %}  href="{% url 'newsletter' %}">NewsLetter</a> </li>
+		<li class="nav-item"><a {% if request.path == '/travel/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %}  href="{% url 'page' slug='travel' %}">Travel</a> </li>
+		<li class="nav-item"><a {% if request.path == '/register/' %} class="active "{% else %}class="text_link hover-underline-animation"{% endif %}  href="{% url 'register' %}">Register</a> </li>
+	</ul>
+  </div>
+</nav>
+	</div>
+{% endblock header %}

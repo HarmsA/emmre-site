@@ -1,0 +1,72 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+<div class="container">
+	<h2 class="text-heading">Pitch Slam</h2>
+	<div class="row">
+		<div class="col">
+
+			{% for pic in img_url %}
+
+			<img class="pitch-images float-right" src="{{ pic }}" alt="">
+			{% endfor %}
+
+
+		<p>
+			Experience the Pitch Slam—a rare opportunity to pitch your book directly to professional
+			agents and editors actively looking for new voices (check back soon for the start of our
+			agent list)! Advocate for your book in a high-energy environment, and you might just become
+			another Pitch Slam success story.
+		</p>
+	{% for pitch in pitchslam %}
+		<p class="font-italic font-weight-light pitch">
+			{{ pitch.description }}
+		</p>
+	{% endfor %}
+	<h4>HOW IT WORKS</h4>
+	<p>We put together a diverse roster of best-in-class agents and editors who are looking for new
+		authors of fiction and nonfiction, and are ready to hear your pitch and offer feedback.
+		Prior to the Pitch Slam, you’ll be able to identify those who are a match for your work and
+		customize your pitch based on what they’re looking for.
+	</p>
+<h4>WHAT YOU GET</h4>
+	<ul>
+		<li>Immediate feedback on the merits of your pitch directly from agents and editors working
+			in that genre or category
+		</li>
+		<li>Actionable advice on improving your pitch, and/or ways to improve your storyline or nonfiction
+			premise
+		</li>
+		<li>Inclusion of your query letter in the WD Annual Conference Query Letter Directory, supplied to
+			all attending agents and editors after the conference
+		</li>
+		<li>An opportunity to submit your work for consideration, land representation, or perhaps even get
+			a deal—it can happen!
+		</li>
+	</ul>
+<h4>KEYS TO PITCH SLAM SUCCESS</h4>
+	<ul>
+		<li><span class="font-weight-bold">Do your research. </span>There will be as many as 50 agents and editors on hand, and some will be a
+			better fit for your pitch than others. Be sure to review the list of attending agents, check
+			out their websites and client list, and target those who match your genre or interest.
+		</li>
+		<li>
+			<span class="font-weight-bold">Practice makes perfect. </span>Practice makes perfect. This is your chance to sell your book, so write it out, practice it
+			and perfect your pitch. Use a stopwatch so you can keep time and their attention! Connect with
+			fellow attendees and practice your pitch on each other.
+		</li>
+		<li>
+			<span class="font-weight-bold">Get expert advice. </span>To help you prepare, be sure to attend the Pitch Perfect session on Friday.
+			You’ll learn how to hone your pitch and get more comfortable with presenting it. You’ll also
+			gain the confidence you need to make a great impression.
+		</li>
+	</ul>
+
+</div>
+		</div>
+	</div>
+{% endblock content %}
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock title %}</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	{% load static %}
+	<!-- UIKIT css -->
+	<link rel="stylesheet" href="css/uikit.min.css" />
+	<script src="../../../static/conference/js/uikit.min.js"></script>
+	<script src="../../../static/conference/js/uikit-icons.min.js"></script>
+
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.11/dist/css/uikit.min.css" />
+
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.11/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.11/dist/js/uikit-icons.min.js"></script>
+	<!--<link rel="stylesheet" type="text/css" href="main.css"> -->
+	<link rel="stylesheet" type="text/css" href="{% static 'conference/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'conference/header.css' %}">
+	<link rel="stylesheet" type="text/css" href="/static/{{ request.site.slug }}/css/style.css">
+    <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+	<style>
+		{{ request.site.css|safe }}
+	</style>
+
+</head>
+<body>
+
+	{% block content %}
+	{% endblock content %}
+
+{% include 'conference/static_templates/footer.html' %}
+
+</body>
+</html>

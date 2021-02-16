@@ -1,0 +1,31 @@
+
+{% block header %}
+
+<nav class="navbar navbar-expand-md navbar-light bg-light pt-5">
+  <div class="text-center">
+		<ul class="main-footer-nav text-center">
+			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'register' %}">REGISTER</a> </li>
+			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'about' %}">ABOUT</a> </li>
+			<li class="nav-item"><a class="hover-underline-animation" href="http://www.writersdigest.com/wd-events/conference-code-of-conduct">CODE OF CONDUCT</a> </li>
+			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'newsletter' %}">NEWSLETTER</a> </li>
+			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'faq' %}">FAQ</a> </li>
+			<li class="nav-item"><a class="hover-underline-animation" href="https://www.aimmedia.com/privacy-policy/">PRIVACY</a> </li>
+			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'contact_us' %}">CONTACT US</a> </li>
+		</ul>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="text-center">
+	<ul class="footer-link-list">
+		<li><img class="footer-icon" src="../../../static/conference/img/wdc_image.png" alt="WDC icon"></li>
+		<li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter"></i></a></li>
+		<li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f"></i></a></li>
+		<li><a href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram"></i></a></li>
+	</ul>
+  </div>
+</nav>
+<p class="text-center pb-4">Copyright © 2021 <a href="https://www.writersdigest.com">Writer's Digest, a division of Active Interest Media</a></p>
+
+
+{% endblock header %}

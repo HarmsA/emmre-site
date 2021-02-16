@@ -1,0 +1,36 @@
+.header_background {
+	background-image: linear-gradient(to right, #00A9AE,#002D40);
+	padding: 10px 0 0 0;
+
+}
+button#btn-color.btn.btn-lg.btn-block.mt-4 {
+	background-color: #00A9AE !important;
+}
+.active {
+	border-bottom: 2px solid #F42515;
+	text-decoration: none;
+	color: #F42515
+}
+.active:hover{
+	text-decoration: none;
+    color: #F42515;
+}
+/* headings text */
+.text-heading {
+	  color: purple;
+}
+.text_link {
+	color: #F42515;
+	font-family: "Times New Roman";
+}
+.hover-underline-animation {
+  color: #F42515;
+}
+.hover-underline-animation:hover{
+  color: #F42515;
+}
+
+.hover-underline-animation:after {
+  background-color: #F42515;
+
+}

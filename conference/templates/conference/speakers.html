@@ -1,0 +1,93 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+
+{% include 'conference/static_templates/header.html' %}
+<div class="container">
+	<div class="text-center">
+		{{ settings.speakers.text|safe }}
+	</div>
+	<div class="row justify-content-center p-5">
+		{% for speaker in speakers %}
+				{% if speaker.is_keynote %}
+					<a href="{% url 'speaker' speaker.slug %}">
+						<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 250px; min-width: 75px; margin: 10px; padding: 10px">
+							<img class="card-img-top" src="{{ speaker.img.img_url }}" alt="{{ speaker.img.alt }}">
+						<p class="card-text">
+							{{ speaker }}
+						</p>
+						</div>
+					</a>
+				{% endif %}
+		{% endfor %}
+	</div>
+	<div class="row justify-content-center">
+		{% for speaker in speakers %}
+			{% if not speaker.is_keynote %}
+			{#TODO order by last name#}
+				<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 150px; min-width: 50px; margin: 10px; padding: 10px">
+					<a href="{% url 'speaker' speaker.slug %}">
+						<img  class="card-img-top" src="{{ speaker.img.img_url }}" alt="{{ speaker.img.alt }}">
+						<div class="card-body" style="padding: 0">
+							<p class="card-title" style="margin-bottom: 0">
+								{{ speaker.first_name }} {{ speaker.last_name }}
+							</p>
+						</div>
+					</a>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endblock content %}
+
+<div class="container">
+    <h1>{{ page.title }}</h1>
+	<div class="row">
+		<div class="">
+			<div class="float-right">
+				<img src="https://d1amu10dlsj3bl.cloudfront.net/wp-content/uploads/hilton.png" alt="Hilton NYC">
+			</div>
+			<div>
+				<a href="https://writersdigestconference.com/wdc20-and-covid-19/">
+					Read our statement about COVID-19 here.
+				</a>
+
+				<p>
+				Writer’s Digest Annual Conference is hopeful we will be able to
+				meet in-person this July. Please read our updated COVID-19 statement
+				above. Our new dates are July 22-25 2021.
+				</p>
+				<p>
+				The host hotel and conference headquarters will be the New York
+				Hilton Midtown. Stay in the heart of the city that never sleeps
+				at the New York Hilton Midtown which is opposite the Museum of
+				Modern Art, five blocks from ventral Park, two blocks from Radio
+				City Music Hall, and walkable to Times Square.
+				</p>
+
+				<p>
+
+				WD has secured a special rate of $279 plus tax per night just for
+				conference attendees. Book by July, 1 2021 in order to lock in this
+				discounted rate.
+					<span><a href="https://book.passkey.com/gt/218111141?gtid=e80d95aedf742dd1a3c7bd1fb7487c2b">
+					To book a room use this link</a>
+					</span>. You may also call
+				212-586-7000 or email: NYCNH-Hilton_Guest@hilton.com. Be sure to
+				mention the Writer’s Digest Conference in order to secure the discounted
+				rate if you decide to call or email.
+				</p>
+				<p>
+				Hilton New York Midtown <br>
+				1335 Avenue of the Americas (6th Ave) <br>
+				New York, New York 10019 <br>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

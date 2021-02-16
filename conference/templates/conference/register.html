@@ -1,0 +1,87 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+
+<div class="container">
+	<h1>
+		Registration Details
+	</h1>
+
+	{% for title, registration_option in registration_options.items %}
+		<div class="row" style="min-width: 680px">
+			{% if forloop.first %}
+				<div>REGISTRATION DATE <br><br>
+					<div class="mr-4 register-title">
+						{{ title }} cost
+					</div>
+				</div>
+
+				{% for date, cost in registration_option.items %}
+					<div class=" register-info">
+						<div class="border border-dark">
+
+							{% for time in date %}
+								<div class=" col-12 register-info">
+									{{ time}}
+								</div>
+							{% endfor %}
+						</div>
+						{% for c in cost %}
+							<div class=" register-info border border-dark text-center">
+							    ${{ c }}
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+
+			{% else %}
+				<div class="mr-4 register-title">
+					{{ title }} cost
+				</div>
+				{% for date, cost in registration_option.items %}
+					<div class="border border-dark pr-5 pl-5 register-info">
+						<div class=" text-center">
+							{% for c in cost %}
+							    ${{ c }}
+							{% endfor %}
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	{% endfor %}
+	{% for url in register_url %}
+		<a href="{{ url.register_url }} }}"><button type="button" class="btn btn-lg btn-block mt-4" id="btn-color" >Register Now</button></a>
+	{% endfor %}
+
+	{% for detail in details %}
+		<h4>
+			{{ detail.title }}
+		</h4>
+		{{ detail.description|safe }}
+	{% endfor %}
+
+	<h3>Add-Ons</h3>
+	<div class="row justify-content-around">
+
+		{% for add_on in add_ons %}
+			<div class="card p-2">
+			 <div class="card-body">
+				<h4 class="card-title">{{ add_on.title }}</h4>
+				<p class="card-text">{{ add_on.description }}</p>
+				<p>Date: {{ add_on.date }}</p>
+			</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% for url in register_url %}
+	<a href="{{ url.register_url }} }}"><button type="button" class="btn btn-lg btn-block mt-4" id="btn-color" >Register Now</button></a>
+{% endfor %}
+</div>
+
+
+{% endblock content %}

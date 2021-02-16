@@ -1,0 +1,33 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+
+<div class="container">
+{% for contact in contacts %}
+	<div class="pt-3">
+		<div>
+			<p style="font-weight: bold ">
+				{{ contact.name }}
+			</p>
+		</div>
+		<div>
+			<p style="font-style: italic ">
+				{{ contact.title }}
+			</p>
+		</div>
+		<div>
+			{{ contact.contact_for }}
+		</div>
+		<div>
+			{{ contact.email }} - {{ contact.phone }}
+		</div>
+	</div>
+{% endfor %}
+
+</div>
+
+
+{% endblock content %}

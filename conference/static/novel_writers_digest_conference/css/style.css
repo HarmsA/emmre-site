@@ -1,0 +1,28 @@
+.header_background {
+	background-image: linear-gradient(to right, #FF8629,#FD3600);
+}
+
+button#btn-color.btn.btn-lg.btn-block.mt-4 {
+	background-color: #FF8629 !important;
+}
+.active {
+	border-bottom: 2px solid #F4923E;
+	text-decoration: none;
+}
+.active:hover{
+	text-decoration: none;
+  color: #01C6B4;
+}
+.text-color {
+	  color: #01C6B4;
+}
+.hover-underline-animation {
+  color: #F4923E;
+}
+.hover-underline-animation:hover{
+  color: #F4923E;
+}
+
+.hover-underline-animation:after {
+  background-color: #F4923E;
+}

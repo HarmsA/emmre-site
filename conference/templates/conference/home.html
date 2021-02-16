@@ -1,0 +1,64 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="1"
+     uk-slider="clsActivated: uk-transition-active; center: true; autoplay:true; autoplay-interval: 3000">
+
+{#TODO change image src to db image in amazon s3 #}
+    <ul class="uk-slider-items uk-grid">
+        <li class="uk-width-1-2 uk-padding-large">
+            <div class="uk-panel">
+                <img src="../../static/images/1.JPG" alt="">
+                <div class="uk-position-center uk-panel"><h1>1</h1></div>
+            </div>
+        </li>
+        <li class="uk-width-1-2 uk-padding-large">
+            <div class="uk-panel">
+                <img src="../../static/images/2.JPG" alt="">
+                <div class="uk-position-center uk-panel"><h1>2</h1></div>
+            </div>
+        </li>
+        <li class="uk-width-1-2 uk-padding-large">
+            <div class="uk-panel">
+                <img src="../../static/images/3.JPG" alt="">
+                <div class="uk-position-center uk-panel"><h1>3</h1></div>
+            </div>
+        </li>
+        <li class="uk-width-1-2 uk-padding-large">
+            <div class="uk-panel">
+                <img src="../../static/images/4.JPG" alt="">
+                <div class="uk-position-center uk-panel"><h1>4</h1></div>
+            </div>
+        </li>
+        <li class="uk-width-1-2 uk-padding-large">
+            <div class="uk-panel">
+                <img src="../../static/images/2.JPG" alt="">
+                <div class="uk-position-center uk-panel"><h1>5</h1></div>
+            </div>
+        </li>
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+</div>
+	<div class="container" style="padding: 2rem 0 !important;">
+		<div class="row" >
+			<div class="col-sm">
+				<h2 class="text-heading">{{ settings.home.h1|safe }}
+				</h2>
+			</div>
+			<div class="col-sm">
+				{{ settings.home.text|safe }}
+			</div>
+		</div>
+
+	</div>
+	<br>
+
+
+
+{% endblock %}

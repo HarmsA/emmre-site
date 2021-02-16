@@ -1,0 +1,24 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+
+<div class="container">
+	{% for question in questions %}
+		<div class="pt-5">
+			<div style="font-weight: bold">
+				{{ question.question }}
+			</div>
+			<div class="pt-2">
+				{{ question.answer }}
+
+			</div>
+		</div>
+	{% endfor %}
+
+</div>
+
+
+{% endblock content %}

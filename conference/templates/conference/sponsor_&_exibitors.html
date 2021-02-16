@@ -1,0 +1,48 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+
+<div class="container">
+	<h1 class="text-heading">
+		Sponsor
+	</h1>
+	<div class="row" style="justify-content: left">
+		{% for sponsor in sponsors %}
+			<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 300px; min-width: 300px; margin: 10px; padding: 10px">
+				<a href="{{ sponsor.website }}">
+					<img class="card-img-top" src="{{ sponsor.img.img_url }}" alt="{{ sponsor.img.alt }}" style="height: 100px; width: auto">
+					<div class="card-body">
+						<h5 class="card-title">{{ sponsor.name }}</h5>
+					</div>
+					<p class="card-text">
+						{{ sponsor.website }}
+					</p>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+	<h1 class="text-heading">
+		Exibitors
+	</h1>
+	<div class="row" style="justify-content: left">
+		{% for exhibitor in exhibitors %}
+			<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 300px; min-width: 300px; margin: 10px; padding: 10px">
+				<a href="{{ exhibitor.website }}">
+					<img class="card-img-top" src="{{ exhibitor.img.img_url }}" alt="{{ exhibitor.img.alt }}" style="height: 100px; width: auto">
+					<div class="card-body">
+						<h5 class="card-title">{{ exhibitor.name }}</h5>
+					</div>
+					<p class="card-text">
+						{{ exhibitor.website }}
+					</p>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endblock content %}

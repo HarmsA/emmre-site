@@ -1,0 +1,171 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+<div class="container" id="schedule-grid">
+
+	<div>
+		<p>
+			The updated, virtual schedule is here! We’re in the process of filling the open slots and will have the completed program posted soon.
+		</p>
+		<p>
+			The Writer’s Digest Annual Conference offers a balanced program covering the fundamentals of craft—delving into
+			specific genres and techniques—along with the business of being a writer, from traditional and self-publishing paths,
+			promotion and marketing strategies, and managing a sustainable career.
+		</p>
+		<p>
+			We’re in the process of selecting speakers for what should be our best program yet so check back often,
+			and be sure to sign up for our <a href="">email newsletter</a>  to receive session and speaker updates as they’re announced!
+		</p>
+	</div>
+	<div class="p-3 mb-4 mt-4 bg-info text-white">
+		FEATURED EVENTS
+	</div>
+	{% for session in featured_sessions %}
+		{% if session.is_featured %}
+			Pre-Conference Workshop ( {{ session.session_schedules.start }} )
+			<div>
+
+			{{ session.title }} |
+			{% for speaker in session.speakers.all %}
+				{{ speaker }}
+			{% endfor %}
+			</div>
+		{% endif %}
+	{% endfor %}
+
+
+	<div class="p-3 mt-4 mb-2 bg-info text-white">
+		SESSIONS SCHEDULE
+	</div>
+	{% for date, day in table_data.items %}
+{#		TODO fix to show date time #}
+		{% for k, v in day.items %}
+			{% if forloop.first %}
+			{% for ke, va in v.items %}
+				{% if forloop.first %}
+				{% for session in va.session_schedules.all %}
+					{% if forloop.first %}
+						<h2 class="text-heading ml-4">{{session.start|date:"l, F, j, Y"}}</h2>
+
+					{% endif %}
+				{% endfor %}
+				{% endif %}
+
+			{% endfor %}
+			{% endif %}
+		{% endfor %}
+
+		<div class="row" id="schedule-grid" >
+			{% for topic_name, timeslots in day.items %}
+				<div class="topic-area pt-5">
+					<div class="col-xs-6 "></div>
+					{% if forloop.first %}
+						{% for timeslot in timeslots.keys %}
+							{% if timeslot.0 %}
+								<div class="extra-bottom item-height text-height col-xs border border-dark  pl-2" style="width: 200px">
+									{{ timeslot.0|date:"P" }} - {{ timeslot.1|date:"P" }}
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% else %}
+						<div class="hide_large_display">
+
+						{% for timeslot in timeslots.keys %}
+							{% if timeslot.0 %}
+								<div class="extra-bottom item-height text-height col-md second-time border border-dark  pl-2" style="width: 200px">
+									{{ timeslot.0|date:"P" }} - {{ timeslot.1|date:"P" }}
+								</div>
+							{% endif %}
+						{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+
+				<div class="topic-area">
+				</div>
+
+				<div class="col-xs-6">
+					<div class="text-center" style="height:48px">
+						<p class="topic-name">{{ topic_name }}</p>
+					</div>
+					{% for timeslot, conference_session in timeslots.items %}
+
+						<div class="extra-bottom item-height text-height col-sm border border-dark ml-2" style="width: 200px">
+
+							{% if conference_session %}
+								{% if 'Lunch' in conference_session.title|title %}
+									{{ conference_session.title|title|truncatechars:65 }}
+								{% else %}
+									<a href="{% url 'session' slug=conference_session.slug %}">{{ conference_session.title|title|truncatechars:65 }}</a>
+								{% endif %}
+								<p class="speakers">Speaker(s):</p>
+								<ul class="speakers">
+
+									{% for session in sessions %}
+										{% with speakers=session.speakers.all %}
+											{% for speaker in speakers %}
+												{% if session.title == conference_session.title %}
+													<li><a href="{% url 'speaker' slug=speaker.slug %}">{{speaker}}</a></li>
+												{% endif %}
+											{% endfor %}
+										{% endwith %}
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	{% endfor %}
+</div>
+{% endblock content %}
+
+
+{##}
+{#{% for date, day in table_data.items %}#}
+{#	<h2>{{ date }}</h2>#}
+{#	<div class="d-flex table">#}
+{##}
+{#	{% for topic_name, timeslots in day.items %}#}
+{#		<div class="column p-2">#}
+{#			<div class="cell  title-height"></div>#}
+{#				{% if forloop.first %}#}
+{#					{% for timeslot in timeslots.keys %}#}
+{#						<div class="cell bg-primary p-2 m-2 h-50 ">#}
+{#							{{ timeslot.0 }} - {{ timeslot.1|date:"P" }}#}
+{#						</div>#}
+{#					{% endfor %}#}
+{#				{% endif %}#}
+{#		</div>#}
+{#		<div class="show-hide">#}
+{##}
+{#		<div class="column-additional-times">#}
+{#			{% if not forloop.first %}#}
+{#				{% for timeslot in timeslots.keys %}#}
+{#					<div class="cell times bg-warning p-2 m-2 h-50 ">#}
+{#						{{ timeslot.0 }} - {{ timeslot.1|date:"P" }}#}
+{#					</div>#}
+{#				{% endfor %}#}
+{#			{% endif %}#}
+{#		</div>#}
+{#		<div class="column-cell">#}
+{#			<div class="cell title-height">#}
+{#				{{ topic_name }}#}
+{#			</div>#}
+{#			{% for timeslot, conference_session in timeslots.items %}#}
+{#				<div class="cell bg-info p-2 m-2 h-50 ">#}
+{#					{% if conference_session %}#}
+{#						{{ conference_session.title|title }}#}
+{#					{% endif %}#}
+{#				</div>#}
+{#			{% endfor %}#}
+{#		</div>#}
+{#		</div>#}
+{#	{% endfor %}#}
+{#	</div>#}
+{##}
+{#{% endfor %}#}

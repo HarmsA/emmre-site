@@ -1,0 +1,33 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+{% include 'conference/static_templates/header.html' %}
+
+<div class="container">
+	<h1 class="text-heading">
+		{{ page.title }}
+	</h1>
+	{% for travel in page %}
+		{% if not travel.parent %}
+			<h3 class="text-heading">{{ travel.title }}</h3>
+			{{ travel.text|safe }}
+
+		{% endif %}
+	{% endfor %}
+
+	<div class="row d-flex">
+		{% for travel in page %}
+			{% if travel.parent %}
+				<div class="col-6">
+					{{ travel.child_intro|safe }}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+</div>
+
+
+{% endblock content %}
