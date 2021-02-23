@@ -3,6 +3,7 @@ from django.contrib.sites.models import Site as DjangoSite
 from django.utils.text import slugify
 import os
 from writersdigest.settings import BASE_DIR
+from media.models import Image
 
 
 class Site(models.Model):
@@ -25,12 +26,12 @@ class SessionTopic(models.Model):
 		return self.name
 
 
-class Img(models.Model):
-	img_url = models.URLField(blank=True, null=True)
-	alt = models.CharField(max_length=50, null=True, blank=True)
-
-	def __str__(self):
-		return self.alt
+# class Img(models.Model):
+# 	img_url = models.URLField(blank=True, null=True)
+# 	alt = models.CharField(max_length=50, null=True, blank=True)
+#
+# 	def __str__(self):
+# 		return self.alt
 
 
 class ConferenceSession(models.Model):
@@ -87,8 +88,9 @@ class Speaker(models.Model):
 	first_name = models.CharField(max_length=100, blank=True, null=True)
 	last_name = models.CharField(max_length=100, blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
-	img = models.ForeignKey(Img, related_name='speakers', on_delete=models.CASCADE, blank=True, null=True)
+	img = models.ForeignKey(Image, related_name='speakers', on_delete=models.CASCADE, blank=True, null=True)
 	is_keynote = models.BooleanField(default=False)
+	keynote_type = models.CharField(max_length=100, blank=True, null=True, default='')
 	slug = models.SlugField(max_length=100, blank=True, null=True)
 
 	def save(self, *args, **kwargs):
@@ -106,7 +108,7 @@ class Agent(models.Model):
 	last_name = models.CharField(max_length=100, blank=True, null=True)
 	company = models.CharField(max_length=150, blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
-	img = models.ForeignKey(Img, related_name='agents', on_delete=models.CASCADE, blank=True, null=True)
+	img = models.ForeignKey(Image, related_name='agents', on_delete=models.CASCADE, blank=True, null=True)
 	topic = models.ManyToManyField(SessionTopic, related_name='agenttopics', blank=True, null=True)
 	slug = models.SlugField(max_length=100, blank=True, null=True)
 
@@ -123,7 +125,7 @@ class Agent(models.Model):
 class Sponsor(models.Model):
 	name = models.CharField(max_length=100, blank=True, null=True)
 	website = models.URLField(max_length=255, blank=True, null=True)
-	img = models.ForeignKey(Img, related_name='sponsors', on_delete=models.CASCADE, blank=True, null=True)
+	img = models.ForeignKey(Image, related_name='sponsors', on_delete=models.CASCADE, blank=True, null=True)
 
 	def __str__(self):
 		return self.name
@@ -132,7 +134,7 @@ class Sponsor(models.Model):
 class Exhibitor(models.Model):
 	name = models.CharField(max_length=100, blank=True, null=True)
 	website = models.URLField(max_length=255, blank=True, null=True)
-	img = models.ForeignKey(Img, related_name='exhibitors', on_delete=models.CASCADE, blank=True, null=True)
+	img = models.ForeignKey(Image, related_name='exhibitors', on_delete=models.CASCADE, blank=True, null=True)
 
 	def __str__(self):
 		return self.name
@@ -197,7 +199,7 @@ class FAQ(models.Model):
 class PitchSlam(models.Model):
 	description = models.TextField(blank=True, null=True)
 	conference = models.ForeignKey(Conference, related_name='conferencepitchslam', on_delete=models.CASCADE, blank=True, null=True)
-	imgs = models.ManyToManyField(Img, related_name='pitchslam', blank=True, null=True)
+	imgs = models.ManyToManyField(Image, related_name='pitchslam', blank=True, null=True)
 
 	def __str__(self):
 		return f'{self.conference} Pitch-Slam'
@@ -228,6 +230,16 @@ class RegistrationTimeFrame(models.Model):
 		return f'{self.registration.title} -- {self.start} -- ${self.cost}'
 
 
+class MenuItem(models.Model):
+	name = models.CharField(max_length=100, blank=True, null=True)
+	parent = models.ForeignKey('self', related_name="children", blank=True, null=True, on_delete=models.CASCADE)
+	link = models.CharField(max_length=100, blank=True, null=True)
+	site = models.ForeignKey(Site, null=True, blank=True, related_name='sitemenuitem', on_delete=models.PROTECT)
+
+	def __str__(self):
+		return self.name
+
+
 class Page(models.Model):
 	class Meta:
 		unique_together = (('conference', 'title'), ('conference', 'slug'))
@@ -238,9 +250,9 @@ class Page(models.Model):
 	conference = models.ForeignKey(Conference, related_name='pages', blank=False, null=False, on_delete=models.CASCADE)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	img = models.ForeignKey(Img, related_name='pages', blank=True, null=True, on_delete=models.CASCADE)
+	img = models.ForeignKey(Image, related_name='pages', blank=True, null=True, on_delete=models.CASCADE)
 	parent = models.ForeignKey('self', related_name='children', null=True, blank=True, on_delete=models.CASCADE)
-	child_intro = models.TextField(blank=True, null=True, verbose_name='Intro for link')
+	excerpt = models.TextField(blank=True, null=True, verbose_name='Intro for link')
 
 	def save(self, *args, **kwargs):
 		if self.title and not self.slug:

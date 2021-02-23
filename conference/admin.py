@@ -1,8 +1,8 @@
 from django.contrib import admin
-from conference.models import SessionTopic, Img, ConferenceSession, \
+from conference.models import SessionTopic,  ConferenceSession, \
 	Speaker, Sponsor, Exhibitor, Conference, SessionSchedule, PitchSlam, FAQ, \
 	RegistrationTimeFrame, RegistrationOption, Page, Site, Agent, ConferenceContact, \
-	ConferenceAddOn
+	ConferenceAddOn, MenuItem
 
 
 class SiteAdmin(admin.ModelAdmin):
@@ -68,7 +68,7 @@ class ConferenceAdmin(admin.ModelAdmin):
 
 
 class SpeakerAdmin(admin.ModelAdmin):
-	fields = ['first_name', 'last_name', 'description', 'img', 'is_keynote', 'slug']
+	fields = ['first_name', 'last_name', 'description', 'img', 'is_keynote', 'keynote_type', 'slug']
 	inlines = [
 		ConferenceSessionSpeakersInlineAdmin,
 	]
@@ -76,11 +76,11 @@ class SpeakerAdmin(admin.ModelAdmin):
 
 
 class PageAdmin(admin.ModelAdmin):
-	fields = ['title', 'text', 'conference', 'parent', 'child_intro']
+	fields = ['title', 'text', 'conference', 'parent', 'excerpt', 'img', 'slug']
 	inlines = [
 		# PageInline,
 	]
-	# raw_id_fields = ['img']
+	raw_id_fields = ['img']
 
 
 class AgentAdmin(admin.ModelAdmin):
@@ -100,13 +100,14 @@ class ConferenceSessionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SessionTopic)
-admin.site.register(Img)
+# admin.site.register(Img)
 admin.site.register(ConferenceSession, ConferenceSessionAdmin)
 admin.site.register(SessionSchedule)
 admin.site.register(Speaker, SpeakerAdmin)
 admin.site.register(Agent, AgentAdmin)
 admin.site.register(Sponsor)
 admin.site.register(Exhibitor)
+admin.site.register(MenuItem)
 admin.site.register(FAQ)
 admin.site.register(ConferenceContact)
 admin.site.register(Page, PageAdmin)

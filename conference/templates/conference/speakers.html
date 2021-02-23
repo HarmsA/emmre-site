@@ -13,9 +13,11 @@
 		{% for speaker in speakers %}
 				{% if speaker.is_keynote %}
 					<a href="{% url 'speaker' speaker.slug %}">
-						<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 250px; min-width: 75px; margin: 10px; padding: 10px">
-							<img class="card-img-top" src="{{ speaker.img.img_url }}" alt="{{ speaker.img.alt }}">
+						<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 300px; min-width: 75px; margin: 10px; padding: 10px">
+						<div class="card-img-top"> {{ speaker.img.preview|safe }}</div>
+{#							<img class="card-img-top" src="" alt="">#}
 						<p class="card-text">
+							{{ speaker.keynote_type }}<br>
 							{{ speaker }}
 						</p>
 						</div>
@@ -27,9 +29,10 @@
 		{% for speaker in speakers %}
 			{% if not speaker.is_keynote %}
 			{#TODO order by last name#}
-				<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 150px; min-width: 50px; margin: 10px; padding: 10px">
+				<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="width: 200px; min-width: 50px; margin: 10px; padding: 10px">
 					<a href="{% url 'speaker' speaker.slug %}">
-						<img  class="card-img-top" src="{{ speaker.img.img_url }}" alt="{{ speaker.img.alt }}">
+						<div class="card-img-top"> {{ speaker.img.thumb|safe }}</div>
+{#						<img  class="card-img-top" src="" alt="">#}
 						<div class="card-body" style="padding: 0">
 							<p class="card-title" style="margin-bottom: 0">
 								{{ speaker.first_name }} {{ speaker.last_name }}

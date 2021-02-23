@@ -27,6 +27,13 @@ jQuery(document).ready(function() {
 		value_field.removeAttr("cols rows style placeholder title");
 		jQuery('.CodeMirror').remove();
 		switch (type) {
+			case 'image':value_field.changeElementType('input');
+				value_field = jQuery("#id_value[name='value']");
+				value_field.attr({"type": "text","class": "vForeignKeyRawIdAdminField",});
+				value_field.html("");
+				value_field.val(value);
+				value_field.after("<a href='/admin/media/image/?_to_field=id' class='related-lookup' id='lookup_id_value' title='Lookup'></a>");
+				break;
 			case 'text':
 				value_field.changeElementType('textarea');
 				value_field = jQuery("#id_value[name='value']");

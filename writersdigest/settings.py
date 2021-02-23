@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'django.contrib.sites',
     'conference.apps.ConferenceConfig',
+    'media.apps.MediaConfig',
     'config.apps.ConfigConfig',
     'fontawesome-free',
 ]
@@ -67,6 +68,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+	            'conference.context_processors.ContextProcessor',
 	            'config.context_processors.configuration_context_processor',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -109,6 +111,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 'AKIAYZPSX2F6UMDRNF7S'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'media.writersdigestconference.com'
+AWS_DEFAULT_ACL = "public-read"
+AWS_QUERYSTRING_AUTH = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

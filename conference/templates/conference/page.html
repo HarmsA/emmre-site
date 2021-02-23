@@ -9,25 +9,62 @@
 	<h1 class="text-heading">
 		{{ page.title }}
 	</h1>
-	{% for travel in page %}
-		{% if not travel.parent %}
-			<h3 class="text-heading">{{ travel.title }}</h3>
-			{{ travel.text|safe }}
+{#	<div>#}
+{#		{{ page.text|safe }}#}
+{#	</div>#}
+	<div>
+{#		{% for child in page.children.all %}#}
+{#			<a href="{% url "page" slug=child.slug %}" class="child">#}
+{#				<img src="{{ child.img.url }}" alt="{{ child.img.alt }}">#}
+{#				<h2>{{ child.title }}</h2>#}
+{#				<p>{{ child.excerpt|safe }}</p>#}
+{#			</a>#}
+{##}
+{#		{% endfor %}#}
 
-		{% endif %}
+	</div>
+	{% for detail in slug_page %}
+		<h2 class="text-heading">{{ detail.title }}</h2>
+		<div class="">
+				{{ detail.text|safe }}
+
+			{% if detail.parent.slug %}
+			   <span style="font-weight: bold">Back To: </span><a href="{% url 'page' slug=detail.parent.slug %}">{{ detail.parent.title }}</a>
+			{% endif %}
+
+		</div>
 	{% endfor %}
+{#	{% for detail in page %}#}
+{#		{% if not detail.parent %}#}
+{#			<h2 class="text-heading">{{ detail.title }}</h2>#}
+{#				<div class="">#}
+{#					{{ detail.text|safe }}#}
+{#				</div>#}
+{##}
+{#		{% endif %}#}
+{#	{% endfor %}#}
 
-	<div class="row d-flex">
-		{% for travel in page %}
-			{% if travel.parent %}
-				<div class="col-6">
-					{{ travel.child_intro|safe }}
-				</div>
+	<div class="row justify-content-center">
+		{% for detail in page %}
+			{% if detail.parent.slug == slug and slug != detail.slug %}
+				<a href="{% url 'page' slug=detail.slug %}">
+
+					<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 250px; min-width: 50px; height: 350px; margin: 10px; padding: 15px">
+						<h3 class="text-heading">{{ detail.title }}</h3>
+						<div class="card-img-top"> {{ detail.img.thumb|safe }}</div>
+						{{ detail.excerpt|safe|truncatewords_html:10 }}
+					</div>
+				</a>
 			{% endif %}
 		{% endfor %}
 	</div>
-
 </div>
-
-
 {% endblock content %}
+
+
+
+
+
+
+
+

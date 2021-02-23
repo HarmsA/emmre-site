@@ -6,7 +6,7 @@
 {% include 'conference/static_templates/header.html' %}
 
 <div class="container">
-	<h1>
+	<h1 class="text-heading">
 		Registration Details
 	</h1>
 
@@ -22,15 +22,17 @@
 				{% for date, cost in registration_option.items %}
 					<div class=" register-info">
 						<div class="border border-dark">
-
 							{% for time in date %}
 								<div class=" col-12 register-info">
-									{{ time}}
+									{{ time }}
+									{% if forloop.first %}
+										-
+									{% endif %}
 								</div>
 							{% endfor %}
 						</div>
 						{% for c in cost %}
-							<div class=" register-info border border-dark text-center">
+							<div class=" register-info border border-dark text-center{% if today > date or today < date %}highlight{% endif %}">
 							    ${{ c }}
 							</div>
 						{% endfor %}
@@ -42,7 +44,7 @@
 					{{ title }} cost
 				</div>
 				{% for date, cost in registration_option.items %}
-					<div class="border border-dark pr-5 pl-5 register-info">
+					<div class="border border-dark pr-5 pl-5 register-info {% if today > option.start and today < option.end %} highlight{% endif %}">
 						<div class=" text-center">
 							{% for c in cost %}
 							    ${{ c }}
@@ -54,7 +56,7 @@
 		</div>
 	{% endfor %}
 	{% for url in register_url %}
-		<a href="{{ url.register_url }} }}"><button type="button" class="btn btn-lg btn-block mt-4" id="btn-color" >Register Now</button></a>
+		<a href="{{ url.register_url }} }}"><button type="button" class="cust-btn" id="btn-color" >Register Now</button></a>
 	{% endfor %}
 
 	{% for detail in details %}
@@ -79,7 +81,7 @@
 	</div>
 
 {% for url in register_url %}
-	<a href="{{ url.register_url }} }}"><button type="button" class="btn btn-lg btn-block mt-4" id="btn-color" >Register Now</button></a>
+	<a href="{{ url.register_url }} }}"><button type="button" class="cust-btn" id="" >Register Now</button></a>
 {% endfor %}
 </div>
 

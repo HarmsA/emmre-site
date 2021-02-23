@@ -6,25 +6,20 @@
 
 {% include 'conference/static_templates/header.html' %}
 <div class="container">
-<h1>{{ speaker.name }}</h1>
+	<h1>{{ speaker.first_name }} {{ speaker.last_name }}</h1>
 	<div class="row">
 		<div class="">
-		<div class="float-right">
-			<img src="{{ speaker.img.img_url }}" alt="{{ speaker.img.alt }}">
-		</div>
 			{{ speaker.description|safe }}
-			<div>
-				<p class="font-weight-bold pt-5">Related Sessions</p>
-			{% for session in speakers_conferences %}
-				<p>
-					{{ session }}<br>
-				</p>
-			{% endfor %}
-{#			</div>#}
-{#		</div>#}
+		<div>
+		<p class="font-weight-bold pt-5">Related Sessions</p>
+		{% for session in speakers_conferences %}
+			<p>
+				<a href="{% url 'session' slug=session.slug %}">{{ session|title|truncatechars:65 }}</a>
+			</p>
+		{% endfor %}
+		</div>
+		</div>
 	</div>
-
 </div>
-
 
 {% endblock content %}

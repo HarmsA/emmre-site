@@ -7,38 +7,17 @@
 <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="1"
      uk-slider="clsActivated: uk-transition-active; center: true; autoplay:true; autoplay-interval: 3000">
 
-{#TODO change image src to db image in amazon s3 #}
     <ul class="uk-slider-items uk-grid">
-        <li class="uk-width-1-2 uk-padding-large">
-            <div class="uk-panel">
-                <img src="../../static/images/1.JPG" alt="">
-                <div class="uk-position-center uk-panel"><h1>1</h1></div>
-            </div>
-        </li>
-        <li class="uk-width-1-2 uk-padding-large">
-            <div class="uk-panel">
-                <img src="../../static/images/2.JPG" alt="">
-                <div class="uk-position-center uk-panel"><h1>2</h1></div>
-            </div>
-        </li>
-        <li class="uk-width-1-2 uk-padding-large">
-            <div class="uk-panel">
-                <img src="../../static/images/3.JPG" alt="">
-                <div class="uk-position-center uk-panel"><h1>3</h1></div>
-            </div>
-        </li>
-        <li class="uk-width-1-2 uk-padding-large">
-            <div class="uk-panel">
-                <img src="../../static/images/4.JPG" alt="">
-                <div class="uk-position-center uk-panel"><h1>4</h1></div>
-            </div>
-        </li>
-        <li class="uk-width-1-2 uk-padding-large">
-            <div class="uk-panel">
-                <img src="../../static/images/2.JPG" alt="">
-                <div class="uk-position-center uk-panel"><h1>5</h1></div>
-            </div>
-        </li>
+        {% with images=settings.home.slide_show_img %}
+            {% for img in images %}
+                <li class="uk-width-1-2 uk-padding-small">
+                    <div class="uk-panel">
+	                        <img src="{{ img.url }}" alt="{{ img.alt }}" style="width: 300px; height: 300px; object-fit: contain">
+{#                          <div class="uk-position-center uk-panel"><h2>1</h2></div>#}
+                    </div>
+                </li>
+            {% endfor %}
+        {% endwith %}
     </ul>
 
     <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>

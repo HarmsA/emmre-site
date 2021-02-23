@@ -22,8 +22,15 @@
 			{{ contact.contact_for }}
 		</div>
 		<div>
-			{{ contact.email }} - {{ contact.phone }}
+			{% if contact.email %}
+				{{ contact.email }}
+			{% endif %}
+			{% if contact.phone %}
+				- {{ contact.phone }}
+			{% endif %}
+
 		</div>
+
 	</div>
 {% endfor %}
 

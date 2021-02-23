@@ -5,7 +5,7 @@ from django.utils.text import slugify
 from django.utils.html import escape
 from django.core.cache import cache
 import json
-# from cuisine.media.models import Image, Video
+from media.models import Image
 from django.utils.safestring import mark_safe
 import datetime
 from functools import lru_cache
@@ -14,6 +14,7 @@ from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import mark_safe
 from conference.models import Site
+
 
 
 class SettingFolder(models.Model):
@@ -86,7 +87,7 @@ class Setting(models.Model):
 		("time", "Time"),
 		("datetime", "Datetime"),
 		("email", "Email"),
-		# ("image", "Image"),
+		("image", "Image"),
 		# ("video", "Video"),
 		("integer", "Integer"),
 		("number", "Number"),
@@ -119,14 +120,14 @@ class Setting(models.Model):
 
 		value = self.value
 
-		# if self.type == 'image':
-		# 	image = Image.objects.get(id=value)
-		# 	value = {}
-		# 	if image:
-		# 		value = {
-		# 			"id": image.id,
-		# 			"url": image.url,
-		# 		}
+		if self.type == 'image':
+			image = Image.objects.get(id=value)
+			value = {}
+			if image:
+				value = {
+					"id": image.id,
+					"url": image.url,
+				}
 		# elif self.type == 'video':
 		# 	video = Video.objects.get(id=value)
 		# 	value = {}
