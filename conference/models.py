@@ -20,7 +20,16 @@ class Site(models.Model):
 
 
 class SessionTopic(models.Model):
-	name = models.CharField(max_length=75, blank=True, null=True, unique=False)
+	name = models.CharField(max_length=75, blank=True, null=True, unique=True)
+	slug = models.SlugField(max_length=100, blank=True, null=True)
+
+	def save(self, *args, **kwargs):
+		if self.name and not self.slug:
+			self.slug = slugify(self.name)
+		super(type(self), self).save(*args, **kwargs)
+
+	class Meta:
+		ordering = ('name',)
 
 	def __str__(self):
 		return self.name
@@ -48,7 +57,7 @@ class ConferenceSession(models.Model):
 		('general', 'General'),
 	)
 
-	topics = models.ManyToManyField(SessionTopic, related_name='conferencesessions', through='SessionSchedule')
+	topics = models.ManyToManyField(SessionTopic, related_name='conference_sessions', through='SessionSchedule')
 	title = models.CharField(max_length=500, blank=True, null=True)
 	description = models.TextField()
 	published_status = models.CharField(max_length=30, choices=published_status_choices)
@@ -109,8 +118,11 @@ class Agent(models.Model):
 	company = models.CharField(max_length=150, blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
 	img = models.ForeignKey(Image, related_name='agents', on_delete=models.CASCADE, blank=True, null=True)
-	topic = models.ManyToManyField(SessionTopic, related_name='agenttopics', blank=True, null=True)
+	topic = models.ManyToManyField(SessionTopic, related_name='agent_topics', blank=True, null=True)
 	slug = models.SlugField(max_length=100, blank=True, null=True)
+
+	class Meta:
+		ordering = ('last_name',)
 
 	def save(self, *args, **kwargs):
 		name = self.first_name + ' ' + self.last_name
@@ -147,6 +159,7 @@ class Conference(models.Model):
 	end_date = models.DateField()
 	sponsors = models.ManyToManyField(Sponsor, related_name='conference_sponsors', verbose_name='Sponsor',)
 	exhibitor = models.ManyToManyField(Exhibitor, related_name='conference_exhibitor', verbose_name='Exhibitor',)
+	agents = models.ManyToManyField(Agent, related_name='conference_agents', verbose_name='Agent')
 	site = models.ForeignKey(Site, null=False, blank=False, related_name='conferences', on_delete=models.PROTECT)
 	cancel_refund = models.TextField()
 	basic_conference = models.TextField()
@@ -167,7 +180,7 @@ class ConferenceAddOn(models.Model):
 	title = models.CharField(max_length=50)
 	description = models.CharField(max_length=255, blank=True, null=True)
 	date = models.DateField()
-	conference = models.ForeignKey(Conference, related_name='conferenceAddOns', on_delete=models.CASCADE)
+	conference = models.ForeignKey(Conference, related_name='conference_AddOns', on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.title
@@ -181,7 +194,7 @@ class ConferenceContact(models.Model):
 	phone = models.PositiveBigIntegerField(blank=True, null=True)
 	novel = models.BooleanField(default=True)
 	annual = models.BooleanField(default=True)
-	conference = models.ForeignKey(Conference, related_name='conferencecontact', on_delete=models.CASCADE, blank=True, null=True)
+	conference = models.ForeignKey(Conference, related_name='conference_contact', on_delete=models.CASCADE, blank=True, null=True)
 
 	def __str__(self):
 		return f'{self.name} for {self.conference}'
@@ -190,15 +203,15 @@ class ConferenceContact(models.Model):
 class FAQ(models.Model):
 	question = models.CharField(max_length=255, blank=True, null=True)
 	answer = models.TextField(blank=True, null=True)
-	conference = models.ForeignKey(Conference, related_name='conferencefaq', on_delete=models.CASCADE, blank=True, null=True)
+	conference = models.ForeignKey(Conference, related_name='conference_faq', on_delete=models.CASCADE, blank=True, null=True)
 
 	def __str__(self):
-		return f'{self.conference} FAQ'
+		return f'{self.conference} -- Question -- {self.question}'
 
 
 class PitchSlam(models.Model):
 	description = models.TextField(blank=True, null=True)
-	conference = models.ForeignKey(Conference, related_name='conferencepitchslam', on_delete=models.CASCADE, blank=True, null=True)
+	conference = models.ForeignKey(Conference, related_name='conference_pitchslam', on_delete=models.CASCADE, blank=True, null=True)
 	imgs = models.ManyToManyField(Image, related_name='pitchslam', blank=True, null=True)
 
 	def __str__(self):
@@ -211,7 +224,7 @@ class RegistrationOption(models.Model):
 
 	title = models.CharField(max_length=200, blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
-	conference = models.ForeignKey(Conference, related_name='conferenceregistration', on_delete=models.CASCADE, blank=True, null=True)
+	conference = models.ForeignKey(Conference, related_name='conference_registration', on_delete=models.CASCADE, blank=True, null=True)
 
 	def __str__(self):
 		return f'{self.title} -- {self.conference.title}'
@@ -221,7 +234,7 @@ class RegistrationTimeFrame(models.Model):
 	class Meta:
 		unique_together = ('registration', 'start', 'end')
 
-	registration = models.ForeignKey(RegistrationOption, related_name='timeframes', on_delete=models.CASCADE, blank=True, null=True)
+	registration = models.ForeignKey(RegistrationOption, related_name='time_frames', on_delete=models.CASCADE, blank=True, null=True)
 	cost = models.IntegerField(blank=True, null=True)
 	start = models.DateField(blank=True, null=True)
 	end = models.DateField(blank=True, null=True)
@@ -234,7 +247,9 @@ class MenuItem(models.Model):
 	name = models.CharField(max_length=100, blank=True, null=True)
 	parent = models.ForeignKey('self', related_name="children", blank=True, null=True, on_delete=models.CASCADE)
 	link = models.CharField(max_length=100, blank=True, null=True)
-	site = models.ForeignKey(Site, null=True, blank=True, related_name='sitemenuitem', on_delete=models.PROTECT)
+	site = models.ForeignKey(Site, null=True, blank=True, related_name='site_menu_item', on_delete=models.PROTECT)
+	is_header = models.BooleanField(default=True)
+	is_footer = models.BooleanField(default=True)
 
 	def __str__(self):
 		return self.name

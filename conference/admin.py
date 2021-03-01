@@ -26,6 +26,11 @@ class ExhibitorInline(admin.TabularInline):
 	raw_id_fields = ['conference', 'exhibitor']
 
 
+class AgentInline(admin.TabularInline):
+	model = Conference.agents.through
+	# raw_id_fields = ['conference', 'agent']
+
+
 class RegistrationOptionInline(admin.TabularInline):
 	model = Conference.exhibitor.through
 	raw_id_fields = ['conference', 'exhibitor']
@@ -46,6 +51,11 @@ class ConferenceContactInline(admin.TabularInline):
 	raw_id_fields = []
 
 
+# class ConferenceInline(admin.TabularInline):
+# 	model = Conference
+# 	raw_id_fields = []
+
+
 # class PageInline(admin.TabularInline):
 # 	model = Page
 	# raw_id_fields = []
@@ -58,7 +68,9 @@ class ConferenceSessionSpeakersInlineAdmin(admin.TabularInline):
 
 class ConferenceAdmin(admin.ModelAdmin):
 	inlines = [
-		ConferenceSessionInline, ConferenceSponsorInline,  ExhibitorInline, ConferenceAddOnInline, ConferenceContactInline
+		ConferenceSessionInline, ConferenceSponsorInline,
+		ExhibitorInline, ConferenceAddOnInline, ConferenceContactInline,
+		AgentInline,
 	]
 	fields = [
 		'title', 'site', 'register_url',
@@ -68,11 +80,12 @@ class ConferenceAdmin(admin.ModelAdmin):
 
 
 class SpeakerAdmin(admin.ModelAdmin):
+	search_fields = ['first_name', 'last_name']
 	fields = ['first_name', 'last_name', 'description', 'img', 'is_keynote', 'keynote_type', 'slug']
 	inlines = [
 		ConferenceSessionSpeakersInlineAdmin,
 	]
-	raw_id_fields = ['img']
+	list_filter = ['is_keynote', 'keynote_type']
 
 
 class PageAdmin(admin.ModelAdmin):
@@ -84,32 +97,64 @@ class PageAdmin(admin.ModelAdmin):
 
 
 class AgentAdmin(admin.ModelAdmin):
+	search_fields = ['first_name', 'last_name', 'company']
 	fields = ['first_name', 'last_name', 'company', 'description', 'img', 'topic']
 	inlines = [
-		# PageInline,
+		# ConferenceInline,
 	]
-	# raw_id_fields = ['img']
+	list_filter = ['conference_agents', 'topic']
 
 
 class ConferenceSessionAdmin(admin.ModelAdmin):
-	search_fields = ['visibility']
+	search_fields = ['title']
 	list_filter = ['conference', 'visibility', 'topics', 'is_featured', 'difficulty_level']
 	inlines = [
 		ConferenceSessionTopicsInline,
 	]
 
 
+class ConferenceContactAdmin(admin.ModelAdmin):
+	search_fields = ['name', 'email']
+	list_filter = ['conference', ]
+
+
+class FAQAdmin(admin.ModelAdmin):
+	search_fields = ['question']
+	list_filter = ['conference', ]
+
+
+class SponsorAdmin(admin.ModelAdmin):
+	search_fields = ['name', 'website']
+	list_filter = ['conference_sponsors', ]
+
+
+class ExhibitorAdmin(admin.ModelAdmin):
+	search_fields = ['name', 'website']
+	list_filter = ['conference_exhibitor', ]
+
+
+class MenuItemAdmin(admin.ModelAdmin):
+	search_fields = ['name']
+	list_filter = ['site', 'is_header', 'is_footer']
+
+
+class SessionScheduleAdmin(admin.ModelAdmin):
+	search_fields = ['session']
+	list_filter = ['topic']
+
+
+
 admin.site.register(SessionTopic)
 # admin.site.register(Img)
 admin.site.register(ConferenceSession, ConferenceSessionAdmin)
-admin.site.register(SessionSchedule)
+admin.site.register(SessionSchedule, SessionScheduleAdmin)
 admin.site.register(Speaker, SpeakerAdmin)
 admin.site.register(Agent, AgentAdmin)
-admin.site.register(Sponsor)
-admin.site.register(Exhibitor)
-admin.site.register(MenuItem)
-admin.site.register(FAQ)
-admin.site.register(ConferenceContact)
+admin.site.register(Sponsor, SponsorAdmin)
+admin.site.register(Exhibitor, ExhibitorAdmin)
+admin.site.register(MenuItem, MenuItemAdmin)
+admin.site.register(FAQ, FAQAdmin)
+admin.site.register(ConferenceContact, ConferenceContactAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Site, SiteAdmin)
 admin.site.register(PitchSlam)

@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .models import ConferenceSession, Sponsor, Exhibitor, NavLink, ConferenceAddOn, ConferenceContact, \
 					Conference, SessionTopic, Speaker, FAQ, SessionSchedule, PitchSlam, RegistrationOption, \
-					RegistrationTimeFrame, Page, MenuItem
-from datetime import datetime
+					RegistrationTimeFrame, Page, MenuItem, Agent
+from datetime import datetime, date
 from collections import OrderedDict
 from pprint import pprint
 from ordered_set import OrderedSet
@@ -40,13 +40,10 @@ def home(request):
 
 def schedule(request):
 	webpage, conference = conference_page_info(request)
-	# print('8'*89, webpage, request.site)
-	# conference = Conference.objects.filter(id=request.site.id)
+
 	c_sessions = ConferenceSession.objects.filter(conference__site=request.site, is_featured=False)
 								# .order_by('topics__start').prefetch_related('topics')
-	# print(c_sessions)
-	# for c in c_sessions:
-	# 	print(c.conference.site)
+
 	featured_sessions = ConferenceSession.objects.filter(conference__site=request.site, is_featured=True) \
 		# .order_by('topics__start').prefetch_related('topics')
 	session_schedules = SessionSchedule.objects.filter(session__in=c_sessions).order_by('start')
@@ -63,7 +60,6 @@ def schedule(request):
 		if not session_schedule.start:
 			continue
 		times.add((session_schedule.start, session_schedule.end))
-	# raise Exception(times)
 	table_data = OrderedDict()
 	for day in days:
 		table_data[day] = {}
@@ -72,11 +68,8 @@ def schedule(request):
 			for time in times:
 				if time[0].day != day:
 					continue
-				# raise Exception(time)
 				table_data[day][topic.name][time] = None
-			# table_data
 
-	# raise Exception(c_sessions)
 	for conference_session in c_sessions:
 		for session_schedule in conference_session.session_schedules.all():
 			if not session_schedule.start:
@@ -85,8 +78,6 @@ def schedule(request):
 
 	cols_to_be_deleted = []
 	for date, day in table_data.items():
-		# raise Exception(day)
-		# print(day)
 		for topic_name, timeslots in day.items():
 			delete_column = True
 			for conference_session in timeslots.values():
@@ -102,14 +93,11 @@ def schedule(request):
 	times = set(times)
 	requested_site = str(request.site)
 	sessions = ConferenceSession.objects.filter(conference__title=request.conference).order_by('topics__name')
-	# print(sessions[0].conference.start_date)
-	# print(session_schedules[0].session.title)
+
 	speakers = Speaker.objects.filter()
-	# print(speakers)
 	context = {
 		'site': webpage,
 		'conference': conference,
-		# 'sessions': c_sessions,
 		'featured_sessions': featured_sessions,
 		'topics': topics,
 		'table_data': table_data,
@@ -122,7 +110,7 @@ def schedule(request):
 def speakers(request):
 	webpage, conference = conference_page_info(request)
 	conference_speakers = Speaker.objects.filter(conference_sessions__conference__title=conference).distinct().order_by('last_name')
-	# print(request.site)
+
 	context = {
 		'site': webpage,
 		'conference': conference,
@@ -134,18 +122,9 @@ def speakers(request):
 def pitchslam(request):
 	webpage, conference = conference_page_info(request)
 	pitchslam = PitchSlam.objects.filter(conference__title=conference).distinct()
-	# raise Exception(conference)
 	register_url = Conference.objects.get(title=conference)
-
 	img_file = []
-	# print(webpage)
 
-	# for pics in pitchslam:
-	# 	print(pics.imgs)
-	# 	for pic in pics.imgs.all():
-	# 		if pic.img_file not in img_file:
-	# 			img_file.append(pic.img_file)
-	# print(img_file)
 	context = {
 		'site': webpage,
 		'conference': request.conference,
@@ -156,6 +135,37 @@ def pitchslam(request):
 	return render(request, 'conference/pitch_slam.html', context=context)
 
 
+def agents_editors(request):
+	webpage, conference = conference_page_info(request)
+	agents = Agent.objects.filter(conference_agents__title=conference).distinct()
+	conference = Conference.objects.get(title=conference)
+	# img_file = []
+	topic_list = SessionTopic.objects.all()
+	# for topic in topic_list:
+	# 	for agent in agents:
+	# 		if topic.agenttopics == agent:
+	# 			print(agent, topic)
+	# for agent in agents:
+		# for name in agent.topic.name:
+		# 	print(agent)
+		# raise Exception(agent.topic)
+		# for topics in agent.agenttopics:
+		# 	print(topics.name)
+	print('*'*80, agents)
+	# for topic in topic_list:
+	# 	print(topic)
+
+	context = {
+		'site': webpage,
+		'conference': request.conference,
+		# 'img_file': img_file,
+		# 'register_url': register_url,
+		'agents': agents,
+		'topic_list': topic_list,
+	}
+	return render(request, 'conference/agents.html', context=context)
+
+
 def newsletter(request):
 	webpage, conference = conference_page_info(request)
 	context = {
@@ -164,17 +174,6 @@ def newsletter(request):
 
 	}
 	return render(request, 'conference/newsletter.html', context=context)
-
-
-def connect(request):
-	webpage, conference = conference_page_info(request)
-
-	context = {
-		'site': webpage,
-		'conference': request.conference,
-
-	}
-	return render(request, 'conference/connect.html', context=context)
 
 
 def sponsors_exhibitors(request):
@@ -192,47 +191,15 @@ def sponsors_exhibitors(request):
 	return render(request, 'conference/sponsor_&_exibitors.html', context=context)
 
 
-def news(request):
-	webpage, conference = conference_page_info(request)
-
-	context = {
-		'site': webpage,
-		'conference': request.conference,
-
-	}
-	return render(request, 'conference/news.html', context=context)
-
-
-def travel(request):
-	webpage, conference = conference_page_info(request)
-
-	context = {
-		'site': webpage,
-		'conference': request.conference,
-
-	}
-	return render(request, 'conference/page.html', context=context)
-
-
 def register(request):
-	import time
-	from datetime import date
 	today = date.today()
-
 	webpage, conference_name = conference_page_info(request)
-	# site = Conference.objects.filter(is_active=True)
-	# registration_options = RegistrationOption.objects.filter(conference__title=conference_name)
+
 	options = RegistrationTimeFrame.objects.filter(registration__conference__title=conference_name).order_by('registration')
 	details = RegistrationOption.objects.filter(conference__title=conference_name)
 	register_url = Conference.objects.filter(title=conference_name)
 	add_ons = ConferenceAddOn.objects.filter(conference__title=conference_name)
-	# for add_on in add_ons:
-	# 	print(add_on)
-	for option in options:
-		if today > option.start and today < option.end:
-			print(today, ' 888 ', option.start, ' 888', option.end)
-	# for desc in details:
-	# 	print(desc.description)
+
 	options_list = OrderedSet()
 	for option in options:
 		options_list.append(option.registration.title)
@@ -263,13 +230,10 @@ def register(request):
 def session(request, slug):
 	webpage, conference = conference_page_info(request)
 	session = ConferenceSession.objects.get(slug=slug)
-	# speakers_conferences = ConferenceSession.objects.filter(speakers__slug=slug)
 	context = {
 		'site': webpage,
 		'conference': request.conference,
 		'session': session,
-		# 'speakers_conferences': speakers_conferences,
-
 	}
 	return render(request, 'conference/session.html', context=context)
 
@@ -290,34 +254,22 @@ def speaker(request, slug):
 
 def agent(request, slug):
 	webpage, conference = conference_page_info(request)
-	speakerobj = Speaker.objects.get(slug=slug)
+	agent = Agent.objects.get(slug=slug)
 	speakers_conferences = ConferenceSession.objects.filter(speakers__slug=slug)
-
+	print(agent)
 	context = {
 		'site': webpage,
 		'conference': request.conference,
-		'speaker': speakerobj,
+		'agent': agent,
 		'speakers_conferences': speakers_conferences,
 
 	}
-	return render(request, 'conference/speaker.html', context=context)
-
-
-def about(request):
-	webpage, conference = conference_page_info(request)
-
-	context = {
-		'site': webpage,
-		'conference': request.conference,
-
-	}
-	return render(request, 'conference/about.html', context=context)
+	return render(request, 'conference/agent.html', context=context)
 
 
 def faq(request):
 	webpage, conference = conference_page_info(request)
 	questions = FAQ.objects.filter(conference__title=conference)
-	print(questions)
 	context = {
 		'site': webpage,
 		'conference': request.conference,
@@ -327,7 +279,6 @@ def faq(request):
 
 
 def contact_us(request):
-	# print('8'*80)
 	webpage, conference = conference_page_info(request)
 	contacts = ConferenceContact.objects.filter(conference__title=conference)
 	context = {
@@ -358,8 +309,7 @@ def featured_events(request, slug):
 	webpage, conference_name = conference_page_info(request)
 	page = Page.objects.filter(conference=request.conference)
 	page_obj = Page.objects.filter(slug=slug)
-	# if slug != 'travel':
-	# 	page = page_obj
+
 	context = {
 		'site': webpage,
 		'conference': request.conference,
@@ -370,19 +320,17 @@ def featured_events(request, slug):
 	return render(request, 'conference/featured_events.html', context=context)
 
 
-def featured_event(request, slug):
-	webpage, conference_name = conference_page_info(request)
-	page = Page.objects.filter(conference=request.conference)
-	page_obj = Page.objects.filter(slug=slug)
-	# if slug != 'travel':
-	# 	page = page_obj
-	# print(slug)
-	context = {
-		'site': webpage,
-		'conference': request.conference,
-		'page': page,
-		'slug_page': page_obj,
-
-	}
-	return render(request, 'conference/featured_event.html', context=context)
-
+# def featured_event(request, slug):
+# 	webpage, conference_name = conference_page_info(request)
+# 	page = Page.objects.filter(conference=request.conference)
+# 	page_obj = Page.objects.filter(slug=slug)
+#
+# 	context = {
+# 		'site': webpage,
+# 		'conference': request.conference,
+# 		'page': page,
+# 		'slug_page': page_obj,
+#
+# 	}
+# 	return render(request, 'conference/featured_event.html', context=context)
+#

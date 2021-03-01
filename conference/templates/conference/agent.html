@@ -1,0 +1,32 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+
+
+
+{% block content %}
+
+{% include 'conference/static_templates/header.html' %}
+<div class="container">
+	<h1>{{ agent.first_name }} {{ agent.last_name }}</h1>
+	<div class="row">
+		<div class="col-sm-4 order-sm-12">
+			<img src="{{ agent.img.url }}" alt="{{ agent.alt }}">
+		</div>
+		<div class="col-sm-8 order-sm-1">
+			{{ agent.description|safe }}
+		</div>
+
+	</div>
+		<div class="">
+		Topics Covered:
+			{% for topic in agent.topic.all %}
+				{{ topic }},
+
+			{% endfor %}
+
+		</div>
+</div>
+
+{% endblock content %}

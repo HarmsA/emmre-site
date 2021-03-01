@@ -1,19 +1,31 @@
 
-{% block header %}
+{% block footer %}
 
-<nav class="navbar navbar-expand-md navbar-light bg-light pt-5">
-  <div class="text-center">
-		<ul class="main-footer-nav text-center">
-			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'register' %}">REGISTER</a> </li>
-			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'about' %}">ABOUT</a> </li>
-			<li class="nav-item"><a class="hover-underline-animation" href="http://www.writersdigest.com/wd-events/conference-code-of-conduct">CODE OF CONDUCT</a> </li>
-			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'newsletter' %}">NEWSLETTER</a> </li>
-			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'faq' %}">FAQ</a> </li>
-			<li class="nav-item"><a class="hover-underline-animation" href="https://www.aimmedia.com/privacy-policy/">PRIVACY</a> </li>
-			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'contact_us' %}">CONTACT US</a> </li>
-		</ul>
-  </div>
-</nav>
+<div class="container" style="margin: 30px auto 0 auto; width: 75%; text-align: center">
+	<nav class="navbar" style="margin: 10px 0 0 0; width: 100%; text-align: center">
+		{% for menu_item in menu_items %}
+			{% if menu_item.is_footer %}
+				<div class="menu-item" style="margin: 0 0px">
+					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link" style="margin: auto -0px">{{ menu_item.name }}</a>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</nav>
+</div>
+
+{#<nav class="navbar navbar-expand-md navbar-light bg-light pt-5">#}
+{#  <div class="text-center">#}
+{#		<ul class="main-footer-nav text-center">#}
+{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'register' %}">REGISTER</a> </li>#}
+{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'about' %}">ABOUT</a> </li>#}
+{#			<li class="nav-item"><a class="hover-underline-animation" href="http://www.writersdigest.com/wd-events/conference-code-of-conduct">CODE OF CONDUCT</a> </li>#}
+{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'newsletter' %}">NEWSLETTER</a> </li>#}
+{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'faq' %}">FAQ</a> </li>#}
+{#			<li class="nav-item"><a class="hover-underline-animation" href="https://www.aimmedia.com/privacy-policy/">PRIVACY</a> </li>#}
+{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'contact_us' %}">CONTACT US</a> </li>#}
+{#		</ul>#}
+{#  </div>#}
+{#</nav>#}
 
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="text-center">
@@ -28,4 +40,4 @@
 <p class="text-center pb-4">Copyright © 2021 <a href="https://www.writersdigest.com">Writer's Digest, a division of Active Interest Media</a></p>
 
 
-{% endblock header %}
+{% endblock footer %}

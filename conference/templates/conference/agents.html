@@ -1,0 +1,56 @@
+{% extends 'conference/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+
+{% block content %}
+	<script>
+		function show(topic) {
+			console.log(topic);
+			let all = document.getElementsByClassName('all');
+			console.log(all);
+			for (let i=0; i < all.length; i++) {
+                all[i].style.display = 'none';
+            }
+			let topic_div = document.getElementsByClassName(topic);
+			console.log(topic_div);
+			for (let i=0; i < topic_div.length; i++){
+				topic_div[i].style.display='inline-block';
+			}
+        }
+
+	</script>
+
+{% include 'conference/static_templates/header.html' %}
+<div class="container">
+	<div class="text-center">
+		{{ settings.agents.text|safe }}
+	</div>
+	<div>
+		<button class="btn btn-light" type="button" onclick="show('all')" style="color: red;font-weight: bold">All</button>
+		{% for topic in topic_list %}
+			<button class="btn btn-light" type="button" onclick="show('{{topic.slug}}' )" style="color: red;font-weight: bold">{{ topic }}</button>
+ 		{% endfor %}
+	</div>
+	<div class="row justify-content-center p-5">
+		{% for agent in agents %}
+			<div class="all {% for topic in agent.topic.all %}{{ topic.slug }} {% endfor %}">
+					<a href="{% url 'agent' agent.slug %}">
+						<div class="card baseBlock d-flex flex-column justify-content-between text-center"
+					        style="width: 180px; height: 270px; margin: 5px; padding: 10px">
+							<div class="card-img-top"> {{ agent.img.preview|safe }}</div>
+							<p class="card-text">
+								{{ agent.first_name }}
+								{{ agent.last_name }}<br>
+								{{ agent.company }}<br>
+							</p>
+
+						</div>
+					</a>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endblock content %}

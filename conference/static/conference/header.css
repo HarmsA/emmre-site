@@ -72,6 +72,10 @@ a{
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+/*@media (min-width: 769px){*/
+/*nav.navbar.navbar-expand-md-light.bg-light{*/
+	/*width: 993px;*/
+/*}}*/
 @media (max-width: 768px) {
 	#navbarText.collapse.navbar-collapse ul {
 		text-align: left;
@@ -102,7 +106,7 @@ a{
 	color: white;
 
 }
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 761px) {
 	#small-children-links{
 		list-style: square;
 		margin-left: 0px;
@@ -163,6 +167,7 @@ a{
     right: 0;
     content: ' ';
 	/*top: 10px;*/
+	margin-top: 3px;
     height: 75%;
     background: rgba(0, 0, 0, 0.2);
 }

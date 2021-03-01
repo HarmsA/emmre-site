@@ -1,5 +1,5 @@
 function resize() {
-    if ($(window).width() < 975 ) {
+    if ($(window).width() < 751 ) {
         $(function () {
             let element = $(this);
             element.find('.menu-display').css('display', 'block');

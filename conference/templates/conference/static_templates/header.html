@@ -31,25 +31,27 @@
 
 {#	Navbar edited by admin Menu Items, conference/static/conference.js/script.js edits the children show and hide elements #}
 <div class="container" style="margin: 30px auto 50px auto; width: 100%; text-align: center">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 		{% for menu_item in menu_items %}
-			<div class="menu-item nav-item collapse navbar-collapse" id="navbarToggler">
-				<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link">{{ menu_item.name }}</a>
-				{% with children=menu_item.children.all %}
-					{% if children.exists %}
-						<div class="menu-display" style="display: none">
-							{% for child in children %}
-								<div class="menu-item" id="small-children-links">
-									<a class="child-a-tag" href="{{ child.link }}"  style="list-style-position: inside;">{{ child.name }} </a>
-								</div>
-							{% endfor %}
-						</div>
-					{% endif %}
-				{% endwith %}
-			</div>
+			{% if menu_item.is_header %}
+				<div class="menu-item nav-item collapse navbar-collapse" id="navbarToggler">
+					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link">{{ menu_item.name }}</a>
+					{% with children=menu_item.children.all %}
+						{% if children.exists %}
+							<div class="menu-display" style="display: none">
+								{% for child in children %}
+									<div class="menu-item" id="small-children-links">
+										<a class="child-a-tag" href="{{ child.link }}"  style="list-style-position: inside;">{{ child.name }} </a>
+									</div>
+								{% endfor %}
+							</div>
+						{% endif %}
+					{% endwith %}
+				</div>
+			{% endif %}
 		{% endfor %}
 	</nav>
 </div>

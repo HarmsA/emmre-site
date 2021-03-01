@@ -16,4 +16,5 @@ def configuration_context_processor(request):
 
 	return {
 		"settings": settings,
+
 	}
