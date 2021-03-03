@@ -15,6 +15,10 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	{% load static %}
+
+	<!-- jquery-ui -->
+	<link rel="stylesheet" href="/static/jqueryui/jquery-ui.css">
+	<script src="/static/jqueryui/jquery-ui.js"></script>
 	<!-- UIKIT css -->
 	<link rel="stylesheet" href="css/uikit.min.css" />
 	<script src="../../../static/conference/js/uikit.min.js"></script>
@@ -32,6 +36,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/{{ request.site.slug }}/css/style.css">
     <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 	<script src="{% static 'conference/js/scripts.js' %}"></script>
+
 
 	<style>
 		{{ request.site.css|safe }}

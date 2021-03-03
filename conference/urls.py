@@ -11,6 +11,7 @@ urlpatterns = [
     path('speakers/', views.speakers, name='speakers'),
     path('pitch-slam/', views.pitchslam, name='pitch_slam'),
     path('pitch-slam/agents-editors/', views.agents_editors, name='agents_editors'),
+    path('agent/<slug:slug>/', views.agent, name='agent'),
     path('newsletter/', views.newsletter, name='newsletter'),
     # path('connect/', views.connect, name='connect'),
     path('sponsors-exhibitors/', views.sponsors_exhibitors, name='sponsors_exhibitors'),
@@ -19,13 +20,10 @@ urlpatterns = [
     # path('about/', views.about, name='about'),
     path('contact-us/', views.contact_us, name='contact_us'),
     path('faq/', views.faq, name='faq'),
-    path('agent/<slug:slug>/', views.agent, name='agent'),
     path('speaker/<slug:slug>/', views.speaker, name='speaker'),
     path('session/<slug:slug>/', views.session, name='session'),
     # path('workshop/<slug:slug>/', views.featured_events, name='workshop'),
     # path('workshop/<slug:slug>/', views.featured_event, name='workshop'),
     path('<slug:slug>/', views.page, name='page'),
-
-# TODO add agent and agents path
 
 ]

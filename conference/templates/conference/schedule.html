@@ -14,7 +14,8 @@
 	</div>
 	{% for session in featured_sessions %}
 		{% if session.is_featured %}
-			Pre-Conference Workshop ( {{ session.session_schedules.start }} )
+{#			TODO create a session time for featured events #}
+			Pre-Conference Workshop ( {{ session.session_schedules }} )
 			<div>
 
 				<a href="{{ session.slug }}">{{ session.title }}</a> |
@@ -30,7 +31,6 @@
 		SESSIONS SCHEDULE
 	</div>
 	{% for date, day in table_data.items %}
-{#		TODO fix to show date time #}
 		{% for k, v in day.items %}
 			{% if forloop.first %}
 			{% for ke, va in v.items %}
@@ -124,7 +124,6 @@
 {#<div id="sec-table">#}
 {##}
 {#	{% for date, day in table_data.items %}#}
-{#		TODO fix to show date time #}
 {#		{% for k, v in day.items %}#}
 {#			{% if forloop.first %}#}
 {#			{% for ke, va in v.items %}#}

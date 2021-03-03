@@ -24,15 +24,16 @@ button#btn-color.btn.btn-lg.btn-block.mt-4 {
     color: #F42515;
 }
 /* headings text */
-.text-heading {
-	  color: #F42515;
-}
-.text_link {
-	color: #F42515;
-	font-family: "Times New Roman";
-}
+/*.text-heading {*/
+	  /*color: #F42515;*/
+/*}*/
+/*.text_link {*/
+	/*color: #F42515;*/
+	/*font-family: "sans-serif";*/
+/*}*/
 .hover-underline-animation {
   color: #F42515;
+	/*margin-top: -10px;*/
 }
 .hover-underline-animation:hover{
   color: #F42515;

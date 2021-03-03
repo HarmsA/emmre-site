@@ -52,7 +52,7 @@ def schedule(request):
 		if not date:
 			continue
 		days.append(date.day)
-	topics = SessionTopic.objects.filter(conferencesessions__in=c_sessions).distinct()
+	topics = SessionTopic.objects.filter(conference_sessions__in=c_sessions).distinct()
 
 	times = OrderedSet()
 
@@ -138,28 +138,12 @@ def pitchslam(request):
 def agents_editors(request):
 	webpage, conference = conference_page_info(request)
 	agents = Agent.objects.filter(conference_agents__title=conference).distinct()
-	conference = Conference.objects.get(title=conference)
-	# img_file = []
+	# conference = Conference.objects.get(title=conference)
 	topic_list = SessionTopic.objects.all()
-	# for topic in topic_list:
-	# 	for agent in agents:
-	# 		if topic.agenttopics == agent:
-	# 			print(agent, topic)
-	# for agent in agents:
-		# for name in agent.topic.name:
-		# 	print(agent)
-		# raise Exception(agent.topic)
-		# for topics in agent.agenttopics:
-		# 	print(topics.name)
-	print('*'*80, agents)
-	# for topic in topic_list:
-	# 	print(topic)
 
 	context = {
 		'site': webpage,
 		'conference': request.conference,
-		# 'img_file': img_file,
-		# 'register_url': register_url,
 		'agents': agents,
 		'topic_list': topic_list,
 	}

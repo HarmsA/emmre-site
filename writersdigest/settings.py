@@ -11,20 +11,41 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, json
+
+
+def get_environment_variable(name, default=None):
+    if not hasattr(os, 'environ'):
+        return default
+    if name.lower() in os.environ:
+        return os.environ[name.lower()]
+    elif name.upper() in os.environ:
+        return os.environ[name.upper()]
+    else:
+        return default
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environment_variables_path = str(BASE_DIR).rstrip("/") + "/environment_variables.json"
+if os.path.exists(environment_variables_path):
+    with open(environment_variables_path) as environment_variables_file:
+        environment_variables_dict = json.load(environment_variables_file)
+        for key, value in environment_variables_dict.items():
+            os.environ[key] = value
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+
+STAGE = get_environment_variable('stage', 'live')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'vk2in43)9ukh5qjl_*)7hgsm5q_(z1_*-ke(8f#zt)$)#3)l4g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+if STAGE in ['local', 'dev']:
+    DEBUG = True
 
 ALLOWED_HOSTS = [
 	".writersdigestconference.com"
@@ -84,14 +105,24 @@ WSGI_APPLICATION = 'writersdigest.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if STAGE == 'local':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
+elif STAGE == "live":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': get_environment_variable('database_name'),
+            'USER': get_environment_variable('database_user'),
+            'PASSWORD': get_environment_variable('database_password'),
+            'HOST': get_environment_variable('database_host'),
+            'PORT': '3306',
+        },
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -112,9 +143,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = 'AKIAYZPSX2F6UMDRNF7S'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'media.writersdigestconference.com'
+AWS_ACCESS_KEY_ID = get_environment_variable('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = get_environment_variable('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = get_environment_variable('AWS_STORAGE_BUCKET_NAME')
 AWS_DEFAULT_ACL = "public-read"
 AWS_QUERYSTRING_AUTH = False
 

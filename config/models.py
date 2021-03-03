@@ -98,7 +98,6 @@ class Setting(models.Model):
 		("css", "CSS"),
 	)
 
-
 	id = models.AutoField(primary_key=True, null=False, blank=False, editable=False, db_column='id')
 	key = models.SlugField(max_length=255, null=False, blank=False, unique=False, verbose_name='Field Title')
 	value = models.TextField(null=True, blank=True, verbose_name="Content Field")
@@ -140,7 +139,6 @@ class Setting(models.Model):
 		# 		}
 
 		return value
-
 
 	@classmethod
 	def context(cls, site=None):

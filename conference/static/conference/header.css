@@ -27,8 +27,6 @@
 	justify-content: space-around;
 }
 
-
-
 #navbarText.collapse.navbar-collapse ul {
 	text-align: center;
 	margin: 0 auto;
@@ -45,7 +43,7 @@ a{
 
 #navbarText.collapse.navbar-collapse ul li {
 	display: inline;
-	padding: 10px 10px;
+	/*padding: 10px 10px;*/
 }
 
 .hover-underline-animation {
@@ -59,39 +57,38 @@ a{
 .hover-underline-animation:after {
   content: '';
   position: absolute;
-  width: 100%;
+  width: 80%;
   transform: scaleX(0);
   height: 2px;
   bottom: 0;
   left: 0;
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
 .hover-underline-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-/*@media (min-width: 769px){*/
-/*nav.navbar.navbar-expand-md-light.bg-light{*/
-	/*width: 993px;*/
-/*}}*/
-@media (max-width: 768px) {
-	#navbarText.collapse.navbar-collapse ul {
-		text-align: left;
-		margin: 0 auto;
-		/*padding: 1px;*/
-	}
 
-	#navbarText.collapse.navbar-collapse ul li {
-		display: block;
-		padding: 5px 0 5px 50px;
+/*For removal of display of header children at large screens */
+@media (min-width: 992px) {
+	.menu-display {
+		display: none;
+	}
+	.menu-item{
+		padding-bottom: 10px;
+	}
+	#small-children-links .child-a-tag {
+		position: absolute;
+		width: 200px;
+	/*padding-top: 30px;*/
 	}
 }
 
 #small-children-links {
 	list-style: none;
-	margin-left: -100px;
+	margin-left: -150px;
 	padding-top: 30px;
 	position: absolute;
 }
@@ -106,7 +103,20 @@ a{
 	color: white;
 
 }
-@media only screen and (max-width: 761px) {
+@media only screen and (max-width: 991px) {
+	#navbarText.collapse.navbar-collapse ul {
+		text-align: left;
+		margin: 0 auto;
+		/*padding: 1px;*/
+	}
+
+	#navbarText.collapse.navbar-collapse ul li {
+		display: block;
+		padding: 5px 0 5px 50px;
+	}
+	.menu-display{
+		display: block;
+	}
 	#small-children-links{
 		list-style: square;
 		margin-left: 0px;
@@ -125,13 +135,14 @@ a{
 	font-weight: normal;
 	color: black;
 	}
-
 }
+
+
+/* Footer */
 .footer-links{
 	display: inline-block;
 	text-align: center;
 	width: 100%;
-
 }
 .footer-link-list li{
 	margin: 0px 10px;
@@ -148,17 +159,14 @@ a{
 	text-align: center;
 	display: inline-block;
 }
-
 .main-footer-nav {
 	list-style: none;
     padding: 0;
-    /*margin: 0;*/
     margin-top: 20px;
 }
 .main-footer-nav li{
  display: inline-block;
     position: relative;
-    /*float: left;*/
     padding: 0 15px;
 }
 .main-footer-nav li::after {
@@ -166,7 +174,6 @@ a{
     width: 2px;
     right: 0;
     content: ' ';
-	/*top: 10px;*/
 	margin-top: 3px;
     height: 75%;
     background: rgba(0, 0, 0, 0.2);
@@ -174,14 +181,11 @@ a{
 .main-footer-nav li:last-child::after {
    width: 0;
 }
-#navbarText{
 
-}
 
+	/* Banner rt side */
 .conference-date {
-	margin-top: 0px;
-}
-.text_date {
+	margin-top: 0;
 	font-size: 1.15em;
 	color: white;
 }
@@ -205,6 +209,8 @@ a{
 	color: rgba(159,210,216,0.6);
 }
 
+
+	/* Banner left side */
 .header-left {
 	padding: 0 40px 0 0;
 }

@@ -143,7 +143,6 @@ class SessionScheduleAdmin(admin.ModelAdmin):
 	list_filter = ['topic']
 
 
-
 admin.site.register(SessionTopic)
 # admin.site.register(Img)
 admin.site.register(ConferenceSession, ConferenceSessionAdmin)
@@ -156,7 +155,7 @@ admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(FAQ, FAQAdmin)
 admin.site.register(ConferenceContact, ConferenceContactAdmin)
 admin.site.register(Page, PageAdmin)
-admin.site.register(Site, SiteAdmin)
+# admin.site.register(Site, SiteAdmin)
 admin.site.register(PitchSlam)
 admin.site.register(RegistrationOption)
 admin.site.register(RegistrationTimeFrame)
