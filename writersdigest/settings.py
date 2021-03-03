@@ -15,24 +15,25 @@ import os, json
 
 
 def get_environment_variable(name, default=None):
-    if not hasattr(os, 'environ'):
-        return default
-    if name.lower() in os.environ:
-        return os.environ[name.lower()]
-    elif name.upper() in os.environ:
-        return os.environ[name.upper()]
-    else:
-        return default
+	if not hasattr(os, 'environ'):
+		return default
+	if name.lower() in os.environ:
+		return os.environ[name.lower()]
+	elif name.upper() in os.environ:
+		return os.environ[name.upper()]
+	else:
+		return default
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environment_variables_path = str(BASE_DIR).rstrip("/") + "/environment_variables.json"
 if os.path.exists(environment_variables_path):
-    with open(environment_variables_path) as environment_variables_file:
-        environment_variables_dict = json.load(environment_variables_file)
-        for key, value in environment_variables_dict.items():
-            os.environ[key] = value
+	with open(environment_variables_path) as environment_variables_file:
+		environment_variables_dict = json.load(environment_variables_file)
+		for key, value in environment_variables_dict.items():
+			os.environ[key] = value
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -45,60 +46,60 @@ SECRET_KEY = 'vk2in43)9ukh5qjl_*)7hgsm5q_(z1_*-ke(8f#zt)$)#3)l4g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 if STAGE in ['local', 'dev']:
-    DEBUG = True
+	DEBUG = True
 
 ALLOWED_HOSTS = [
 	".writersdigestconference.com",
-    'writersdigestconference.us-east-1.elasticbeanstalk.com',
+	"writersdigestconference.us-east-1.elasticbeanstalk.com",
 ]
 
 SITE_ID = 2
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
 	'django.contrib.sites',
-    'conference.apps.ConferenceConfig',
-    'media.apps.MediaConfig',
-    'config.apps.ConfigConfig',
-    'fontawesome-free',
+	'conference.apps.ConferenceConfig',
+	'media.apps.MediaConfig',
+	'config.apps.ConfigConfig',
+	'fontawesome-free',
 ]
 
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 	'middleware.sites.SimpleMiddleware',
 ]
 
 ROOT_URLCONF = 'writersdigest.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-	            'conference.context_processors.ContextProcessor',
-	            'config.context_processors.configuration_context_processor',
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [os.path.join(BASE_DIR, 'templates')],
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'conference.context_processors.ContextProcessor',
+				'config.context_processors.configuration_context_processor',
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+			],
+		},
+	},
 ]
 
 WSGI_APPLICATION = 'writersdigest.wsgi.application'
@@ -107,40 +108,40 @@ WSGI_APPLICATION = 'writersdigest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 if STAGE == 'local':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.sqlite3',
+			'NAME': BASE_DIR / 'db.sqlite3',
+		}
+	}
 elif STAGE == "live":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': get_environment_variable('database_name'),
-            'USER': get_environment_variable('database_user'),
-            'PASSWORD': get_environment_variable('database_password'),
-            'HOST': get_environment_variable('database_host'),
-            'PORT': '3306',
-        },
-    }
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.mysql',
+			'NAME': get_environment_variable('database_name'),
+			'USER': get_environment_variable('database_user'),
+			'PASSWORD': get_environment_variable('database_password'),
+			'HOST': get_environment_variable('database_host'),
+			'PORT': '3306',
+		},
+	}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+	{
+		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+	},
 ]
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
