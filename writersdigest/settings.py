@@ -48,7 +48,8 @@ if STAGE in ['local', 'dev']:
     DEBUG = True
 
 ALLOWED_HOSTS = [
-	".writersdigestconference.com"
+	".writersdigestconference.com",
+    'writersdigestconference.us-east-1.elasticbeanstalk.com',
 ]
 
 SITE_ID = 2
