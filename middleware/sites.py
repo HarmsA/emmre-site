@@ -17,12 +17,10 @@ class SimpleMiddleware:
 
 		hostname = hostname.replace('local.', '')
 
-		try:
-			request.site = Site.objects.get(domain=hostname)
-		except ObjectDoesNotExist:
+		request.site = Site.objects.get(domain=hostname)
+
+		if not request.site:
 			request.site = Site.objects.get(domain='writersdigestconference.com')
-		except:
-			request.site = None
 
 		response = self.get_response(request)
 		# raise Exception(request.site)

@@ -1,13 +1,12 @@
 from django.contrib import admin
-from conference.models import SessionTopic,  ConferenceSession, \
-	Speaker, Sponsor, Exhibitor, Conference, SessionSchedule, PitchSlam, FAQ, \
-	RegistrationTimeFrame, RegistrationOption, Page, Site, Agent, ConferenceContact, \
-	ConferenceAddOn, MenuItem
+from conference.models import *
+from django.contrib.sites.models import Site as DjangoSite
 
 
+@admin.register(Site)
 class SiteAdmin(admin.ModelAdmin):
 	fields = [
-		'css', 'domain','slug',
+		'css', 'domain','folder',
 	]
 
 
@@ -155,9 +154,8 @@ admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(FAQ, FAQAdmin)
 admin.site.register(ConferenceContact, ConferenceContactAdmin)
 admin.site.register(Page, PageAdmin)
-# admin.site.register(Site, SiteAdmin)
+admin.site.unregister(DjangoSite)
 admin.site.register(PitchSlam)
 admin.site.register(RegistrationOption)
 admin.site.register(RegistrationTimeFrame)
 admin.site.register(Conference, ConferenceAdmin)
-

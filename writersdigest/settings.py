@@ -110,10 +110,20 @@ WSGI_APPLICATION = 'writersdigest.wsgi.application'
 if STAGE == 'local':
 	DATABASES = {
 		'default': {
-			'ENGINE': 'django.db.backends.sqlite3',
-			'NAME': BASE_DIR / 'db.sqlite3',
-		}
+			'ENGINE': 'django.db.backends.mysql',
+			'NAME': get_environment_variable('database_name'),
+			'USER': get_environment_variable('database_user'),
+			'PASSWORD': get_environment_variable('database_password'),
+			'HOST': get_environment_variable('database_host'),
+			'PORT': '3306',
+		},
 	}
+	# DATABASES = {
+	# 	'default': {
+	# 		'ENGINE': 'django.db.backends.sqlite3',
+	# 		'NAME': BASE_DIR / 'db.sqlite3',
+	# 	}
+	# }
 elif STAGE == "live":
 	DATABASES = {
 		'default': {

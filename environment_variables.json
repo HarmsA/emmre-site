@@ -2,5 +2,9 @@
   "STAGE": "local",
   "AWS_ACCESS_KEY_ID": "AKIAYZPSX2F6UMDRNF7S",
   "AWS_SECRET_ACCESS_KEY": "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",
-  "AWS_STORAGE_BUCKET_NAME": "media.writersdigestconference.com"
+  "AWS_STORAGE_BUCKET_NAME": "media.writersdigestconference.com",
+  "DATABASE_PASSWORD": "f43#4jJFE8*7PEd3",
+  "DATABASE_NAME": "writersdigestconference",
+  "DATABASE_HOST": "aim-home-db1.cafsrzigetzt.us-east-1.rds.amazonaws.com",
+  "DATABASE_USER": "writersdigestconference"
 }

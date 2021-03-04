@@ -4,16 +4,18 @@ from django.utils.text import slugify
 import os
 from writersdigest.settings import BASE_DIR
 from media.models import Image
+from conference.managers import Manager
 
 
 class Site(models.Model):
+	objects = Manager()
 	folders = os.listdir(str(BASE_DIR).rstrip('/')+"/conference/static/")
 	slug_choices=[]
 	for folder in folders:
 		slug_choices.append((folder,folder))
 	css = models.TextField(blank=True, null=True)
 	domain = models.CharField(max_length=200, blank=False, null=False)
-	slug = models.SlugField(choices=slug_choices, verbose_name='folder', null=True, blank=True, unique=True)
+	folder = models.SlugField(max_length=255, choices=slug_choices, verbose_name='Folder', null=True, blank=True, unique=True)
 
 	def __str__(self):
 		return self.domain
@@ -118,7 +120,7 @@ class Agent(models.Model):
 	company = models.CharField(max_length=150, blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
 	img = models.ForeignKey(Image, related_name='agents', on_delete=models.CASCADE, blank=True, null=True)
-	topic = models.ManyToManyField(SessionTopic, related_name='agent_topics', blank=True, null=True)
+	topic = models.ManyToManyField(SessionTopic, related_name='agent_topics', blank=True)
 	slug = models.SlugField(max_length=100, blank=True, null=True)
 
 	class Meta:
@@ -212,7 +214,7 @@ class FAQ(models.Model):
 class PitchSlam(models.Model):
 	description = models.TextField(blank=True, null=True)
 	conference = models.ForeignKey(Conference, related_name='conference_pitchslam', on_delete=models.CASCADE, blank=True, null=True)
-	imgs = models.ManyToManyField(Image, related_name='pitchslam', blank=True, null=True)
+	imgs = models.ManyToManyField(Image, related_name='pitchslam', blank=True)
 
 	def __str__(self):
 		return f'{self.conference} Pitch-Slam'
@@ -259,7 +261,7 @@ class Page(models.Model):
 	class Meta:
 		unique_together = (('conference', 'title'), ('conference', 'slug'))
 
-	slug = models.SlugField(blank=True, null=False)
+	slug = models.SlugField(max_length=255, blank=True, null=False)
 	text = models.TextField(blank=True, null=True)
 	title = models.CharField(max_length=100, blank=False, null=False)
 	conference = models.ForeignKey(Conference, related_name='pages', blank=False, null=False, on_delete=models.CASCADE)
