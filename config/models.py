@@ -1,5 +1,5 @@
 from django.db import models
-# from cuisine.site.managers import Manager
+from conference.managers import Manager
 from django.db.models import Q
 from django.utils.text import slugify
 from django.utils.html import escape
@@ -14,7 +14,6 @@ from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import mark_safe
 from conference.models import Site
-
 
 
 class SettingFolder(models.Model):
@@ -34,7 +33,7 @@ class SettingFolder(models.Model):
 			("parent", "name"),
 		)
 
-	# objects = Manager()
+	objects = Manager()
 
 	id = models.AutoField(primary_key=True, null=False, blank=False, editable=False, db_column='id')
 	name = models.SlugField(max_length=255, null=False, blank=False, unique=False)
@@ -77,7 +76,7 @@ class Setting(models.Model):
 		order_with_respect_to = 'folder'
 		# ordering = ['folder__name', 'key']
 
-	# objects = Manager()
+	objects = Manager()
 
 	types = (
 		("text", "Text"),
@@ -280,7 +279,7 @@ class Version(models.Model):
 		)
 		ordering = ['-created']
 
-	# objects = Manager()
+	objects = Manager()
 
 	id = models.AutoField(primary_key=True, null=False, blank=False, editable=False, db_column='id')
 	setting = models.ForeignKey(Setting, null=False, blank=False, editable=False, related_name="versions", on_delete=models.CASCADE)

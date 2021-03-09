@@ -14,6 +14,8 @@ class Manager(models.Manager):
 			result = super(Manager, self).filter(*args, **kwargs).first()
 		except TypeError:
 			result = None
+		except ValueError:
+			result = None
 		return result
 
 	def get_object_or_404(self, *args, **kwargs):

@@ -12,7 +12,7 @@ def conference_page_info(request):
 	now = datetime.now()
 	request.conference = Conference.objects.filter(site=request.site, is_active=True, end_date__gte=now).order_by(
 		'-start_date').first()
-	print(request.conference)
+	# print(request.conference)
 	requested_site = str(request.site)
 
 	if 'novel' in requested_site:
@@ -196,7 +196,7 @@ def register(request):
 			if option.registration.title == option_title:
 				registration_options[option_title][(option.start, option.end)] = {}
 				registration_options[option_title][(option.start, option.end)]={option.cost}
-	pprint(registration_options)
+	# pprint(registration_options)
 
 	context = {
 		'site': webpage,
@@ -240,7 +240,7 @@ def agent(request, slug):
 	webpage, conference = conference_page_info(request)
 	agent = Agent.objects.get(slug=slug)
 	speakers_conferences = ConferenceSession.objects.filter(speakers__slug=slug)
-	print(agent)
+	# print(agent)
 	context = {
 		'site': webpage,
 		'conference': request.conference,

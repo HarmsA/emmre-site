@@ -6,7 +6,7 @@ from django.contrib.sites.models import Site as DjangoSite
 @admin.register(Site)
 class SiteAdmin(admin.ModelAdmin):
 	fields = [
-		'css', 'domain','folder',
+		'css', 'domain', 'folder'
 	]
 
 

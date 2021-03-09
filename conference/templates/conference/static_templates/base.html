@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="/static/jqueryui/jquery-ui.css">
 	<script src="/static/jqueryui/jquery-ui.js"></script>
 	<!-- UIKIT css -->
-	<link rel="stylesheet" href="css/uikit.min.css" />
+	<link rel="stylesheet" href="{% static 'conference/css/uikit.css' %}" />
 	<script src="../../../static/conference/js/uikit.min.js"></script>
 	<script src="../../../static/conference/js/uikit-icons.min.js"></script>
 
@@ -33,18 +33,20 @@
 	<!--<link rel="stylesheet" type="text/css" href="main.css"> -->
 	<link rel="stylesheet" type="text/css" href="{% static 'conference/main.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'conference/header.css' %}">
-	<link rel="stylesheet" type="text/css" href="/static/{{ request.site.slug }}/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/static/{{ request.site.folder }}css/style.css">
     <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 	<script src="{% static 'conference/js/scripts.js' %}"></script>
 
 
 	<style>
-		{{ request.site.css|safe }}
+		{% if request.site.css %}
+			{{ request.site.css|safe }}
+		{% endif %}
 	</style>
 
 </head>
 <body>
-
+{% include 'conference/static_templates/header.html' %}
 	{% block content %}
 	{% endblock content %}
 

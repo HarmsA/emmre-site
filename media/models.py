@@ -2,6 +2,7 @@ from django.db import models
 from media.storage import s3_storage
 from django.utils.text import slugify
 from django.utils.safestring import mark_safe
+from conference.managers import Manager
 
 status_codes = (
 	(100, 'Continue'),
@@ -66,6 +67,8 @@ class Media(models.Model):
 		managed = True
 		abstract = True
 		ordering = ['-id']
+
+	objects = Manager()
 
 	id = models.AutoField(primary_key=True, null=False, blank=False, editable=False, db_column='id')
 	file = models.FileField(null=True, blank=True, storage=s3_storage, upload_to=directory_path)

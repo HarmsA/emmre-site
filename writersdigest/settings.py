@@ -70,6 +70,8 @@ INSTALLED_APPS = [
 	'fontawesome-free',
 ]
 
+# if DEBUG:
+# 	INSTALLED_APPS += ['debug_toolbar']
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
@@ -82,8 +84,10 @@ MIDDLEWARE = [
 	'middleware.sites.SimpleMiddleware',
 ]
 
-ROOT_URLCONF = 'writersdigest.urls'
+# if DEBUG:
+# 	MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
+ROOT_URLCONF = 'writersdigest.urls'
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -180,3 +184,21 @@ USE_TZ = True
 
 STATIC_ROOT = str(BASE_DIR).rstrip("/") + '/static/'
 STATIC_URL = '/static/'
+
+# INTERNAL_IPS = ['127.0.0.1', '104.166.252.133']
+#
+# DEBUG_TOOLBAR_PANELS = [
+# 	'debug_toolbar.panels.history.HistoryPanel',
+# 	'debug_toolbar.panels.versions.VersionsPanel',
+# 	'debug_toolbar.panels.timer.TimerPanel',
+# 	'debug_toolbar.panels.settings.SettingsPanel',
+# 	'debug_toolbar.panels.headers.HeadersPanel',
+# 	'debug_toolbar.panels.request.RequestPanel',
+# 	'debug_toolbar.panels.sql.SQLPanel',
+# 	'debug_toolbar.panels.templates.TemplatesPanel',
+# 	'debug_toolbar.panels.cache.CachePanel',
+# 	'debug_toolbar.panels.signals.SignalsPanel',
+# 	'debug_toolbar.panels.logging.LoggingPanel',
+# 	'debug_toolbar.panels.redirects.RedirectsPanel',
+# 	'debug_toolbar.panels.profiling.ProfilingPanel',
+# ]

@@ -124,3 +124,8 @@
 .speaker_image {
 	height: 300px;
 }
+h2{
+	color: green;
+	font-weight: bolder;
+	font-size: 4em;
+}

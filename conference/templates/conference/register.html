@@ -15,7 +15,7 @@
 			{% if forloop.first %}
 				<div>REGISTRATION DATE <br><br>
 					<div class="mr-4 register-title">
-						{{ title }} cost
+						{{ title }}
 					</div>
 				</div>
 
@@ -60,10 +60,11 @@
 	{% endfor %}
 
 	{% for detail in details %}
-		<h4>
-			{{ detail.title }}
-		</h4>
+{#		<h4>#}
+{#			{{ detail.title }}#}
+{#		</h4>#}
 		{{ detail.description|safe }}
+		<hr style="width: 80%;margin-left: auto;margin-right: auto;height: 2px;background-color:rgba(119,136,153,0.5);">
 	{% endfor %}
 
 	<h3>Add-Ons</h3>
