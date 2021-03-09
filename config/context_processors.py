@@ -11,10 +11,8 @@ def configuration_context_processor(request):
 		settings = json.loads(settings)
 	else:
 		settings = Setting.context(site=request.site)
-		# raise Exception(settings)
 		cache.set(key=cache_key, value=json.dumps(settings), timeout=3600, version=1)
 
 	return {
 		"settings": settings,
-
 	}
