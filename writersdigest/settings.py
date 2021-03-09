@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os, json
+import os, json, sys
 
 
 def get_environment_variable(name, default=None):
