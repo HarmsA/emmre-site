@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os, json
+import os, json, sys
 
 
 def get_environment_variable(name, default=None):
@@ -39,6 +39,10 @@ if os.path.exists(environment_variables_path):
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 STAGE = get_environment_variable('stage', 'live')
+
+if not STAGE:
+	print("Stage not set.")
+	sys.exit()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'vk2in43)9ukh5qjl_*)7hgsm5q_(z1_*-ke(8f#zt)$)#3)l4g'
@@ -68,10 +72,12 @@ INSTALLED_APPS = [
 	'media.apps.MediaConfig',
 	'config.apps.ConfigConfig',
 	'fontawesome-free',
+	# 'cachalot',
 ]
 
-# if DEBUG:
-# 	INSTALLED_APPS += ['debug_toolbar']
+if DEBUG:
+	INSTALLED_APPS += ['debug_toolbar']
+
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
@@ -84,8 +90,9 @@ MIDDLEWARE = [
 	'middleware.sites.SimpleMiddleware',
 ]
 
-# if DEBUG:
-# 	MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+if DEBUG:
+	MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+
 
 ROOT_URLCONF = 'writersdigest.urls'
 TEMPLATES = [
@@ -170,13 +177,13 @@ AWS_QUERYSTRING_AUTH = False
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -185,20 +192,94 @@ USE_TZ = True
 STATIC_ROOT = str(BASE_DIR).rstrip("/") + '/static/'
 STATIC_URL = '/static/'
 
-# INTERNAL_IPS = ['127.0.0.1', '104.166.252.133']
-#
-# DEBUG_TOOLBAR_PANELS = [
-# 	'debug_toolbar.panels.history.HistoryPanel',
-# 	'debug_toolbar.panels.versions.VersionsPanel',
-# 	'debug_toolbar.panels.timer.TimerPanel',
-# 	'debug_toolbar.panels.settings.SettingsPanel',
-# 	'debug_toolbar.panels.headers.HeadersPanel',
-# 	'debug_toolbar.panels.request.RequestPanel',
-# 	'debug_toolbar.panels.sql.SQLPanel',
-# 	'debug_toolbar.panels.templates.TemplatesPanel',
-# 	'debug_toolbar.panels.cache.CachePanel',
-# 	'debug_toolbar.panels.signals.SignalsPanel',
-# 	'debug_toolbar.panels.logging.LoggingPanel',
-# 	'debug_toolbar.panels.redirects.RedirectsPanel',
-# 	'debug_toolbar.panels.profiling.ProfilingPanel',
-# ]
+
+if STAGE == 'live':
+	SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+	SECURE_SSL_REDIRECT = True
+
+SERVER_EMAIL = get_environment_variable('SERVER_EMAIL', "server@writersdigestconference.com")
+DEFAULT_FROM_EMAIL = get_environment_variable('DEFAULT_FROM_EMAIL', "webmaster@writersdigestconference.com")
+
+if STAGE == 'local':
+	EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+	EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+	EMAIL_HOST = get_environment_variable('SMTP_HOST', 'localhost')
+	EMAIL_HOST_USER = get_environment_variable('SMTP_USER', '')
+	EMAIL_HOST_PASSWORD = get_environment_variable('SMTP_PASSWORD', '')
+	EMAIL_PORT = 587
+	EMAIL_USE_TLS = True
+	EMAIL_USE_SSL = False
+	EMAIL_TIMEOUT = 5
+
+ADMINS = [
+	["Adam Harms", "aharms@aimmedia.com"],
+]
+
+if DEBUG:
+	CACHES = {
+		'default': {
+			'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
+		}
+	}
+else:
+	CACHES = {
+		'default': {
+			'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+		}
+	}
+
+CACHE_MIDDLEWARE_SECONDS = 3600
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+INTERNAL_IPS = [
+	'127.0.0.1',		# localhost
+	'67.224.70.75',		# Des Moines
+	'50.203.184.134',	# Boulder
+	'50.192.173.249',	# Ft. Lauderdale
+	'173.254.196.81',	# Los Angeles
+	'70.88.47.226',		# Essex
+	'205.254.255.5',	# El Segundo
+	'206.223.175.110',	# Toronto
+	'69.43.185.10',		# San Diego
+	'216.145.121.116',	# Las Vegas
+	'173.17.66.77',		# Tony's apartment
+	'104.166.252.133',	# Adam's House
+]
+
+DEBUG_TOOLBAR_PANELS = [
+	'debug_toolbar.panels.history.HistoryPanel',
+	'debug_toolbar.panels.versions.VersionsPanel',
+	'debug_toolbar.panels.timer.TimerPanel',
+	'debug_toolbar.panels.settings.SettingsPanel',
+	'debug_toolbar.panels.headers.HeadersPanel',
+	'debug_toolbar.panels.request.RequestPanel',
+	'debug_toolbar.panels.sql.SQLPanel',
+	'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+	'debug_toolbar.panels.templates.TemplatesPanel',
+	'debug_toolbar.panels.cache.CachePanel',
+	'debug_toolbar.panels.signals.SignalsPanel',
+	'debug_toolbar.panels.logging.LoggingPanel',
+	'debug_toolbar.panels.redirects.RedirectsPanel',
+	'debug_toolbar.panels.profiling.ProfilingPanel',
+	'cachalot.panels.CachalotPanel',
+]
+
+CACHALOT_ENABLED = not DEBUG
+CACHALOT_UNCACHABLE_TABLES = [
+	'auth_group',
+	'auth_group_permissions',
+	'auth_permission',
+	'auth_user',
+	'auth_user_groups',
+	'auth_user_user_permissions',
+	'django_admin_log',
+	'django_content_type',
+	'django_migrations',
+	'django_session',
+]

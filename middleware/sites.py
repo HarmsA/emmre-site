@@ -20,9 +20,8 @@ class SimpleMiddleware:
 		request.site = Site.objects.get(domain=hostname)
 
 		if not request.site:
-			request.site = Site.objects.get(domain='writersdigestconference.com')
+			request.site = Site.objects.first()
 
 		response = self.get_response(request)
-		# raise Exception(request.site)
-		return response
 
+		return response
