@@ -3,14 +3,12 @@
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
-{% include 'conference/static_templates/header.html' %}
-<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="1"
-     uk-slider="clsActivated: uk-transition-active; center: true; autoplay:true; autoplay-interval: 3000">
-
+{#{% include 'conference/static_templates/header.html' %}#}
+<div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="clsActivated: uk-transition-active; autoplay:true; autoplay-interval: 3000; infinite: true">
     <ul class="uk-slider-items uk-grid">
         {% with images=settings.home.slide_show_img %}
             {% for img in images %}
-                <li class="uk-width-1-2 uk-padding-small">
+                <li class="uk-width-1-2 uk-padding-medium">
                     <div class="uk-panel">
 	                        <img src="{{ img.url }}" alt="{{ img.alt }}" style="width: 300px; height: 300px; object-fit: contain">
 {#                          <div class="uk-position-center uk-panel"><h2>1</h2></div>#}
@@ -28,8 +26,6 @@
 		<div class="row" >
 			<div class="col-sm">
 				<h2 class="text-heading">{{ settings.home.h1|safe }}
-					{{ sites.Folder }}test
-
 				</h2>
 			</div>
 			<div class="col-sm">

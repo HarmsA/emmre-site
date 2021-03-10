@@ -245,6 +245,7 @@ class RegistrationTimeFrame(models.Model):
 		return f'{self.registration.title} -- {self.start} -- ${self.cost}'
 
 
+# TODO  make menu items orderable by admin
 class MenuItem(models.Model):
 	name = models.CharField(max_length=100, blank=True, null=True)
 	parent = models.ForeignKey('self', related_name="children", blank=True, null=True, on_delete=models.CASCADE)

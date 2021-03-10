@@ -6,6 +6,8 @@ from datetime import datetime, date
 from collections import OrderedDict
 from pprint import pprint
 from ordered_set import OrderedSet
+from config.models import Setting as AdminSettings
+
 
 
 def conference_page_info(request):
@@ -28,6 +30,9 @@ def conference_page_info(request):
 def home(request):
 	webpage, conference = conference_page_info(request)
 	conference_speakers = Speaker.objects.filter(conference_sessions__conference__title=conference).distinct()
+	slide_show = AdminSettings.objects.filter(site__conferences__title=conference)
+	for show in slide_show:
+		print(show.value)
 
 
 	context = {

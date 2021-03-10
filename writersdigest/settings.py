@@ -75,6 +75,9 @@ INSTALLED_APPS = [
 	# 'cachalot',
 ]
 
+if STAGE == 'live':
+	INSTALLED_APPS += ['cachalot']
+
 if DEBUG:
 	INSTALLED_APPS += ['debug_toolbar']
 
@@ -216,18 +219,11 @@ ADMINS = [
 	["Adam Harms", "aharms@aimmedia.com"],
 ]
 
-if DEBUG:
-	CACHES = {
-		'default': {
-			'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
-		}
+CACHES = {
+	'default': {
+		'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
 	}
-else:
-	CACHES = {
-		'default': {
-			'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-		}
-	}
+}
 
 CACHE_MIDDLEWARE_SECONDS = 3600
 
