@@ -247,12 +247,15 @@ class RegistrationTimeFrame(models.Model):
 
 # TODO  make menu items orderable by admin
 class MenuItem(models.Model):
+	class Meta:
+		ordering = ['order', 'id']
 	name = models.CharField(max_length=100, blank=True, null=True)
 	parent = models.ForeignKey('self', related_name="children", blank=True, null=True, on_delete=models.CASCADE)
 	link = models.CharField(max_length=100, blank=True, null=True)
 	site = models.ForeignKey(Site, null=True, blank=True, related_name='site_menu_item', on_delete=models.PROTECT)
 	is_header = models.BooleanField(default=True)
 	is_footer = models.BooleanField(default=True)
+	order = models.IntegerField(default=99)
 
 	def __str__(self):
 		return self.name
