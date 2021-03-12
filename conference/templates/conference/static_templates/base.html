@@ -34,6 +34,8 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'conference/main.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'conference/header.css' %}">
 	<link rel="stylesheet" type="text/css" href="/static/{{ request.site.folder }}/css/style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
     <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 	<script src="{% static 'conference/js/scripts.js' %}"></script>
 
@@ -50,7 +52,6 @@
 {% include 'conference/static_templates/header.html' %}
 	{% block content %}
 	{% endblock content %}
-
 {% include 'conference/static_templates/footer.html' %}
 
 </body>

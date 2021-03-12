@@ -122,5 +122,24 @@
 	margin: 0 auto;
 }
 .speaker_image {
-	height: 300px;
+	/*height: 300px;*/
+	float: right;
+	display: inline-block;
+	padding: 20px;
+}
+.speaker-description > p{
+	display: inline-block;
+}
+p, h1, h2, h3, h4, h5, a {
+	font-family: 'Open Sans', sans-serif;
+}
+.speaker-text-color{
+	color: #13AAAD;
+}
+.schedule-bg-color{
+	background-color: #13AAAD;
+}
+table {
+	border-collapse: unset!important;
+	border: none;
 }

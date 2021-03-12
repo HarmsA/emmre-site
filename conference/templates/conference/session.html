@@ -3,24 +3,19 @@
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
-{% include 'conference/static_templates/header.html' %}
 
 <div class="container">
-	<h2>
-		{{ session.title}}
-	</h2>
-	<p>{{ session.description }}</p>
+{#	<h2>#}
+{#		{{ session.title}}#}
+{#	</h2>#}
+	<p>{{ session.description|safe }}</p>
 	<p>Difficulty level: {{ session.difficulty_level }}</p>
 	<p class="speakers">Speaker(s)</p>
 	<ul class="speakers">
-	{% for speaker in session.speakers.all %}
-	<li><a href="{% url 'speaker' slug=speaker.slug %}">{{ speaker }}</a></li>
-
-	{% endfor %}
+		{% for speaker in session.speakers.all %}
+			<li><a href="{% url 'speaker' slug=speaker.slug %}">{{ speaker }}</a></li>
+		{% endfor %}
 	</ul>
-
-
 </div>
-
 
 {% endblock content %}

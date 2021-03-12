@@ -4,7 +4,6 @@
 
 {% block content %}
 
-{% include 'conference/static_templates/header.html' %}
 <div class="container">
 	<div class="text-center">
 		{{ settings.speakers.text|safe }}
@@ -13,12 +12,12 @@
 		{% for speaker in speakers %}
 				{% if speaker.is_keynote %}
 					<a href="{% url 'speaker' speaker.slug %}">
-						<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 300px; min-width: 75px; margin: 10px; padding: 10px">
-						<div class="card-img-top"> {{ speaker.img.preview|safe }}</div>
+						<div class="card baseBlock flex-column justify-content-between text-center" style="width: fit-content; min-width: 75px; margin: 10px; padding: 10px">
+						<div class="card-img-top"> {{ speaker.img.thumb|safe }}</div>
 {#							<img class="card-img-top" src="" alt="">#}
-						<p class="card-text">
-							{{ speaker.keynote_type }}<br>
-							{{ speaker }}
+						<p class="card-text uk-text-bold speaker-text-color">
+							{{ speaker.keynote_type|upper }}<br>
+							{{ speaker|upper }}
 						</p>
 						</div>
 					</a>
@@ -28,13 +27,14 @@
 	<div class="row justify-content-center">
 		{% for speaker in speakers %}
 			{% if not speaker.is_keynote %}
-				<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="width: 200px; min-width: 50px; margin: 10px; padding: 10px">
+				<div class="card baseBlock flex-column justify-content-between text-center"
+				     style="width: fit-content; min-width: 50px; margin: 10px; padding: 10px">
 					<a href="{% url 'speaker' speaker.slug %}">
 						<div class="card-img-top"> {{ speaker.img.thumb|safe }}</div>
 {#						<img  class="card-img-top" src="" alt="">#}
 						<div class="card-body" style="padding: 0">
-							<p class="card-title" style="margin-bottom: 0">
-								{{ speaker.first_name }} {{ speaker.last_name }}
+							<p class="card-title speaker-text-color" style="margin-bottom: 0">
+								{{ speaker.first_name|upper }} {{ speaker.last_name|upper }}
 							</p>
 						</div>
 					</a>

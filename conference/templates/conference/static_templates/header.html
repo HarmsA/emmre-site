@@ -4,11 +4,12 @@
 <div class="header_background">
 	<div class="container" style="width: 100%">
 		<div class="row">
-			<div class="col-sm-8 header-left pb-4 pt-2">
-				<img src="https://d1amu10dlsj3bl.cloudfront.net/wp-content/uploads/WDC-2020-LogoWhiteHorizontal.png" alt="" style="height: 120px; width: auto">
+			<div class="logo">
+{#				TODO alt tags not working on any img #}
+				<img src="{{ settings.header.logo.url }}" alt="{{ settings.header.logo.alt }}" style="width: auto">
 			</div>
 
-			<div class="apps col-sm-4 text-center header-right pt-4">
+			<div class="apps col-sm-4 text-center header-right">
 				<ul class="social-media-list">
 					<li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter social-media"></i></a></li>
 					<li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f social-media"></i></a></li>
@@ -18,7 +19,7 @@
 					<li>
 						{{ conference.start_date|date:"F j"|upper}}-{{ conference.end_date|date:"j"}},
 						{{ conference.end_date|date:"Y"}}
-					<p id="location text_location">
+					<p id="text_location">
 						{{ conference.location|upper }}
 					</p>
 					</li>
@@ -27,6 +28,15 @@
 		</div>
 	</div>
 </div>
+			<div class="mobile-conference-date">
+				<p>
+					{{ conference.start_date|date:"F j"|upper}}-{{ conference.end_date|date:"j"}},
+					{{ conference.end_date|date:"Y"}}
+				<span id="location">
+					{{ conference.location|upper }}
+				</span>
+				</p>
+			</div>
 	<br>
 
 {#	Navbar edited by admin Menu Items, conference/static/conference.js/script.js edits the children show and hide elements #}
@@ -38,13 +48,13 @@
 		{% for menu_item in menu_items %}
 			{% if menu_item.is_header %}
 				<div class="menu-item nav-item collapse navbar-collapse {% if request.path != menu_item.link %} hover-underline-animation{% endif %}" id="navbarToggler">
-					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link">{{ menu_item.name }}</a>
+					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link">{{ menu_item.name|upper }}</a>
 					{% with children=menu_item.children.all %}
 						{% if children.exists %}
 							<div class="menu-display" >
 								{% for child in children %}
 									<div class="menu-item" id="small-children-links">
-										<a class="child-a-tag" href="{{ child.link }}"  style="">{{ child.name }} </a>
+										<a class="child-a-tag" href="{{ child.link }}"  style="">{{ child.name|upper }} </a>
 									</div>
 								{% endfor %}
 							</div>

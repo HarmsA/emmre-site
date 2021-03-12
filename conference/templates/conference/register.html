@@ -3,62 +3,122 @@
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
-{% include 'conference/static_templates/header.html' %}
 
 <div class="container">
-	<h1 class="text-heading">
-		Registration Details
-	</h1>
+{#	<h1 class="text-heading">#}
+{#		Registration Details#}
+{#	</h1>#}
+{##}
+{#	{% for title, registration_option in registration_options.items %}#}
+{#		<div class="row" style="min-width: 680px; display: inline-flex">#}
+{#			{% if forloop.first %}#}
+{#				<div>REGISTRATION DATE <br><br>#}
+{#					<div class="mr-4 register-title">#}
+{#						{{ title|upper }}#}
+{#					</div>#}
+{#				</div>#}
+{##}
+{#				{% for date, cost in registration_option.items %}#}
+{#					<div class=" register-info">#}
+{#						<div class="border border-dark">#}
+{#							{% for time in date %}#}
+{#								<div class=" col-12 register-info">#}
+{#									{{ time }}#}
+{#									{% if forloop.first %}#}
+{#										-#}
+{#									{% endif %}#}
+{#								</div>#}
+{#							{% endfor %}#}
+{#						</div>#}
+{#						{% for c in cost %}#}
+{#							<div class=" register-info border border-dark text-center{% if today > date or today < date %}highlight{% endif %}">#}
+{#							    ${{ c }}#}
+{#							</div>#}
+{#						{% endfor %}#}
+{#					</div>#}
+{#				{% endfor %}#}
+{##}
+{#			{% else %}#}
+{#				<div class="mr-4 register-title">#}
+{#					{{ title|upper }}#}
+{#				</div>#}
+{#				{% for date, cost in registration_option.items %}#}
+{#					<div class="border border-dark pr-5 pl-5 register-info {% if today > option.start and today < option.end %} highlight{% endif %}">#}
+{#						<div class=" text-center">#}
+{#							{% for c in cost %}#}
+{#							    ${{ c }}#}
+{#							{% endfor %}#}
+{#						</div>#}
+{#					</div>#}
+{#				{% endfor %}#}
+{#			{% endif %}#}
+{#		</div>#}
+{#	{% endfor %}#}
+{##}
 
+
+
+{#<table>#}
+{#  <tr>#}
+{#    <th>REGISTRATION OPTIONS</th>#}
+{#    <th>Savings</th>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <td>January</td>#}
+{#    <td>$100</td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <td>February</td>#}
+{#    <td>$80</td>#}
+{#  </tr>#}
+{#</table>#}
+{#	<h1 class="text-heading">#}
+{#	</h1>#}
+{#<div class="table-responsive-md">#}
+<table class="table">
+	<tr>
+		<th>
+			REGISTRATION OPTIONS
+		</th>
 	{% for title, registration_option in registration_options.items %}
-		<div class="row" style="min-width: 680px">
-			{% if forloop.first %}
-				<div>REGISTRATION DATE <br><br>
-					<div class="mr-4 register-title">
-						{{ title }}
-					</div>
-				</div>
+		{% if forloop.first %}
+			{% for date, cost in registration_option.items %}
+				<th>
+					{% for time in date %}
+						<span style="font-size: .75em">
+							{{ time }}
 
-				{% for date, cost in registration_option.items %}
-					<div class=" register-info">
-						<div class="border border-dark">
-							{% for time in date %}
-								<div class=" col-12 register-info">
-									{{ time }}
-									{% if forloop.first %}
-										-
-									{% endif %}
-								</div>
-							{% endfor %}
-						</div>
-						{% for c in cost %}
-							<div class=" register-info border border-dark text-center{% if today > date or today < date %}highlight{% endif %}">
-							    ${{ c }}
-							</div>
-						{% endfor %}
-					</div>
+						</span>
+						{% if forloop.first %}
+							-<br>
+						{% endif %}
+					{% endfor %}
+				</th>
+			{% endfor %}
+		{% endif %}
+	</tr>
+	<tr class="table-secondary">
+		<td>
+			{{ title|upper }}
+		</td>
+		{% for date, cost in registration_option.items %}
+			<td>
+				{% for c in cost %}
+				    ${{ c }}
 				{% endfor %}
-
-			{% else %}
-				<div class="mr-4 register-title">
-					{{ title }} cost
-				</div>
-				{% for date, cost in registration_option.items %}
-					<div class="border border-dark pr-5 pl-5 register-info {% if today > option.start and today < option.end %} highlight{% endif %}">
-						<div class=" text-center">
-							{% for c in cost %}
-							    ${{ c }}
-							{% endfor %}
-						</div>
-					</div>
-				{% endfor %}
-			{% endif %}
-		</div>
+			</td>
+		{% endfor %}
+	</tr>
 	{% endfor %}
-	{% for url in register_url %}
-		<a href="{{ url.register_url }} }}"><button type="button" class="cust-btn" id="btn-color" >Register Now</button></a>
-	{% endfor %}
+</table>
+{#</div>#}
 
+
+
+
+<div style="margin-top: 30px">
+	<a class="cust-btn" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
+</div>
 	{% for detail in details %}
 {#		<h4>#}
 {#			{{ detail.title }}#}
@@ -80,10 +140,8 @@
 			</div>
 		{% endfor %}
 	</div>
+	<a class="cust-btn" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
 
-{% for url in register_url %}
-	<a href="{{ url.register_url }} }}"><button type="button" class="cust-btn" id="" >Register Now</button></a>
-{% endfor %}
 </div>
 
 

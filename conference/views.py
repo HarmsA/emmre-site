@@ -32,7 +32,7 @@ def home(request):
 	conference_speakers = Speaker.objects.filter(conference_sessions__conference__title=conference).distinct()
 	slide_show = AdminSettings.objects.filter(site__conferences__title=conference)
 	for show in slide_show:
-		print(show.value)
+		print(show.__unicode__)
 
 
 	context = {
@@ -129,7 +129,8 @@ def pitchslam(request):
 	pitchslam = PitchSlam.objects.filter(conference__title=conference).distinct()
 	register_url = Conference.objects.get(title=conference)
 	img_file = []
-
+	for pitch in pitchslam:
+		print(pitch.description)
 	context = {
 		'site': webpage,
 		'conference': request.conference,
@@ -186,7 +187,8 @@ def register(request):
 
 	options = RegistrationTimeFrame.objects.filter(registration__conference__title=conference_name).order_by('registration')
 	details = RegistrationOption.objects.filter(conference__title=conference_name)
-	register_url = Conference.objects.filter(title=conference_name)
+	register_url = Conference.objects.get(title=conference_name)
+
 	add_ons = ConferenceAddOn.objects.filter(conference__title=conference_name)
 
 	options_list = OrderedSet()

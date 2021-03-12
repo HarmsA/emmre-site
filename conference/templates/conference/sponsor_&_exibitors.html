@@ -3,11 +3,10 @@
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
-{% include 'conference/static_templates/header.html' %}
 
 <div class="container">
-	<h1 class="text-heading">
-		Sponsor
+	<h1 class="text-heading uk-text-bold">
+		SPONSOR
 	</h1>
 	<div class="row" style="justify-content: left">
 		{% for sponsor in sponsors %}
@@ -15,7 +14,7 @@
 				<a href="{{ sponsor.website }}">
 						<div class="card-img-top"> {{ sponsor.img.thumb|safe }}</div>
 					<div class="card-body">
-						<h5 class="card-title">{{ sponsor.name }}</h5>
+						<h5 class="card-title">{{ sponsor.name|upper }}</h5>
 					</div>
 					<p class="card-text">
 						{{ sponsor.website }}
@@ -24,8 +23,8 @@
 			</div>
 		{% endfor %}
 	</div>
-	<h1 class="text-heading">
-		Exibitors
+	<h1 class="text-heading uk-text-bold">
+		EXIBITORS
 	</h1>
 	<div class="row" style="justify-content: left">
 		{% for exhibitor in exhibitors %}
@@ -33,7 +32,7 @@
 				<a href="{{ exhibitor.website }}">
 						<div class="card-img-top"> {{ exhibitor.img.thumb|safe }}</div>
 					<div class="card-body">
-						<h5 class="card-title">{{ exhibitor.name }}</h5>
+						<h5 class="card-title">{{ exhibitor.name|upper }}</h5>
 					</div>
 					<p class="card-text">
 						{{ exhibitor.website }}

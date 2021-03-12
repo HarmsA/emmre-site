@@ -4,7 +4,7 @@
 
 {% block content %}
 {#{% include 'conference/static_templates/header.html' %}#}
-<div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="clsActivated: uk-transition-active; autoplay:true; autoplay-interval: 3000; infinite: true">
+<div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="clsActivated: uk-transition-active; autoplay:true; autoplay-interval: 6000; infinite: true">
     <ul class="uk-slider-items uk-grid">
         {% with images=settings.home.slide_show_img %}
             {% for img in images %}
@@ -29,7 +29,10 @@
 				</h2>
 			</div>
 			<div class="col-sm">
-				{{ settings.home.text|safe }}
+				<p>
+					{{ settings.home.text|safe }}
+
+				</p>
 			</div>
 		</div>
 

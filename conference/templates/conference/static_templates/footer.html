@@ -6,7 +6,7 @@
 		{% for menu_item in menu_items %}
 			{% if menu_item.is_footer %}
 				<div class="menu-item" style="margin: 0 0px">
-					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link" style="margin: auto -0px">{{ menu_item.name }}</a>
+					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link" style="margin: auto -0px">{{ menu_item.name|upper }}</a>
 				</div>
 			{% endif %}
 		{% endfor %}

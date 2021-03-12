@@ -8,31 +8,21 @@
 		  .pitch-slam-image { display: none;}   /* hide it elsewhere */
 }
 	</style>
-{% include 'conference/static_templates/header.html' %}
 <div class="container">
 	<div class="row">
-		<div class="">
-			{{ settings.pitch_slam.pitch_slam|safe }}
-		</div>
-		<div class="col justify-content-start">
+		{% for pitch in pitchslam %}
+			<div class="speaker_image">
+				{% for img in pitch.imgs.all %}
+					<img class="pitch-slam-image" src="{{ img.url }}" alt="{{ img.alt }}">
+				{% endfor %}
+			</div>
+			<p class="font-italic font-weight-light pitch">
+				{{ pitch.description|safe }}
+			</p>
 
-{#			{% for pic in img_url %}#}
-{#				<img class="pitch-images float-right" src="{{ pic }}" alt="">#}
-{#			{% endfor %}#}
-			{% for pitch in pitchslam %}
-				<p class="font-italic font-weight-light pitch">
-					{{ pitch.description|safe }}
-				</p>
-			{% endfor %}
-			{{ settings.pitch_slam.how_it_works|safe }}
-			{{ settings.pitch_slam.what_you_get|safe }}
-			{{ settings.pitch_slam.keys_to_pitch_slam_success|safe }}
-
-		</div>
-		<img class="pitch-slam-image" src="{{ settings.pitch_slam.pitch_image.url|safe }}" alt="{{ settings.pitch_slam.pitch_image.alt|safe }}"
-		style="max-height: 1200px">
+		{% endfor %}
 	</div>
-		<a href="{{ register_url.register_url }} }}"><button type="button" class="cust-btn" id="" >Register Now</button></a>
+	<a class="cust-btn" href="{{ register_url.register_url }}" style="margin-top: 60px">Register Now</a>
 </div>
 {% endblock content %}
 

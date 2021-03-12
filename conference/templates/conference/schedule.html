@@ -3,13 +3,13 @@
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
-{% include 'conference/static_templates/header.html' %}
+
 <div class="container" id="schedule-grid">
 
 	<div>
 		{{ settings.schedule.intro_paragraph|safe }}
 	</div>
-	<div class="p-3 mb-4 mt-4 bg-info text-white">
+	<div class="p-3 mb-4 mt-4 schedule-bg-color text-white uk-text-bold">
 		FEATURED EVENTS
 	</div>
 	{% for session in featured_sessions %}
@@ -18,16 +18,16 @@
 			Pre-Conference Workshop ( {{ session.session_schedules }} )
 			<div>
 
-				<a href="{{ session.slug }}">{{ session.title }}</a> |
+				<a href="/session/{{ session.slug }}">{{ session.title|upper }}</a> |
 			{% for speaker in session.speakers.all %}
-				{{ speaker }}
+				{{ speaker|title }}
 			{% endfor %}
 			</div>
 		{% endif %}
 	{% endfor %}
 
 
-	<div class="p-3 mt-4 mb-2 bg-info text-white">
+	<div class="p-3 mt-4 mb-2 schedule-bg-color text-white uk-text-bold">
 		SESSIONS SCHEDULE
 	</div>
 	{% for date, day in table_data.items %}
@@ -78,7 +78,7 @@
 
 				<div class="col-xs-6">
 					<div class="text-center {{ topic_name }}" style="height:48px; margin: 0 8px; width: 200px; padding-top: 5px">
-						<p class="topic-name ">{{ topic_name }}</p>
+						<p class="topic-name ">{{ topic_name|upper }}</p>
 					</div>
 					{% for timeslot, conference_session in timeslots.items %}
 
@@ -97,7 +97,7 @@
 										{% with speakers=session.speakers.all %}
 											{% for speaker in speakers %}
 												{% if session.title == conference_session.title %}
-													<li><a href="{% url 'speaker' slug=speaker.slug %}">{{speaker}}</a></li>
+													<li><a href="{% url 'speaker' slug=speaker.slug %}">{{speaker|upper}}</a></li>
 												{% endif %}
 											{% endfor %}
 										{% endwith %}

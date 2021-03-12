@@ -37,8 +37,15 @@
 	font-weight: bold;
 }
 
-a{
-	color: #000;
+a {
+	color: #13AAAD;
+	font-weight: bold;
+}
+a:hover {
+	color: #F42515 ;
+}
+a:focus {
+	color: black;
 }
 
 #navbarText.collapse.navbar-collapse ul li {
@@ -72,19 +79,6 @@ a{
 }
 
 /*For removal of display of header children at large screens */
-@media (min-width: 992px) {
-	.menu-display {
-		display: none;
-	}
-	.menu-item{
-		padding-bottom: 10px;
-	}
-	#small-children-links .child-a-tag {
-		position: absolute;
-		width: 200px;
-	/*padding-top: 30px;*/
-	}
-}
 
 #small-children-links {
 	list-style: none;
@@ -102,39 +96,6 @@ a{
 	text-decoration: none;
 	color: white;
 
-}
-@media only screen and (max-width: 991px) {
-	#navbarText.collapse.navbar-collapse ul {
-		text-align: left;
-		margin: 0 auto;
-		/*padding: 1px;*/
-	}
-
-	#navbarText.collapse.navbar-collapse ul li {
-		display: block;
-		padding: 5px 0 5px 50px;
-	}
-	.menu-display{
-		display: block;
-	}
-	#small-children-links{
-		list-style: square;
-		margin-left: 0px;
-		padding-top: 0px;
-		position: relative;
-		background-color: transparent;
-	}
-	.child-a-tag {
-	background-color: transparent;
-	padding: 8px 6px;
-	font-weight: lighter;
-	color: black;
-	}
-	.child-a-tag:hover, #small-children-links:hover {
-	text-decoration: none;
-	font-weight: normal;
-	color: black;
-	}
 }
 
 
@@ -193,7 +154,7 @@ a{
 	margin-bottom: 10px;
 }
 .header_background {
-	padding: 10px 0 0 0;
+	/*padding: 10px 0 0 0;*/
 }
 .social-media{
 	margin-top: 10px;
@@ -208,12 +169,125 @@ a{
 .social-media:hover {
 	color: rgba(159,210,216,0.6);
 }
-
-
-	/* Banner left side */
-.header-left {
-	padding: 0 40px 0 0;
+.header_background > .container {
+	padding: 20px 0;
 }
-.header-right {
-	padding: 0 0 0 40px;
+.row > .logo {
+	width: 60%;
+}
+.logo {
+	display: inline-block;
+}
+.row {
+	display: inline-block;
+	width: 100%;
+}
+.mobile-conference-date{
+	display: none;
+}
+.mobile-conference-date > p > #location, #text_location{
+	font-weight: bolder;
+}
+@media (min-width: 992px) {
+	.menu-display {
+		display: none;
+	}
+	.apps {
+		padding: 20px 0 0 20px;
+	    vertical-align: top;
+
+	}
+	.logo > img {
+	    vertical-align: baseline;
+		padding: 10px 0 0 20px;
+
+	}
+	.menu-item{
+		/*padding-bottom: 10px;*/
+	}
+	#small-children-links .child-a-tag {
+		position: absolute;
+		width: 200px;
+		margin-top: -10px;
+	}
+}
+@media only screen and (max-width: 991px) {
+	.apps {
+		display: none;
+	}
+	.conference-date {
+		display: none;
+	}
+	.mobile-conference-date {
+		display: inline-block;
+		margin: 10px 0 0 0;
+		font-size: 1.15em;
+		color: white;
+		width: 100%;
+		padding: 10px auto;
+		text-align: center;
+	}
+	.mobile-conference-date > p {
+		padding: 5px;
+		margin: 10px 0;
+		font-size: 1.75em;
+	}
+	.mobile-conference-date > p > #location{
+		font-weight: bolder;
+	}
+	.row > .logo {
+		width: 100%;
+	}
+	/*.header_background > .container {*/
+	/*padding: 0px;*/
+/*}*/
+	.header_background .container .row {
+		display: block;
+		width: 100%;
+		text-align: center;
+		margin: 0;
+	}
+	.header-left {
+		padding: 0!important;
+		margin: auto;
+		width: 100%;
+		text-align: center;
+	}
+	#navbarText.collapse.navbar-collapse ul {
+		text-align: left;
+		margin: 0 auto;
+		/*padding: 1px;*/
+	}
+	.header-right {
+		padding: 0!important;
+	}
+	.conference-date {
+		border-top: 10px solid white;
+		display: inline-block;
+	}
+	#navbarText.collapse.navbar-collapse ul li {
+		display: block;
+		padding: 5px 0 5px 50px;
+	}
+	.menu-display{
+		display: block;
+	}
+	#small-children-links{
+		list-style: square;
+		margin-left: 0px;
+		padding-top: 0px;
+		position: relative;
+		background-color: transparent;
+	}
+	.child-a-tag {
+	background-color: transparent;
+	padding: 8px 6px;
+	font-weight: lighter;
+	color: black;
+	}
+	.child-a-tag:hover, #small-children-links:hover {
+	text-decoration: none;
+	font-weight: normal;
+	color: black;
+	}
 }

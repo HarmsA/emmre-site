@@ -5,33 +5,29 @@
 
 {% block content %}
 
-
-{% include 'conference/static_templates/header.html' %}
 <div class="container">
 	<div class="text-center">
 		{{ settings.agents.text|safe }}
 	</div>
 	<div id="topic-buttons">
-		<button class="btn btn-light" type="button" style="color: red;font-weight: bold">All</button>
+		<button class="btn btn-light" type="button" style="color: #045882;font-weight: bold">All</button>
 		{% for topic in topic_list %}
-			<button class="btn btn-light" type="button" data-slug="{{ topic.slug }}" style="color: red;font-weight: bold">{{ topic }}</button>
+			<button class="btn btn-light" type="button" data-slug="{{ topic.slug }}" style="color: #045882;font-weight: bold">{{ topic|upper }}</button>
  		{% endfor %}
 	</div>
-	<div class="row justify-content-center p-5" id="agent-list">
+	<div class="row justify-content-center p-4" id="agent-list">
 		{% for agent in agents %}
-			<div class="all {% for topic in agent.topic.all %}{{ topic.slug }} {% endfor %}">
-					<a href="{% url 'agent' agent.slug %}">
-						<div class="card baseBlock d-flex flex-column justify-content-between text-center"
-					        style="width: 180px; height: 270px; margin: 5px; padding: 10px">
-							<div class="card-img-top"> {{ agent.img.preview|safe }}</div>
-							<p class="card-text">
-								{{ agent.first_name }}
-								{{ agent.last_name }}<br>
-								{{ agent.company }}<br>
-							</p>
-
-						</div>
-					</a>
+{#			<div class="all {% for topic in agent.topic.all %}{{ topic.slug }} {% endfor %}">#}
+			<div class="card baseBlock flex-column justify-content-between text-center all {% for topic in agent.topic.all %} {{ topic.slug }} {% endfor %}"
+	             style="width: fit-content; margin: 5px; padding: 10px">
+				<a href="{% url 'agent' agent.slug %}">
+					<div class="card-img-top"> {{ agent.img.thumb|safe }}</div>
+					<p class="card-text speaker-text-color uk-text-bold">
+						{{ agent.first_name|upper }}
+						{{ agent.last_name|upper }}<br>
+						{{ agent.company|title }}<br>
+					</p>
+				</a>
 			</div>
 		{% endfor %}
 	</div>
