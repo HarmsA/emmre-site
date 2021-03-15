@@ -87,15 +87,11 @@ a:focus {
 	position: absolute;
 }
 .child-a-tag {
-	background-color: #00A6AB;
 	padding: 8px 6px;
 	font-weight: bold;
-	color: white;
 }
 .child-a-tag:hover, #small-children-links:hover {
 	text-decoration: none;
-	color: white;
-
 }
 
 

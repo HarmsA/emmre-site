@@ -17,7 +17,7 @@
 				{% endfor %}
 			</div>
 			<p class="font-italic font-weight-light pitch">
-				{{ pitch.description|safe }}
+				{{ pitch.description|safe|default:"conference.pitchslam.description" }}
 			</p>
 
 		{% endfor %}

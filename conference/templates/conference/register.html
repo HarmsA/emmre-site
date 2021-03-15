@@ -77,18 +77,28 @@
 {#<div class="table-responsive-md">#}
 <table class="table">
 	<tr>
-		<th>
+		<th style="border-top: 0">
 			REGISTRATION OPTIONS
 		</th>
 	{% for title, registration_option in registration_options.items %}
 		{% if forloop.first %}
 			{% for date, cost in registration_option.items %}
-				<th>
-					{% for time in date %}
-						<span style="font-size: .75em">
-							{{ time }}
 
-						</span>
+				<th class="{% if date.0 <= today %}sale-date{% endif %}" style="border-top: 0">
+					{% for time in date %}
+						{% if time < today %}
+							<span><p style="margin-bottom: 0; display: inline">NOW</p></span>
+						{% else %}
+
+
+{#							</span>#}
+							<span style="font-size: .75em">
+								{% if register_url %}
+
+								{% endif %}	{{ time }}
+							</span>
+						{% endif %}
+
 						{% if forloop.first %}
 							-<br>
 						{% endif %}
@@ -98,15 +108,19 @@
 		{% endif %}
 	</tr>
 	<tr class="table-secondary">
-		<td>
+		<td style="border-top: 0">
 			{{ title|upper }}
 		</td>
-		{% for date, cost in registration_option.items %}
-			<td>
-				{% for c in cost %}
-				    ${{ c }}
-				{% endfor %}
-			</td>
+		{% for dates, cost in registration_option.items %}
+			{% for date in dates %}
+				{% if forloop.first %}
+					<td class="{% if date <= today %}sale-date{% endif %}" style="border-top: 0">
+					{% for c in cost %}
+					   ${{ c }}
+					{% endfor %}
+					</td>
+				{% endif %}
+			{% endfor %}
 		{% endfor %}
 	</tr>
 	{% endfor %}

@@ -4,13 +4,13 @@
 
 {% block content %}
 {#{% include 'conference/static_templates/header.html' %}#}
-<div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="clsActivated: uk-transition-active; autoplay:true; autoplay-interval: 6000; infinite: true">
-    <ul class="uk-slider-items uk-grid">
+<div id="slider" class="uk-position-relative uk-visible-toggle uk-light " tabindex="-1" uk-slider="center:true; autoplay:true">
+    <ul class="uk-slider-items uk-grid uk-grid-collapse">
         {% with images=settings.home.slide_show_img %}
             {% for img in images %}
-                <li class="uk-width-1-2 uk-padding-medium">
+                <li class="uk-width-2-3 uk-padding-large">
                     <div class="uk-panel">
-	                        <img src="{{ img.url }}" alt="{{ img.alt }}" style="width: 300px; height: 300px; object-fit: contain">
+	                        <img src="{{ img.url }}" alt="{{ img.alt }}">
 {#                          <div class="uk-position-center uk-panel"><h2>1</h2></div>#}
                     </div>
                 </li>
@@ -22,21 +22,22 @@
     <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
 </div>
-	<div class="container" style="padding: 2rem 0 !important;">
-		<div class="row" >
-			<div class="col-sm">
-				<h2 class="text-heading">{{ settings.home.h1|safe }}
-				</h2>
-			</div>
-			<div class="col-sm">
-				<p>
-					{{ settings.home.text|safe }}
-
-				</p>
-			</div>
+<div class="container" style="padding: 2rem 0 !important;">
+	<div class="d-flex flex-row justify-content-around flex-wrap" >
+		<div class="p-2 ">
+			<h2 class="text-heading">
+				{{ settings.home.h1|safe|default:"settings.home.h1"  }}
+			</h2>
 		</div>
+		<div class="p-2">
+			<p>
+				{{ settings.home.text|safe|default:"settings.home.text" }}
 
+			</p>
+		</div>
 	</div>
+
+</div>
 	<br>
 
 

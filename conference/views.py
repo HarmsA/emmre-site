@@ -185,7 +185,7 @@ def register(request):
 	today = date.today()
 	webpage, conference_name = conference_page_info(request)
 
-	options = RegistrationTimeFrame.objects.filter(registration__conference__title=conference_name).order_by('registration')
+	options = RegistrationTimeFrame.objects.filter(registration__conference__title=conference_name).order_by('start')
 	details = RegistrationOption.objects.filter(conference__title=conference_name)
 	register_url = Conference.objects.get(title=conference_name)
 

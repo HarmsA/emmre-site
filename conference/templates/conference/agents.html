@@ -6,8 +6,8 @@
 {% block content %}
 
 <div class="container">
-	<div class="text-center">
-		{{ settings.agents.text|safe }}
+	<div class="text-center pb-4">
+		{{ settings.agents.text|safe|default:"settings.agents.text" }}
 	</div>
 	<div id="topic-buttons">
 		<button class="btn btn-light" type="button" style="color: #045882;font-weight: bold">All</button>
@@ -30,6 +30,9 @@
 				</a>
 			</div>
 		{% endfor %}
+	</div>
+	<div style="margin-top: 30px">
+		<a class="cust-btn" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
 	</div>
 </div>
 
