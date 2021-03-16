@@ -9,7 +9,7 @@ from conference.managers import Manager
 
 class Site(models.Model):
 	objects = Manager()
-	folders = os.listdir(str(BASE_DIR).rstrip('/')+"/conference/static/")
+	folders = os.listdir(str(BASE_DIR).rstrip('/')+"/assets/")
 	slug_choices=[]
 	for folder in folders:
 		slug_choices.append((folder,folder))

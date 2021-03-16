@@ -192,9 +192,11 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = str(BASE_DIR).rstrip("/") + '/static/'
-STATIC_URL = '/static/'
-
+STATIC_URL = '/assets/'
+STATIC_ROOT = str(BASE_DIR).rstrip("/") + "/static/"
+STATICFILES_DIRS = [
+	os.path.join(str(BASE_DIR), "assets"),
+]
 
 if STAGE == 'live':
 	SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
