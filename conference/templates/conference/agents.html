@@ -7,7 +7,11 @@
 
 <div class="container">
 	<div class="text-center pb-4">
-		{{ settings.agents.text|safe|default:"settings.agents.text" }}
+		{% if request.user.is_staff %}
+			{{ settings.agents.text|safe|default:"settings.agents.text" }}
+		{% else %}
+			{{ settings.agents.text|safe }}
+		{% endif %}
 	</div>
 	<div id="topic-buttons">
 		<button class="btn btn-light" type="button" style="color: #045882;font-weight: bold">All</button>

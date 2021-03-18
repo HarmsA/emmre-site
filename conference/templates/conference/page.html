@@ -6,11 +6,19 @@
 
 <div class="container">
 	<h1 class="text-heading uk-text-bold">
-		{{ page.title|upper|default:"conference.pages.title" }}
+		{% if request.user.is_staff %}
+			{{ page.title|upper|default:"conference.pages.title" }}
+		{% else %}
+			{{ page.title|upper }}
+		{% endif %}
 	</h1>
 	{% for detail in slug_page %}
 		<div class="">
+			{% if request.user.is_staff %}
 				{{ detail.text|safe|default:"conference.pages.text" }}
+			{% else %}
+				{{ detail.text|safe }}
+			{% endif %}
 
 			{% if detail.parent.slug %}
 			   <span style="font-weight: bold">Back To: </span><a href="{% url 'page' slug=detail.parent.slug %}">{{ detail.parent.title }}</a>

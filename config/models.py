@@ -125,6 +125,7 @@ class Setting(models.Model):
 				value = {
 					"id": image.id,
 					"url": image.url,
+					"alt": image.alt,
 				}
 		# elif self.type == 'video':
 		# 	video = Video.objects.get(id=value)

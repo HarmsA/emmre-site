@@ -26,13 +26,20 @@
 	<div class="d-flex flex-row justify-content-around flex-wrap" >
 		<div class="p-2 ">
 			<h2 class="text-heading">
+			{% if request.user.is_staff %}
 				{{ settings.home.h1|safe|default:"settings.home.h1"  }}
+			{% else %}
+				{{ settings.home.h1|safe|default:"settings.home.h1"  }}
+			{% endif %}
 			</h2>
 		</div>
 		<div class="p-2">
 			<p>
-				{{ settings.home.text|safe|default:"settings.home.text" }}
-
+		{% if request.user.is_staff %}
+			{{ settings.home.text|safe|default:"settings.home.text" }}
+		{% else %}
+			{{ settings.home.text|safe|default:"settings.home.text" }}
+		{% endif %}
 			</p>
 		</div>
 	</div>

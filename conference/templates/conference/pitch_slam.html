@@ -17,7 +17,11 @@
 				{% endfor %}
 			</div>
 			<p class="font-italic font-weight-light pitch">
-				{{ pitch.description|safe|default:"conference.pitchslam.description" }}
+		{% if request.user.is_staff %}
+			{{ pitch.description|safe|default:"conference.pitchslam.description" }}
+		{% else %}
+			{{ pitch.description|safe|default:"conference.pitchslam.description" }}
+		{% endif %}
 			</p>
 
 		{% endfor %}
