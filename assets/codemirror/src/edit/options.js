@@ -75,7 +75,7 @@ export function defineOptions(CodeMirror) {
   option("specialCharPlaceholder", defaultSpecialCharPlaceholder, cm => cm.refresh(), true)
   option("electricChars", true)
   option("inputStyle", mobile ? "contenteditable" : "textarea", () => {
-    throw new Error("inputStyle can not (yet) be changed in a running editor") // FIXME
+    throw new Error("inputStyle can not (yet) be changed in a running editor")
   }, true)
   option("spellcheck", false, (cm, val) => cm.getInputField().spellcheck = val, true)
   option("autocorrect", false, (cm, val) => cm.getInputField().autocorrect = val, true)

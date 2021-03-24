@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from writersdigest.settings import DEBUG
+import writersdigest.views as views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('conference.urls')),
-    path('config/', include('config.urls', namespace='config'))
+    path('config/', include('config.urls', namespace='config')),
+    path('accessibility/', views.accessibility, name="accessibility"),
 ]
 
 if DEBUG:

@@ -12,26 +12,21 @@
 			{{ page.title|upper }}
 		{% endif %}
 	</h1>
-	{% for detail in slug_page %}
 		<div class="">
 			{% if request.user.is_staff %}
-				{{ detail.text|safe|default:"conference.pages.text" }}
+				{{ page.text|safe|default:"conference.pages.text" }}
 			{% else %}
-				{{ detail.text|safe }}
+				{{ page.text|safe }}
 			{% endif %}
 
-			{% if detail.parent.slug %}
-			   <span style="font-weight: bold">Back To: </span><a href="{% url 'page' slug=detail.parent.slug %}">{{ detail.parent.title }}</a>
+			{% if page.parent.slug %}
+			   <span style="font-weight: bold">Back To: </span><a href="{% url 'page' slug=page.parent.slug %}">{{ page.parent.title }}</a>
 			{% endif %}
-
 		</div>
-	{% endfor %}
 
 	<div class="row justify-content-center">
-		{% for detail in page %}
-			{% if detail.parent.slug == slug and slug != detail.slug %}
+		{% for detail in page.children.all %}
 				<a href="{% url 'page' slug=detail.slug %}">
-
 					<div class="card baseBlock d-flex flex-column justify-content-between text-center" style="max-width: 250px; min-width: 50px; height: 350px; margin: 10px; padding: 15px">
 						<h3 class="text-heading uk-text-bold">{{ detail.title|upper }}</h3>
 						<div class="card-img-top">
@@ -40,7 +35,6 @@
 						{{ detail.excerpt|capfirst|safe|truncatewords_html:10 }}
 					</div>
 				</a>
-			{% endif %}
 		{% endfor %}
 	</div>
 </div>

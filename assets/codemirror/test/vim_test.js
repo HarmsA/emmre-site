@@ -387,7 +387,6 @@ testMotion('G', 'G',
     makeCursor(3, 1));
 testMotion('G_repeat', ['3', 'G'], makeCursor(lines[2].line,
     lines[2].textStart));
-// TODO: Make the test code long enough to test Ctrl-F and Ctrl-B.
 testMotion('0', '0', makeCursor(0, 0), makeCursor(0, 8));
 testMotion('^', '^', makeCursor(0, lines[0].textStart), makeCursor(0, 8));
 testMotion('+', '+', makeCursor(1, lines[1].textStart), makeCursor(0, 8));
@@ -1232,7 +1231,6 @@ testVim('gu_and_gU', function(cm, vim, helpers) {
   eq(cm.getValue(), 'wa wb Xx wc wd');
   eqCursorPos(makeCursor(0, 3), cm.getCursor());
 
-  // TODO: support gUgU guu
   // eqCursorPos(makeCursor(0, 0), cm.getCursor());
 
   var register = helpers.getRegisterController().getRegister();
@@ -1693,7 +1691,6 @@ testVim('A_visual_block', function(cm, vim, helpers) {
   helpers.doKeys('<Esc>');
   cm.setCursor(0, 0);
   helpers.doKeys('.');
-  // TODO this doesn't work yet
   // eq('teshellothello\nme hello hello\nplehelloahellose', cm.getValue());
 }, {value: 'test\nme\nplease'});
 testVim('I', function(cm, vim, helpers) {
@@ -2564,7 +2561,6 @@ testVim('d_/', function(cm, vim, helpers) {
   eq('match \n next', cm.getValue());
   cm.openDialog = helpers.fakeOpenDialog('2');
   helpers.doKeys('d', ':');
-  // TODO eq(' next', cm.getValue());
 }, { value: 'text match match \n next' });
 testVim('/ and n/N', function(cm, vim, helpers) {
   cm.openDialog = helpers.fakeOpenDialog('match');

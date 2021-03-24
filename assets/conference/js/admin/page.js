@@ -1,6 +1,7 @@
 tinymce.init({
       selector: '#id_text, #id_child_intro',
       height: 600,
+      paste_data_images: true,
       font_formats:"Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant" +
           " garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier" +
           " new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; " +

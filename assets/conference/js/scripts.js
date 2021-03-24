@@ -1,4 +1,3 @@
-//TODO mouseleave does not alwayse fire, sometimes multiple children are shown at the same time
 $(document).ready(function(){
     $('.menu-item').on('mouseover', function () {
         let element = $(this);

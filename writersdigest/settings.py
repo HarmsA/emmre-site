@@ -93,6 +93,10 @@ MIDDLEWARE = [
 	'middleware.sites.SimpleMiddleware',
 ]
 
+Z_INDEX_PRIORITIES = [
+	'accessibility',
+]
+
 if DEBUG:
 	MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
@@ -233,7 +237,12 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# Stores cache in db for local to not kick you out of admin when server is restarted
+if STAGE == 'local':
+	SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+else:
+	SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 
 INTERNAL_IPS = [
 	'127.0.0.1',		# localhost

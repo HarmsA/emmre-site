@@ -40,7 +40,6 @@ button#btn-color.btn.btn-lg.btn-block.mt-4 {
 
 .hover-underline-animation:after {
   background-color: #F42515;
-
 }
 
 .cust-btn {
@@ -64,16 +63,6 @@ button#btn-color.btn.btn-lg.btn-block.mt-4 {
 .highlight{
 	background-color: blue;
 }
-@media only screen and (max-width: 991px) {
-	.mobile-conference-date {
-		background-color: #002D40;
-	}
-}
-@media only screen and (max-width: 586px) {
-	#slider {
-		display: none;
-	}
-}
 .child-a-tag {
 	background-color: #00A6AB;
 	color: white;
@@ -81,4 +70,33 @@ button#btn-color.btn.btn-lg.btn-block.mt-4 {
 .child-a-tag:hover, #small-children-links:hover {
 	color: white;
 	background-color: #F42515;
+}
+@media only screen and (max-width: 991px) {
+	.mobile-conference-date {
+		background-color: #002D40;
+	}
+}
+@media only screen and (max-width: 991px) {
+	#slider {
+		display: none;
+	}
+	.child-a-tag {
+	background-color: white;
+	color: black;
+	}
+	.child-a-tag:hover, #small-children-links:hover {
+	color: #F42515;
+	background-color: white;
+	}
+	.hover-underline-animation {
+        color: white;
+	/*margin-top: -10px;*/
+	}
+	.hover-underline-animation:hover{
+	  color: white;
+	}
+
+	.hover-underline-animation:after {
+	  background-color: white;
+	}
 }

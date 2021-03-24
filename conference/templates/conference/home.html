@@ -29,7 +29,7 @@
 			{% if request.user.is_staff %}
 				{{ settings.home.h1|safe|default:"settings.home.h1"  }}
 			{% else %}
-				{{ settings.home.h1|safe|default:"settings.home.h1"  }}
+				{{ settings.home.h1|safe  }}
 			{% endif %}
 			</h2>
 		</div>
@@ -38,7 +38,7 @@
 		{% if request.user.is_staff %}
 			{{ settings.home.text|safe|default:"settings.home.text" }}
 		{% else %}
-			{{ settings.home.text|safe|default:"settings.home.text" }}
+			{{ settings.home.text|safe }}
 		{% endif %}
 			</p>
 		</div>

@@ -1,10 +1,18 @@
-from django.db import models
-from django.contrib.sites.models import Site as DjangoSite
-from django.utils.text import slugify
+import base64
+import datetime
 import os
-from writersdigest.settings import BASE_DIR
-from media.models import Image
+import re
+from io import BytesIO
+
+from PIL import Image as PILImage
+from django.contrib.sites.models import Site as DjangoSite
+from django.core.files.base import ContentFile
+from django.db import models
+from django.utils.text import slugify
+
 from conference.managers import Manager
+from media.models import Image
+from writersdigest.settings import BASE_DIR
 
 
 class Site(models.Model):
@@ -245,7 +253,6 @@ class RegistrationTimeFrame(models.Model):
 		return f'{self.registration.title} -- {self.start} -- ${self.cost}'
 
 
-# TODO  make menu items orderable by admin
 class MenuItem(models.Model):
 	class Meta:
 		ordering = ['order', 'id']
@@ -275,7 +282,34 @@ class Page(models.Model):
 	parent = models.ForeignKey('self', related_name='children', null=True, blank=True, on_delete=models.CASCADE)
 	excerpt = models.TextField(blank=True, null=True, verbose_name='Intro for link')
 
+	@staticmethod
+	def parsecontentforimages(text):
+		if not text:
+			return text
+		matches = re.finditer(r'<img src="data:(.*?);base64,(.*?)".*?>', text)
+		if not matches:
+			return text
+
+		filenum = 0
+		for match in matches:
+			mimetype = match.group(1).lower()
+			extension = mimetype.split('/')[1]
+			# Save the image in memory
+			im = PILImage.open(BytesIO(base64.b64decode(match.group(2))))
+			out_im2 = BytesIO()
+			im.save(out_im2, extension)
+			file_name = "base64image_" + str('page_img') + str(filenum) + ' ' + str(__class__.__name__) + str(
+				id) + "_" + str(datetime.datetime.now().strftime("%Y%m%d%H%M%S")) + "." + str(extension)
+			filenum += 1
+			img = Image()
+			img.file.save(file_name, ContentFile(out_im2.getvalue()))
+			img.save()
+			# raise Exception(match.group(0))
+			text = text.replace(str(match.group(0)), f"""<img src="{img.url}"/>""")
+		return text
+
 	def save(self, *args, **kwargs):
+		self.text = Page.parsecontentforimages(self.text)
 		if self.title and not self.slug:
 			self.slug = slugify(self.title)
 		super(type(self), self).save(*args, **kwargs)

@@ -526,7 +526,6 @@ function locateNodeInLineView(lineView, node, offset) {
   let found = find(textNode, topNode, offset)
   if (found) return badPos(found, bad)
 
-  // FIXME this is all really shaky. might handle the few cases it needs to handle, but likely to cause problems
   for (let after = topNode.nextSibling, dist = textNode ? textNode.nodeValue.length - offset : 0; after; after = after.nextSibling) {
     found = find(after, after.firstChild, 0)
     if (found)
