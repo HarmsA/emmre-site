@@ -1,5 +1,5 @@
 from django.views.decorators.http import require_safe
-from .forms import AccessibilitySettingsForm
+from conference.forms import AccessibilitySettingsForm
 from django.shortcuts import render
 
 

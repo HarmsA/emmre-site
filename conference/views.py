@@ -1,7 +1,9 @@
 from django.http import Http404
 
+from conference.forms import AccessibilitySettingsForm
 from .models import *
 from django.shortcuts import render
+from django.views.decorators.http import require_safe
 from datetime import datetime, date
 from collections import OrderedDict
 from pprint import pprint
@@ -9,7 +11,6 @@ from ordered_set import OrderedSet
 from config.models import Setting as AdminSettings
 from .context_processors import conference_page_info
 from .context_processors import what_site
-
 
 
 
@@ -273,6 +274,15 @@ def featured_events(request, slug):
 
 	}
 	return render(request, 'conference/featured_events.html', context=context)
+
+
+@require_safe
+def accessibility(request):
+	accessibility_settings_form = AccessibilitySettingsForm()
+	response = render(request, 'conference/accessibility.html', {
+		"accessibility_settings_form": accessibility_settings_form,
+	})
+	return response
 
 
 

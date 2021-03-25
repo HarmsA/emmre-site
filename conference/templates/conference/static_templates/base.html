@@ -1,3 +1,5 @@
+{% load cache %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,6 +57,9 @@
 	{% block content %}
 	{% endblock content %}
 {% include 'conference/static_templates/footer.html' %}
-
+	{% cache 60 combined_scripts_include request.site %}
+{#		{% combine_scripts request=request scripts="/assets/js/accessibility.js" %}#}
+		<script src="/assets/conference/js/accessibility.js"></script>
+	{% endcache %}
 </body>
 </html>

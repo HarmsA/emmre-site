@@ -1,0 +1,47 @@
+{% extends "conference/static_templates/base.html" %}
+{% block title %}<title>Accessibility</title>{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block doubleclick %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a href="{% url 'accessibility' %}">Accessibility</a>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block style %}
+    <style>
+        #big-circ {
+            display: none;
+        }
+        input#id_high_contrast_mode, input#id_text_to_speech {
+            display: inline;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section id="accessibility" class="main">
+        <h1>
+            Accessibility Settings
+        </h1>
+        <p>
+            You can adjust your accessibility settings here.  We are working continuously to improve our site to make it easy to use for all visitors.  If you find a page that is difficult to navigate, or if you find some other accessibility-related error or oversight, please <a href="https://www.loghome.com/articles/contact-us/">report it to customer service</a>, and we'll do our best to fix it as soon as possible.
+        </p>
+        <form id="accessibility-settings-form" method='get' action="">
+            <table>
+                {{ accessibility_settings_form.as_table }}
+            </table>
+            <button>Save</button>
+        </form>
+    </section>
+{% endblock %}

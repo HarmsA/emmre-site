@@ -243,6 +243,8 @@ if STAGE == 'local':
 else:
 	SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
+SCRIPT_CACHE_TIME = 10 if DEBUG else 40 #minutes
+STYLE_CACHE_TIME = 10 if DEBUG else 40 #minutes
 
 INTERNAL_IPS = [
 	'127.0.0.1',		# localhost

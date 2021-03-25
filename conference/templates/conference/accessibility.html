@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% block title %}<title>Accessibility</title>{% endblock %}
+{% extends "conference/static_templates/base.html" %}
+{% block title %}Accessibility{% endblock %}
 
 {% block sidebar %}
 {% endblock %}
@@ -26,22 +26,46 @@
         input#id_high_contrast_mode, input#id_text_to_speech {
             display: inline;
         }
+
     </style>
 {% endblock %}
 
 {% block content %}
+	<style>
+		form#accessibility-settings-form > table > tbody > tr > th {
+			width: 45% !important;
+		}
+		form#accessibility-settings-form > table > tbody > tr > th > label {
+			padding-left: 10px !important;
+		}
+		table > tbody > tr> td> br {
+			display: none;
+		}
+		#id_text_to_speech {
+			margin-right: 10px;
+		}
+	</style>
+	<div class="container">
+
     <section id="accessibility" class="main">
         <h1>
             Accessibility Settings
         </h1>
+{#	    TODO add correct link for contact-us to go to#}
         <p>
-            You can adjust your accessibility settings here.  We are working continuously to improve our site to make it easy to use for all visitors.  If you find a page that is difficult to navigate, or if you find some other accessibility-related error or oversight, please <a href="https://www.loghome.com/articles/contact-us/">report it to customer service</a>, and we'll do our best to fix it as soon as possible.
+            You can adjust your accessibility settings here.  We are working continuously to improve our
+	        site to make it easy to use for all visitors.  If you find a page that is difficult to navigate,
+	        or if you find some other accessibility-related error or oversight, please
+	        <a href="{% url 'contact_us' %}">report it to customer service</a>,
+	        and we'll do our best to fix it as soon as possible.
         </p>
         <form id="accessibility-settings-form" method='get' action="">
-            <table>
+            <table style="font-size: 2em">
                 {{ accessibility_settings_form.as_table }}
             </table>
-            <button>Save</button>
+            <button class="cust-btn"  style="margin-top: 20px">Save</button>
+
         </form>
     </section>
+	</div>
 {% endblock %}
