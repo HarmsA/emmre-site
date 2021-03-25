@@ -1,5 +1,7 @@
 {% load z_index %}
 <aside id="accessibility-link-container" style="z-index:{% z_index 'accessibility' %};">
-	<a href="{% url 'accessibility' %}" class="fas fa-universal-access" aria-label="Accessibility Settings" title="Accessibility Settings" aria-description="Change the font size and contrast of the site." tabindex="0" style="text-decoration:none;color:{{ request.site.data.color }};">
+	<a href="{% url 'accessibility' %}" class="fas fa-universal-access" aria-label="Accessibility Settings"
+	   title="Accessibility Settings" aria-description="Change the font size and contrast of the site."
+	   tabindex="0" style="text-decoration:none;color:black;position: fixed; padding: 5px; font-size: 30px">
 	</a>
 </aside>
