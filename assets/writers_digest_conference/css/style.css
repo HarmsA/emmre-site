@@ -67,7 +67,7 @@ button#btn-color.btn.btn-lg.btn-block.mt-4 {
 	background-color: #00A6AB;
 	color: white;
 }
-.child-a-tag:hover, #small-children-links:hover {
+.child-a-tag:hover, .small-children-links:hover {
 	color: white;
 	background-color: #F42515;
 }
@@ -84,7 +84,7 @@ button#btn-color.btn.btn-lg.btn-block.mt-4 {
 	background-color: white;
 	color: black;
 	}
-	.child-a-tag:hover, #small-children-links:hover {
+	.child-a-tag:hover, .small-children-links:hover {
 	color: #F42515;
 	background-color: white;
 	}

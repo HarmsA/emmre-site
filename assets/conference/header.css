@@ -80,7 +80,7 @@ a:focus {
 
 /*For removal of display of header children at large screens */
 
-#small-children-links {
+.small-children-links {
 	list-style: none;
 	margin-left: -150px;
 	padding-top: 30px;
@@ -90,7 +90,7 @@ a:focus {
 	padding: 8px 6px;
 	font-weight: bold;
 }
-.child-a-tag:hover, #small-children-links:hover {
+.child-a-tag:hover, .small-children-links:hover {
 	text-decoration: none;
 }
 
@@ -201,7 +201,7 @@ a:focus {
 	.menu-item{
 		/*padding-bottom: 10px;*/
 	}
-	#small-children-links .child-a-tag {
+	.small-children-links .child-a-tag {
 		position: absolute;
 		width: 200px;
 		margin-top: -10px;
@@ -268,7 +268,7 @@ a:focus {
 	.menu-display{
 		display: block;
 	}
-	#small-children-links{
+	.small-children-links{
 		list-style: square;
 		margin-left: 0px;
 		padding-top: 0px;
@@ -281,7 +281,7 @@ a:focus {
 	font-weight: lighter;
 	color: black;
 	}
-	.child-a-tag:hover, #small-children-links:hover {
+	.child-a-tag:hover, .small-children-links:hover {
 	text-decoration: none;
 	font-weight: normal;
 	color: black;
