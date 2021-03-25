@@ -15,7 +15,7 @@
 	<div class="row justify-content-center p-5">
 		{% for speaker in speakers %}
 				{% if speaker.is_keynote %}
-					<a href="{% url 'speaker' speaker.slug %}">
+					<a href="{% url 'speaker' speaker.slug %}"></a>
 						<div class="card baseBlock flex-column justify-content-between text-center" style="width: fit-content; min-width: 75px; margin: 10px; padding: 10px">
 						<div class="card-img-top"> {{ speaker.img.thumb|safe }}</div>
 {#							<img class="card-img-top" src="" alt="">#}
@@ -33,7 +33,7 @@
 			{% if not speaker.is_keynote %}
 				<div class="card baseBlock flex-column justify-content-between text-center"
 				     style="width: fit-content; min-width: 50px; margin: 10px; padding: 10px">
-					<a href="{% url 'speaker' speaker.slug %}">
+					<a href="{% url 'speaker' speaker.slug %}"></a>
 						<div class="card-img-top"> {{ speaker.img.thumb|safe }}</div>
 {#						<img  class="card-img-top" src="" alt="">#}
 						<div class="card-body" style="padding: 0">

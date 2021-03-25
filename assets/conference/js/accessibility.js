@@ -27,12 +27,12 @@ function initializeAccessibilitySettings() {
                 "--light-yellow": "white",
                 "--red": "black",
             });
-            $("#accessibility-link-container").css({
-                "background-color": "white",
-            });
-            $(".recipe .category").css({
-                "color": "black",
-            });
+            // $(".speaker-text-color, .nav-link").css({
+            //     "color": "black",
+            // });
+            // $(".child-a-tag").css({
+            //     "background-color": "black",
+            // });
             $(".bg-checkered-yellow, .recipe .tip").css({
                 "background-color": "black",
             });
