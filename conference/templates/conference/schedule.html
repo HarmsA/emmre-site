@@ -22,7 +22,7 @@
 			Pre-Conference Workshop ( {{ session.session_schedules }} )
 			<div class="atomic-narration">
 
-				<a href="/session/{{ session.slug }}">{{ session.title|upper }}</a> |
+				<a class="text-color-accessibility" href="/session/{{ session.slug }}">{{ session.title|upper }}</a> |
 			{% for speaker in session.speakers.all %}
 				<span>{{ speaker|title }}</span>
 			{% endfor %}
@@ -92,7 +92,7 @@
 								{% if 'Lunch' in conference_session.title|title %}
 									{{ conference_session.title|title|truncatechars:65 }}
 								{% else %}
-									<a href="{% url 'session' slug=conference_session.slug %}">{{ conference_session.title|title|truncatechars:65 }}</a>
+									<a class="text-color-accessibility" href="{% url 'session' slug=conference_session.slug %}">{{ conference_session.title|title|truncatechars:65 }}</a>
 								{% endif %}
 								<p class="speakers">Speaker(s):</p>
 								<ul class="speakers">
@@ -101,7 +101,7 @@
 										{% with speakers=session.speakers.all %}
 											{% for speaker in speakers %}
 												{% if session.title == conference_session.title %}
-													<li><a href="{% url 'speaker' slug=speaker.slug %}">{{speaker|upper}}</a></li>
+													<li><a class="text-color-accessibility" href="{% url 'speaker' slug=speaker.slug %}">{{speaker|upper}}</a></li>
 												{% endif %}
 											{% endfor %}
 										{% endwith %}

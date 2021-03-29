@@ -6,7 +6,7 @@
 		{% for menu_item in menu_items %}
 			{% if menu_item.is_footer %}
 				<div class="menu-item" style="margin: 0 0px">
-					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link" style="margin: auto -0px">{{ menu_item.name|upper }}</a>
+					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility" style="margin: auto -0px">{{ menu_item.name|upper }}</a>
 				</div>
 			{% endif %}
 		{% endfor %}
@@ -31,14 +31,14 @@
   <div class="text-center">
 	<ul class="footer-link-list">
 		<li style="margin-right: 0"><img src="{{ settings.footer.logo.url }}" alt="{{ settings.footer.logo.alt }}" style="width: 50%;"></li>
-		<li style="margin-left: 0"><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter"></i></a></li>
-		<li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f"></i></a></li>
-		<li><a href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram"></i></a></li>
+		<li style="margin-left: 0"><a class="text-color-accessibility" href="https://twitter.com/WritersDigest"><i class="fab fa-twitter"></i></a></li>
+		<li><a class="text-color-accessibility" href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f"></i></a></li>
+		<li><a class="text-color-accessibility" href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram"></i></a></li>
 	</ul>
   </div>
 </nav>
 <div class="container" style="width: 100%; text-align: center">
-	<p class="text-center pb-4">Copyright © 2021 <a href="https://www.writersdigest.com">Writer's Digest, a division of Active Interest Media</a></p>
+	<p class="text-center pb-4">Copyright © 2021 <a class="text-color-accessibility" href="https://www.writersdigest.com">Writer's Digest, a division of Active Interest Media</a></p>
 </div>
 
 

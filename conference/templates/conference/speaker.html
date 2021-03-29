@@ -18,7 +18,7 @@
 		<p class="font-weight-bold pt-5">Related Sessions</p>
 		{% for session in speakers_conferences %}
 			<p>
-				<a href="{% url 'session' slug=session.slug %}">{{ session|title|truncatechars:65 }}</a>
+				<a class="text-color-accessibility" href="{% url 'session' slug=session.slug %}">{{ session|title|truncatechars:65 }}</a>
 			</p>
 		{% endfor %}
 		</div>

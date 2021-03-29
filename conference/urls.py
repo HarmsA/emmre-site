@@ -7,6 +7,7 @@ urlpatterns = [
     # path('novel_writers_digest_conference/', views.novel_writers_digest_conference, name='novel_writers_digest_conference'),
     # path('annual/', views.annual, name='annual'),
     path('schedule/', views.schedule, name='schedule'),
+    path('schedule/', views.schedule, name='schedule'),
     path('speakers/', views.speakers, name='speakers'),
     path('pitch-slam/', views.pitchslam, name='pitch_slam'),
     path('pitch-slam/agents-editors/', views.agents_editors, name='agents_editors'),

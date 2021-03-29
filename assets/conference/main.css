@@ -143,8 +143,12 @@ table {
 	border-collapse: unset!important;
 	border: none;
 }
-.sale-date {
-	background-color: #13AAAD!important;
+td.sale-date {
+	background-color: #13AAAD;
+	color: white;
+}
+th.sale-date {
+	background-color: #13AAAD;
 	color: white;
 }
 

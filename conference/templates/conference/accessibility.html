@@ -56,14 +56,14 @@
             You can adjust your accessibility settings here.  We are working continuously to improve our
 	        site to make it easy to use for all visitors.  If you find a page that is difficult to navigate,
 	        or if you find some other accessibility-related error or oversight, please
-	        <a href="{% url 'contact_us' %}">report it to customer service</a>,
+	        <a href="{% url 'contact_us' %} " style="color:black">report it to customer service</a>,
 	        and we'll do our best to fix it as soon as possible.
         </p>
         <form id="accessibility-settings-form" method='get' action="">
             <table style="font-size: 2em">
                 {{ accessibility_settings_form.as_table }}
             </table>
-            <button class="cust-btn"  style="margin-top: 20px">Save</button>
+            <button class="cust-btn cust-btn-accessibility"  style="margin-top: 20px; background-color: lightgray; color: black">Save</button>
 
         </form>
     </section>

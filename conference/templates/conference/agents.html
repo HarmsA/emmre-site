@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="container">
-	<div class="text-center pb-4">
+	<div class="text-center pb-4 text-color-accessibility">
 		{% if request.user.is_staff %}
 			{{ settings.agents.text|safe|default:"settings.agents.text" }}
 		{% else %}
@@ -14,9 +14,9 @@
 		{% endif %}
 	</div>
 	<div id="topic-buttons">
-		<button class="btn btn-light" type="button" style="color: #045882;font-weight: bold">All</button>
+		<button class="btn btn-light text-color-accessibility" type="button" style="color: #045882;font-weight: bold">All</button>
 		{% for topic in topic_list %}
-			<button class="btn btn-light" type="button" data-slug="{{ topic.slug }}" style="color: #045882;font-weight: bold">{{ topic|upper }}</button>
+			<button class="btn btn-light text-color-accessibility" type="button" data-slug="{{ topic.slug }}" style="color: #045882;font-weight: bold">{{ topic|upper }}</button>
  		{% endfor %}
 	</div>
 	<div class="row justify-content-center p-4" id="agent-list">
@@ -26,7 +26,7 @@
 	             style="width: fit-content; margin: 5px; padding: 10px">
 				<a href="{% url 'agent' agent.slug %}">
 					<div class="card-img-top"> {{ agent.img.thumb|safe }}</div>
-					<p class="card-text speaker-text-color uk-text-bold">
+					<p class="card-text speaker-text-color uk-text-bold text-color-accessibility">
 						{{ agent.first_name|upper }}
 						{{ agent.last_name|upper }}<br>
 						{{ agent.company|title }}<br>
@@ -36,7 +36,7 @@
 		{% endfor %}
 	</div>
 	<div style="margin-top: 30px">
-		<a class="cust-btn" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
+		<a class="cust-btn cust-btn-accessibility" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
 	</div>
 </div>
 

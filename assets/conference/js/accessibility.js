@@ -27,18 +27,24 @@ function initializeAccessibilitySettings() {
                 "--light-yellow": "white",
                 "--red": "black",
             });
-            $(".speaker-text-color, .nav-link").css({
+            $(".text-color-accessibility").css({
                 "color": "black",
             });
             $(".child-a-tag").css({
                 "background-color": "black",
                 "color": "white",
             });
-            $(".bg-checkered-yellow, .recipe .tip").css({
-                "background-color": "black",
-            });
-            $("article .category, figure .category").css({
+            $(" .cust-btn-accessibility").css({
                 "color": "black",
+                "background-color": "lightgrey",
+            });
+            $(".table-accessibility").css({
+                "color": "black",
+                "background-color": "grey",
+            });
+            $("th.sales-date.table-accessibility").css({
+                "color": "black",
+                "background-color": "grey",
             });
             $(".footer .title").css({
                 "color": "white",

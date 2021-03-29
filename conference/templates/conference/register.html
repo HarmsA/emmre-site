@@ -77,14 +77,14 @@
 {#<div class="table-responsive-md">#}
 <table class="table">
 	<tr>
-		<th style="border-top: 0">
+		<th class="align-middle" style="border-top: 0">
 			REGISTRATION OPTIONS
 		</th>
 	{% for title, registration_option in registration_options.items %}
 		{% if forloop.first %}
 			{% for date, cost in registration_option.items %}
 
-				<th class="{% if date.0 <= today %}sale-date{% endif %}" style="border-top: 0">
+				<th class="{% if date.0 <= today %}sale-date table-accessibility{% endif %}" style="border-top: 0">
 					{% for time in date %}
 						{% if time < today %}
 							<span><p style="margin-bottom: 0; display: inline">NOW</p></span>
@@ -114,7 +114,7 @@
 		{% for dates, cost in registration_option.items %}
 			{% for date in dates %}
 				{% if forloop.first %}
-					<td class="{% if date <= today %}sale-date{% endif %}" style="border-top: 0">
+					<td class="{% if date <= today %}sale-date table-accessibility{% endif %}" style="border-top: 0">
 					{% for c in cost %}
 					   ${{ c }}
 					{% endfor %}
@@ -130,14 +130,17 @@
 
 
 
-<div style="margin-top: 30px">
-	<a class="cust-btn" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
+<div style="margin-top: 30px; padding: 0 0 30px 0">
+	<a class="cust-btn cust-btn-accessibility" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
 </div>
 	{% for detail in details %}
 {#		<h4>#}
 {#			{{ detail.title }}#}
 {#		</h4>#}
-		{{ detail.description|safe }}
+		<div class="text-color-accessibility">
+			{{ detail.description|safe }}
+
+		</div>
 		<hr style="width: 80%;margin-left: auto;margin-right: auto;height: 2px;background-color:rgba(119,136,153,0.5);">
 	{% endfor %}
 
@@ -145,16 +148,16 @@
 	<div class="row justify-content-around">
 
 		{% for add_on in add_ons %}
-			<div class="card p-2">
-			 <div class="card-body">
-				<h4 class="card-title">{{ add_on.title }}</h4>
-				<p class="card-text">{{ add_on.description }}</p>
-				<p>Date: {{ add_on.date }}</p>
+			<div class="card p-2 text-color-accessibility">
+			 <div class="card-body text-color-accessibility">
+				<h4 class="card-title text-color-accessibility">{{ add_on.title }}</h4>
+				<p class="card-text text-color-accessibility">{{ add_on.description }}</p>
+				<p text-color-accessibility>Date: {{ add_on.date }}</p>
 			</div>
 			</div>
 		{% endfor %}
 	</div>
-	<a class="cust-btn" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
+	<a class="cust-btn cust-btn-accessibility" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
 
 </div>
 

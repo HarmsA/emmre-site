@@ -13,7 +13,7 @@
 	<p class="speakers">Speaker(s)</p>
 	<ul class="speakers">
 		{% for speaker in session.speakers.all %}
-			<li><a href="{% url 'speaker' slug=speaker.slug %}">{{ speaker }}</a></li>
+			<li><a class="text-color-accessibility" href="{% url 'speaker' slug=speaker.slug %}">{{ speaker }}</a></li>
 		{% endfor %}
 	</ul>
 </div>
