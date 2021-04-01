@@ -16,3 +16,4 @@ urllib3
 mysqlclient==2.0.1
 django-debug-toolbar
 django-cachalot
+requests
