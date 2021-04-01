@@ -70,7 +70,8 @@ class PDFAdmin(MediaAdmin):
 	def save_model(self, request, obj, form, change):
 		obj.save(request=request)
 
-@admin.register
+
+@admin.register(Image)
 class ImageAdmin(MediaAdmin):
 	list_filter = ['added', 'modified']
 	list_display = ['id', 'thumb', 'added', 'modified']
@@ -90,4 +91,3 @@ class ImageAdmin(MediaAdmin):
 
 
 admin.site.register(PDF, PDFAdmin)
-admin.site.register(Image)

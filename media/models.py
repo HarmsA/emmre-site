@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from media.storage import s3_storage
 from django.utils.text import slugify
 from django.utils.safestring import mark_safe
@@ -127,10 +129,14 @@ class Image(Media):
 	def get_absolute_url(self):
 		return self.url
 
-	def thumb(self):
+	def thumb(self, max_width=200):
 		if not self.pk:
 			return ""
-		return mark_safe("<img src='{src}' style='max-width:200px;max-height:200px;' />".format(src=self.url))
+		# return mark_safe("<img src='{src}' style='max-width:200px;max-height:200px;' />"
+	#                   .format(src=f"/media/image/{self.id}/thumbnail/?w=200"))
+		return mark_safe("<img src='{src}'  role='img' style='max-width:{max_width}px;max-height:{max_width}px;' />"
+		                 .format(max_width=max_width, src=reverse("media:image_thumbnail", kwargs={"id":self.id})+f'?w={max_width}'))
+
 	thumb.allow_tags = True
 
 	def preview(self):

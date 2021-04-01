@@ -7,3 +7,4 @@ def z_index(key):
 	if not key in Z_INDEX_PRIORITIES:
 		return 0
 	return Z_INDEX_PRIORITIES.index(key) + 1
+

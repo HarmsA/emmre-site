@@ -228,8 +228,13 @@ ADMINS = [
 CACHES = {
 	'default': {
 		'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+	},
+	'filesystem': {
+		'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+		'LOCATION': str(BASE_DIR).rstrip('/')+'/cache/',
 	}
 }
+
 
 CACHE_MIDDLEWARE_SECONDS = 3600
 

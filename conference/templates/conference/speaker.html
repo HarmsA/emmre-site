@@ -1,5 +1,5 @@
 {% extends 'conference/static_templates/base.html' %}
-
+{% load thumbnail %}
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
@@ -8,7 +8,8 @@
 	<h1>{{ speaker.first_name }} {{ speaker.last_name }}</h1>
 	<div class="row">
 		<div class="speaker_image">
-			{{ speaker.img }}
+{#			{{ speaker.img }}#}
+			{% thumbnail speaker.img 600 %}
 
 		</div>
 		<p class="speaker-description" style="margin-top: 0!important">

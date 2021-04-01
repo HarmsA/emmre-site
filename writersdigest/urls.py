@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('conference.urls')),
     path('config/', include('config.urls', namespace='config')),
+    path('media/', include('media.urls', namespace='media')),
     path('accessibility/', views.accessibility, name="accessibility"),
 ]
 

@@ -216,7 +216,6 @@ def speaker(request, slug):
 	context = {
 		'speaker': speakerobj,
 		'speakers_conferences': speakers_conferences,
-
 	}
 	return render(request, 'conference/speaker.html', context=context)
 
