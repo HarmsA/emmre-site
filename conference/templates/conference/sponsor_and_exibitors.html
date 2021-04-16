@@ -5,6 +5,13 @@
 {% block content %}
 
 <div class="container">
+	<div class="text-center">
+		{% if request.user.is_staff %}
+			{{ settings.sponsors.text|safe|default:"settings.sponsors.text" }}
+		{% else %}
+			{{ settings.sponsors.text|safe }}
+		{% endif %}
+	</div>
 	<h1 class="text-heading uk-text-bold">
 		SPONSOR
 	</h1>

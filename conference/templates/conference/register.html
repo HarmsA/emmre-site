@@ -84,7 +84,7 @@
 		{% if forloop.first %}
 			{% for date, cost in registration_option.items %}
 
-				<th class="{% if date.0 <= today %}sale-date table-accessibility{% endif %}" style="border-top: 0">
+				<th class="{% if date.0 <= today and date.1 >= today  %}sale-date table-accessibility{% endif %}" style="{% if date.1 <= today %}display:none;{% endif %}border-top: 0">
 					{% for time in date %}
 						{% if time < today %}
 							<span><p style="margin-bottom: 0; display: inline">NOW</p></span>
@@ -114,7 +114,7 @@
 		{% for dates, cost in registration_option.items %}
 			{% for date in dates %}
 				{% if forloop.first %}
-					<td class="{% if date <= today %}sale-date table-accessibility{% endif %}" style="border-top: 0">
+					<td class="{% if date <= today and dates.1 >= today %}sale-date table-accessibility{% endif %}" style="{% if dates.1 <= today %}display:none;{% endif %}border-top: 0">
 					{% for c in cost %}
 					   ${{ c }}
 					{% endfor %}
@@ -160,6 +160,5 @@
 	<a class="cust-btn cust-btn-accessibility" href="{{ url.register_url }} }}" style="margin-top: 60px">Register Now</a>
 
 </div>
-
 
 {% endblock content %}

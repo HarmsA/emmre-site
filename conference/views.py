@@ -187,7 +187,7 @@ def register(request):
 			if option.registration.title == option_title:
 				registration_options[option_title][(option.start, option.end)] = {}
 				registration_options[option_title][(option.start, option.end)]={option.cost}
-	# pprint(registration_options)
+	pprint(registration_options)
 
 	context = {
 		'options': options,
