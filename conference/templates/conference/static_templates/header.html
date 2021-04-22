@@ -3,8 +3,8 @@
 
 <div class="header_background">
 	<div class="container" style="width: 100%">
-		<div class="row">
-			<div class="logo">
+		<div class="row text-center">
+			<div class="logo col-md-6 text-center">
 				<img src="{{ settings.header.logo.url }}" alt="{{ settings.header.logo.alt }}" role="img" style="width: auto">
 			</div>
 
@@ -48,15 +48,17 @@
 
 		{% for menu_item in menu_items %}
 			{% if menu_item.is_header %}
-				<div class="menu-item nav-item collapse navbar-collapse {% if request.path != menu_item.link %} hover-underline-animation{% endif %}" id="navbarToggler">
-					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility">{{ menu_item.name|upper }}</a>
+				<div class="menu-item nav-item collapse navbar-collapse {% if request.path != menu_item.link %} hover-underline-animation{% endif %}" id="navbarToggler" style="position: relative; min-width: 110px">
+					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility" style="">{{ menu_item.name|upper }}</a>
 					{% with children=menu_item.children.all %}
 						{% if children.exists %}
-							<div class="menu-display" >
+{#                            TODO readd menu-display to hide dropdowns #}
+{#							<div class=""  style="text-align: left; position: absolute; bottom: 0; left: 0" >#}
+							<div class="menu-display " style="display: none; position: absolute; top: 100%; left: 0; width: 200px" >
 								{% for child in children %}
-									<div class="menu-item small-children-links">
-										<a class="child-a-tag text-color-accessibility" href="{{ child.link }}"  style="">{{ child.name|upper }} </a>
-									</div>
+{#									<div class="menu-item small-children-links" style="left:50%;transform: translateX(-50%)">#}
+										<a class="child-a-tag text-color-accessibility" href="{{ child.link }}" style="display: block; width: 100%" >{{ child.name|upper }} </a>
+{#									</div>#}
 								{% endfor %}
 							</div>
 						{% endif %}

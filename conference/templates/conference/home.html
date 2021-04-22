@@ -4,7 +4,7 @@
 
 {% block content %}
 {#{% include 'conference/static_templates/header.html'  %}#}
-<div id="slider" class="uk-position-relative uk-visible-toggle uk-light " tabindex="-1" uk-slider="center:true; autoplay:true">
+<div id="slider" class="uk-position-relative uk-visible-toggle uk-light " tabindex="-1" uk-slider="center:true; autoplay:true" style="padding-bottom: 50px">
     <ul class="uk-slider-items uk-grid uk-grid-collapse">
         {% with images=settings.home.slide_show_img %}
             {% for img in images %}
@@ -22,31 +22,30 @@
     <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
 </div>
-<div class="container" style="padding: 2rem 0 !important;">
-	<div class="d-flex flex-row justify-content-around flex-wrap" >
-		<div class="p-2 ">
-			<h2 class="text-heading">
-			{% if request.user.is_staff %}
-				{{ settings.home.h1|safe|default:"settings.home.h1"  }}
-			{% else %}
-				{{ settings.home.h1|safe  }}
-			{% endif %}
+<div class="container">
+	<div class="uk-grid" style="padding: 10px 0">
+		<div class="uk-width-1-2@m" style="padding: 20px 0">
+			<h2 class="text-heading" style="color: #f42515">
+                {% if request.user.is_staff %}
+                    {{ settings.home.h1|safe|default:"settings.home.h1"  }}
+                {% else %}
+                    {{ settings.home.h1|safe  }}
+                {% endif %}
 			</h2>
 		</div>
-		<div class="p-2">
-			<p>
-		{% if request.user.is_staff %}
-			{{ settings.home.text|safe|default:"settings.home.text" }}
-		{% else %}
-			{{ settings.home.text|safe }}
-		{% endif %}
+		<div class="uk-width-expand@m" style="padding: 0px 0">
+			<p class="" >
+                {% if request.user.is_staff %}
+                    {{ settings.home.text|safe|default:"settings.home.text" }}
+                {% else %}
+                    {{ settings.home.text|safe }}
+                {% endif %}
 			</p>
 		</div>
 	</div>
 
 </div>
 	<br>
-
 
 
 {% endblock %}

@@ -144,6 +144,7 @@ class SessionScheduleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SessionTopic)
+admin.site.register(ConferenceAddOn)
 admin.site.unregister(DjangoSite)
 admin.site.register(PitchSlam)
 admin.site.register(RegistrationOption)

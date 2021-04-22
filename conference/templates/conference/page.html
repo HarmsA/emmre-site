@@ -5,13 +5,13 @@
 {% block content %}
 
 <div class="container">
-	<h1 class="text-heading uk-text-bold">
-		{% if request.user.is_staff %}
-			{{ page.title|upper|default:"conference.pages.title" }}
-		{% else %}
-			{{ page.title|upper }}
-		{% endif %}
-	</h1>
+{#	<h1 class="text-heading uk-text-bold">#}
+{#		{% if request.user.is_staff %}#}
+{#			{{ page.title|upper|default:"conference.pages.title" }}#}
+{#		{% else %}#}
+{#			{{ page.title|upper }}#}
+{#		{% endif %}#}
+{#	</h1>#}
 		<div class="">
 			{% if request.user.is_staff %}
 				{{ page.text|safe|default:"conference.pages.text" }}

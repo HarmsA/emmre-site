@@ -3,16 +3,23 @@
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
-
+    <style>
+        em{
+            color: black;
+        }
+        a {
+            color: black;
+        }
+    </style>
 <div class="container">
-	<h1>{{ speaker.first_name }} {{ speaker.last_name }}</h1>
+	<h1 style="color: #f42515;margin-right: -15px; margin-left: -15px">{{ speaker.first_name|upper }} {{ speaker.last_name|upper }}</h1>
 	<div class="row">
 		<div class="speaker_image">
 {#			{{ speaker.img }}#}
 			{% thumbnail speaker.img 600 %}
 
 		</div>
-		<p class="speaker-description" style="margin-top: 0!important">
+		<p class="speaker-description" style="margin-top: 0!important; color: black">
 			{{ speaker.description|safe }}
 		</p>
 	<div>

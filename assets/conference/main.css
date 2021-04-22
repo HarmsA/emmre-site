@@ -12,9 +12,10 @@
 .conference_link a:visited {
 	text-decoration: none;
 }
-
-.conference_link a:hover {
+a:hover {
 	text-decoration: none;
+}
+.conference_link a:hover {
 	font-size: 1.02em;
 	transition-duration: 0s;
 }

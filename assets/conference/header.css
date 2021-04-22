@@ -47,6 +47,13 @@ a:hover {
 a:focus {
 	color: black;
 }
+a.nav-link.text-color-accessibility{
+	padding: 8px ;
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	/*border: 1px solid gray;*/
+}
 
 #navbarText.collapse.navbar-collapse ul li {
 	display: inline;
@@ -54,17 +61,19 @@ a:focus {
 }
 
 .hover-underline-animation {
-  display: inline-block;
-  position: relative;
+	display: inline-block;
+	position: relative;
+	text-align: center;
 }
 .hover-underline-animation:hover{
 	text-decoration: none;
+	text-align: center;
 }
 
 .hover-underline-animation:after {
   content: '';
   position: absolute;
-  width: 80%;
+  width: 100%;
   transform: scaleX(0);
   height: 2px;
   bottom: 0;
@@ -87,7 +96,7 @@ a:focus {
 	position: absolute;
 }
 .child-a-tag {
-	padding: 8px 6px;
+	/*padding: 8px 6px;*/
 	font-weight: bold;
 }
 .child-a-tag:hover, .small-children-links:hover {
@@ -139,7 +148,11 @@ a:focus {
    width: 0;
 }
 
+.menu-item>a{
 
+	width: 100%;
+	text-align: center;
+}
 	/* Banner rt side */
 .conference-date {
 	margin-top: 0;
@@ -184,7 +197,31 @@ a:focus {
 .mobile-conference-date > p > #location, #text_location{
 	font-weight: bolder;
 }
+.active {
+	border-bottom: 2px solid #F42515;
+	text-decoration: none;
+	color: #F42515
+}
+.active:hover{
+	text-decoration: none;
+    color: #F42515;
+}
 @media (min-width: 992px) {
+	.hover-underline-animation {
+		width: 50%;
+	}
+
+	.hover-underline-animation:after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		transform: scaleX(0);
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		transform-origin: bottom right;
+		transition: transform 0.3s ease-out;
+	}
 	.menu-display {
 		display: none;
 	}
@@ -199,17 +236,30 @@ a:focus {
 
 	}
 	.menu-item{
-		/*padding-bottom: 10px;*/
+		/*position: absolute;*/
 	}
 	.small-children-links .child-a-tag {
-		position: absolute;
-		width: 200px;
-		margin-top: -10px;
+		/*position: absolute;*/
+		/*width: 200px;*/
+		/*margin-top: -10px;*/
 	}
 }
 @media only screen and (max-width: 991px) {
+	.active {
+		border-bottom: 2px solid #F42515;
+		text-decoration: none;
+		width: 100%;
+		color: #F42515
+	}
+	.active:hover{
+		text-decoration: none;
+		color: #F42515;
+	}
 	.apps {
 		display: none;
+	}
+	.active {
+		border-bottom: none;
 	}
 	.conference-date {
 		display: none;
@@ -220,7 +270,7 @@ a:focus {
 		font-size: 1.15em;
 		color: white;
 		width: 100%;
-		padding: 10px auto;
+		padding: 10px;
 		text-align: center;
 	}
 	.mobile-conference-date > p {
@@ -276,10 +326,10 @@ a:focus {
 		background-color: transparent;
 	}
 	.child-a-tag {
-	background-color: transparent;
-	padding: 8px 6px;
-	font-weight: lighter;
-	color: black;
+	/*background-color: transparent;*/
+	/*padding: 8px 6px;*/
+	/*font-weight: lighter;*/
+	/*color: black;*/
 	}
 	.child-a-tag:hover, .small-children-links:hover {
 	text-decoration: none;

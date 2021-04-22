@@ -4,6 +4,10 @@
 	heading-text-color: #F42515;
 	link-text-color: #F42515;
 }
+/**:not ul {*/
+/*	position: absolute;*/
+/*}*/
+
 .header_background {
 	background-image: linear-gradient(to right, #00A9AE,#002D40);
 }
@@ -13,15 +17,15 @@
 button#btn-color.btn.btn-lg.btn-block.mt-4 {
 	background-color: #00A9AE !important;
 }
-.active {
-	border-bottom: 2px solid #F42515;
-	text-decoration: none;
-	color: #F42515
-}
-.active:hover{
-	text-decoration: none;
-    color: #F42515;
-}
+/*.active {*/
+/*	border-bottom: 2px solid #F42515;*/
+/*	text-decoration: none;*/
+/*	color: #F42515*/
+/*}*/
+/*.active:hover{*/
+/*	text-decoration: none;*/
+/*    color: #F42515;*/
+/*}*/
 /* headings text */
 /*.text-heading {*/
 	  /*color: #F42515;*/
@@ -45,7 +49,7 @@ button#btn-color.btn.btn-lg.btn-block.mt-4 {
 .cust-btn {
 	margin-top: 30px;
 	background-color: #13AAAD;
-	border-radius: 5px;
+	border-radius: 1px;
 	color: #ffffff;
 	font-size: 25px;
 	padding: 7px 80px 7px 80px;
