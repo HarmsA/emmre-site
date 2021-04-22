@@ -6,7 +6,7 @@ tinymce.init({
           " new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; " +
           "Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; " +
           "Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats;" +
-          "Open Sans=Open-Sans, sans-ser;",
+          "Open Sans=Open-Sans, sans-serif;",
       plugins: [
           'link image code',
           'image imagetools',

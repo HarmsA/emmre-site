@@ -208,7 +208,7 @@ a.nav-link.text-color-accessibility{
 }
 @media (min-width: 992px) {
 	.hover-underline-animation {
-		width: 50%;
+		/*width: 50%;*/
 	}
 
 	.hover-underline-animation:after {
@@ -226,8 +226,10 @@ a.nav-link.text-color-accessibility{
 		display: none;
 		position: absolute;
 		top: 100%;
-		left: 0;
+		left: 50%;
+		transform: translateX(-50%);
 		width: 200px;
+
 	}
 	.apps {
 		padding: 20px 0 0 20px;
