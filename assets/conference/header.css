@@ -187,10 +187,10 @@ a.nav-link.text-color-accessibility{
 .logo {
 	display: inline-block;
 }
-.row {
-	display: inline-block;
-	width: 100%;
-}
+/*.row {*/
+/*	display: inline-block;*/
+/*	width: 100%;*/
+/*}*/
 .mobile-conference-date{
 	display: none;
 }
@@ -220,10 +220,14 @@ a.nav-link.text-color-accessibility{
 		bottom: 0;
 		left: 0;
 		transform-origin: bottom right;
-		transition: transform 0.3s ease-out;
+		transition: transform 0.2s ease-out;
 	}
 	.menu-display {
 		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 200px;
 	}
 	.apps {
 		padding: 20px 0 0 20px;
@@ -316,7 +320,9 @@ a.nav-link.text-color-accessibility{
 		padding: 5px 0 5px 50px;
 	}
 	.menu-display{
-		display: block;
+		display: block!important;
+		width: auto;
+		/*position: absolute;*/
 	}
 	.small-children-links{
 		list-style: square;

@@ -54,7 +54,7 @@
 						{% if children.exists %}
 {#                            TODO readd menu-display to hide dropdowns #}
 {#							<div class=""  style="text-align: left; position: absolute; bottom: 0; left: 0" >#}
-							<div class="menu-display " style="display: none; position: absolute; top: 100%; left: 0; width: 200px" >
+							<div class="menu-display ">
 								{% for child in children %}
 {#									<div class="menu-item small-children-links" style="left:50%;transform: translateX(-50%)">#}
 										<a class="child-a-tag text-color-accessibility" href="{{ child.link }}" style="display: block; width: 100%" >{{ child.name|upper }} </a>
