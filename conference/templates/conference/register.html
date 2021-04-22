@@ -145,10 +145,10 @@
 	{% endfor %}
 
 	<h3>Add-Ons</h3>
-	<div class="row justify-content-around" style="padding-bottom: 25px">
+	<div class="row" style="padding-bottom: 25px;justify-content: left;">
 
 		{% for add_on in add_ons %}
-			<div class="card p-2 text-color-accessibility">
+			<div class="card p-2 text-color-accessibility" style="width: 100%">
 			 <div class="card-body text-color-accessibility">
 				<h4 class="card-title text-color-accessibility">{{ add_on.title }}</h4>
 				<p class="card-text text-color-accessibility">{{ add_on.description }}</p>
