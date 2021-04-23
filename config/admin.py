@@ -58,7 +58,7 @@ class PrototypeAdmin(admin.ModelAdmin):
 
 
 class SettingAdmin(admin.ModelAdmin):
-	list_filter = ['type', 'folder', 'site']
+	list_filter = ['site', 'type', 'folder']
 	list_display = ['id', '__unicode__', 'type', 'site']
 	search_fields = ['key']
 	list_editable = []

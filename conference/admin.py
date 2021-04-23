@@ -85,6 +85,7 @@ class PageAdmin(admin.ModelAdmin):
 	inlines = [
 		# PageInline,
 	]
+	list_filter = ['conference', ]
 	raw_id_fields = ['img']
 
 
@@ -143,9 +144,27 @@ class SessionScheduleAdmin(admin.ModelAdmin):
 	list_filter = ['topic']
 
 
-admin.site.register(SessionTopic)
-admin.site.register(ConferenceAddOn)
+@admin.register(SessionTopic)
+class SessionTopicAdmin(admin.ModelAdmin):
+	search_fields = ['name']
+
+
+
+@admin.register(ConferenceAddOn)
+class ConferenceAddOnAdmin(admin.ModelAdmin):
+	search_fields = ['name']
+	list_filter = ['conference']
+
+
+@admin.register(RegistrationOption)
+class RegistrationOptionAdmin(admin.ModelAdmin):
+	search_fields = ['title']
+	list_filter = ['conference']
+
+
+# admin.site.register(SessionTopic)
+# admin.site.register(ConferenceAddOn)
 admin.site.unregister(DjangoSite)
 admin.site.register(PitchSlam)
-admin.site.register(RegistrationOption)
+# admin.site.register(RegistrationOption)
 admin.site.register(RegistrationTimeFrame)

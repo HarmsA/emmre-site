@@ -22,10 +22,10 @@
     <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
 </div>
-<div class="container">
+<div class="container" style="width: 75%">
 	<div class="uk-grid" style="padding: 10px 0">
 		<div class="uk-width-1-2@m" style="padding: 20px 0">
-			<h2 class="text-heading" style="color: #f42515">
+			<h2 class="text-heading" style="color: #f42515; font-weight: bolder">
                 {% if request.user.is_staff %}
                     {{ settings.home.h1|safe|default:"settings.home.h1"  }}
                 {% else %}

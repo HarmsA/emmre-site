@@ -7,13 +7,10 @@
         em{
             color: black;
         }
-        a {
-            color: black;
-        }
     </style>
 <div class="container">
-	<h1 style="color: #f42515;margin-right: -15px; margin-left: -15px">{{ speaker.first_name|upper }} {{ speaker.last_name|upper }}</h1>
-	<div class="row">
+	<h1 style="color: #f42515;margin-right: -15px; margin-left: -15px; font-weight: bolder">{{ speaker.first_name|upper }} {{ speaker.last_name|upper }}</h1>
+	<div class="row"style="display: inline-block">
 		<div class="speaker_image">
 {#			{{ speaker.img }}#}
 			{% thumbnail speaker.img 600 %}
@@ -22,8 +19,8 @@
 		<p class="speaker-description" style="margin-top: 0!important; color: black">
 			{{ speaker.description|safe }}
 		</p>
-	<div>
-		<p class="font-weight-bold pt-5">Related Sessions</p>
+	<div style="line-height: 1.2px">
+		<p class="font-weight-bold pt-3">Related Sessions</p>
 		{% for session in speakers_conferences %}
 			<p>
 				<a class="text-color-accessibility" href="{% url 'session' slug=session.slug %}">{{ session|title|truncatechars:65 }}</a>

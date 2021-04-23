@@ -30,7 +30,7 @@ class Site(models.Model):
 
 
 class SessionTopic(models.Model):
-	name = models.CharField(max_length=75, blank=True, null=True, unique=True)
+	name = models.CharField(max_length=75, blank=True, null=True, unique=True, verbose_name='Genre')
 	slug = models.SlugField(max_length=100, blank=True, null=True)
 
 	def save(self, *args, **kwargs):
@@ -40,6 +40,8 @@ class SessionTopic(models.Model):
 
 	class Meta:
 		ordering = ('name',)
+		verbose_name = "Genre"
+		verbose_name_plural = "Genres"
 
 	def __str__(self):
 		return self.name
@@ -188,7 +190,7 @@ class NavLink(models.Model):
 
 class ConferenceAddOn(models.Model):
 	title = models.CharField(max_length=50)
-	description = models.CharField(max_length=255, blank=True, null=True)
+	description = models.TextField(blank=True, null=True)
 	date = models.DateField()
 	conference = models.ForeignKey(Conference, related_name='conference_AddOns', on_delete=models.CASCADE)
 

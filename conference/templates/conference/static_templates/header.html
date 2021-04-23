@@ -3,12 +3,12 @@
 
 <div class="header_background">
 	<div class="container" style="width: 100%">
-		<div class="row text-center">
-			<div class="logo col-md-6 text-center">
+		<div class="row text-center" style="display: inline-table;">
+			<div class="logo col-md-6">
 				<img src="{{ settings.header.logo.url }}" alt="{{ settings.header.logo.alt }}" role="img" style="width: auto">
 			</div>
 
-			<div class="apps col-sm-4 text-center header-right">
+			<div class="apps col-sm-6 text-center header-right" style="padding: 5px 0 0 100px;">
 				<ul class="social-media-list">
 					<li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter social-media" title="Twitter" aria-label="Twitter" role="img"></i></a></li>
 					<li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f social-media" title="Facebook" aria-label="Facebook" role="img"></i></a></li>
@@ -40,7 +40,7 @@
 
 {#	Navbar edited by admin Menu Items, conference/assets/conference.js/script.js edits the children show and hide elements #}
 <div class="container" style="margin: 30px auto 50px auto; width: 100%; text-align: center">
-	<nav class="navbar navbar-expand-lg navbar-light "style="background-color: white">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: white">
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,7 +48,7 @@
 
 		{% for menu_item in menu_items %}
 			{% if menu_item.is_header %}
-				<div class="menu-item nav-item collapse navbar-collapse {% if request.path != menu_item.link %} hover-underline-animation{% endif %}" id="navbarToggler" style="position: relative{% if request.path == menu_item.link %}min-width: 131px{% endif %}">
+				<div class="menu-item nav-item collapse navbar-collapse {% if request.path != menu_item.link %} hover-underline-animation{% endif %}" id="navbarToggler" style="position: relative">
 					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility" style="">{{ menu_item.name|upper }}</a>
 					{% with children=menu_item.children.all %}
 						{% if children.exists %}

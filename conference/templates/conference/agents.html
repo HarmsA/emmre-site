@@ -15,9 +15,9 @@
 		{% endif %}
 	</div>
 	<div id="topic-buttons">
-		<button class="btn btn-light text-color-accessibility" type="button" style="color: #045882;font-weight: bold">All</button>
+		<button class="btn btn-light text-color-accessibility" type="button" style="color: #045882;font-weight: bold; padding: 0 5px; font-size: .9em">All</button>
 		{% for topic in topic_list %}
-			<button class="btn btn-light text-color-accessibility" type="button" data-slug="{{ topic.slug }}" style="color: #045882;font-weight: bold">{{ topic|upper }}</button>
+			<button class="btn btn-light text-color-accessibility" type="button" data-slug="{{ topic.slug }}" style="color: #045882;font-weight: bold; padding: 0 5px; font-size: .9em">{{ topic|upper }}</button>
  		{% endfor %}
 	</div>
 	<div class="row justify-content-center p-4" id="agent-list">

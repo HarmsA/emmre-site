@@ -89,13 +89,9 @@
 						{% if time < today %}
 							<span><p style="margin-bottom: 0; display: inline">NOW</p></span>
 						{% else %}
-
-
-{#							</span>#}
-							<span style="font-size: .75em">
+							<span>
 								{% if register_url %}
-
-								{% endif %}	{{ time }}
+								{% endif %}	{{ time|date:"M d" }}
 							</span>
 						{% endif %}
 
@@ -109,7 +105,7 @@
 	</tr>
 	<tr class="table-secondary">
 		<td style="border-top: 0">
-			{{ title|upper }}
+			{{ title|title }}
 		</td>
 		{% for dates, cost in registration_option.items %}
 			{% for date in dates %}
