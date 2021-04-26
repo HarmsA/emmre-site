@@ -27,19 +27,19 @@
 		</div>
 	</div>
 </div>
-			<div class="mobile-conference-date">
-				<p>
-					{{ conference.start_date|date:"F j"|upper|default:"conference.start_date"}}-{{ conference.end_date|date:"j"|default:"conference.end_date"}},
-					{{ conference.end_date|date:"Y"|default:"conference.start_date-year"}}
-				<span id="location">
-					{{ conference.location|upper|default:"conference.location" }}
-				</span>
-				</p>
-			</div>
+<div class="mobile-conference-date">
+    <p>
+        {{ conference.start_date|date:"F j"|upper|default:"conference.start_date"}}-{{ conference.end_date|date:"j"|default:"conference.end_date"}},
+        {{ conference.end_date|date:"Y"|default:"conference.start_date-year"}}
+    <span id="location">
+        {{ conference.location|upper|default:"conference.location" }}
+    </span>
+    </p>
+</div>
 	<br>
 
 {#	Navbar edited by admin Menu Items, conference/assets/conference.js/script.js edits the children show and hide elements #}
-<div class="container" style="margin: 30px auto 50px auto; width: 100%; text-align: center">
+<div class="container" style="margin: 0 auto 10px auto; width: 100%; text-align: center">
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: white">
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
