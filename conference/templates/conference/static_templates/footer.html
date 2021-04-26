@@ -2,11 +2,11 @@
 {% block footer %}
 
 <div class="container" style="margin: 30px auto 0 auto; width: 75%; text-align: center">
-	<nav class="navbar" style="margin: 10px 0 0 0; width: 100%; text-align: center">
+	<nav class="navbar" style="margin: 10px auto; width: 75%; text-align: center; font-weight: lighter; f">
 		{% for menu_item in menu_items %}
 			{% if menu_item.is_footer %}
 				<div class="menu-item" style="margin: 0 0px">
-					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility" style="margin: auto -0px">{{ menu_item.name|upper }}</a>
+					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility" style="margin: auto -0px; color: #BBBBBB; font-weight: normal">{{ menu_item.name|upper }}</a>
 				</div>
 			{% endif %}
 		{% endfor %}

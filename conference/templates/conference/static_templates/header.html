@@ -4,26 +4,29 @@
 <div class="header_background">
 	<div class="container" style="width: 100%">
 		<div class="row text-center d-flex justify-content-between" style="display: inline-table;">
-			<div class="logo col-md-6">
+			<div class="logo col-lg-6">
 				<img src="{{ settings.header.logo.url }}" alt="{{ settings.header.logo.alt }}" role="img" style="width: auto">
 			</div>
 
 			<div class="apps col-sm-6 text-right header-right" style="padding: 5px 0 0 100px;">
-                <div class="text-center">
-                    <ul class="social-media-list">
-                        <li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter social-media" title="Twitter" aria-label="Twitter" role="img"></i></a></li>
-                        <li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f social-media" title="Facebook" aria-label="Facebook" role="img"></i></a></li>
-                        <li><a href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram social-media" title="Instagram" aria-label="Instagram" role="img"></i></a></li>
-                    </ul>
-                    <ul class="conference-date">
-                        <li>
-                            {{ conference.start_date|date:"F j"|upper|default:"conference.start_date"}}-{{ conference.end_date|date:"j"|default:"conference.end_date"}},
-                            {{ conference.end_date|date:"Y"|default:"conference.start_date-year"}}
-                        <p id="text_location">
-                            {{ conference.location|upper|default:"conference.location" }}
-                        </p>
-                        </li>
-                    </ul>
+                <div class="text-right">
+                    <div class="text-center">
+
+                        <ul class="social-media-list">
+                            <li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter social-media" title="Twitter" aria-label="Twitter" role="img"></i></a></li>
+                            <li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f social-media" title="Facebook" aria-label="Facebook" role="img"></i></a></li>
+                            <li><a href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram social-media" title="Instagram" aria-label="Instagram" role="img"></i></a></li>
+                        </ul>
+                        <ul class="conference-date">
+                            <li>
+                                {{ conference.start_date|date:"F j"|upper|default:"conference.start_date"}}-{{ conference.end_date|date:"j"|default:"conference.end_date"}},
+                                {{ conference.end_date|date:"Y"|default:"conference.start_date-year"}}
+                            <p id="text_location">
+                                {{ conference.location|upper|default:"conference.location" }}
+                            </p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 			</div>
 		</div>
@@ -57,7 +60,7 @@
 							<div class="menu-display">
 								{% for child in children %}
 {#									<div class="menu-item small-children-links" style="left:50%;transform: translateX(-50%)">#}
-										<a class="child-a-tag text-color-accessibility" href="{{ child.link }}" style="display: block; width: 100%" >{{ child.name|upper }} </a>
+										<a class="child-a-tag text-color-accessibility" href="{{ child.link }}" style="display: block; width: 100%; padding: 10px 15px" >{{ child.name|upper }} </a>
 {#									</div>#}
 								{% endfor %}
 							</div>
