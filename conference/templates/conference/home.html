@@ -8,7 +8,7 @@
     <ul class="uk-slider-items uk-grid uk-grid-collapse">
         {% with images=settings.home.slide_show_img %}
             {% for img in images %}
-                <li class="uk-width-2-3 uk-padding-large">
+                <li class="uk-width-2-3 uk-padding-small">
                     <div class="uk-panel">
 	                        <img src="{{ img.url }}" alt="{{ img.alt }}">
 {#                          <div class="uk-position-center uk-panel"><h2>1</h2></div>#}
@@ -24,7 +24,7 @@
 </div>
 <div class="container" style="width: 75%">
 	<div class="uk-grid" style="padding: 0px 0">
-		<div class="uk-width-1-2@m" style="padding: 0px 0">
+		<div class="uk-width-1-2@m" style="padding: 10px 0">
 			<h2 class="text-heading" style="color: #f42515; font-weight: bolder">
                 {% if request.user.is_staff %}
                     {{ settings.home.h1|safe|default:"settings.home.h1"  }}
@@ -33,7 +33,7 @@
                 {% endif %}
 			</h2>
 		</div>
-		<div class="uk-width-expand@m" style="padding: 0px 0">
+		<div class="uk-width-expand@m" style="padding: 10px 0">
 			<p class="" >
                 {% if request.user.is_staff %}
                     {{ settings.home.text|safe|default:"settings.home.text" }}
@@ -41,6 +41,16 @@
                     {{ settings.home.text|safe }}
                 {% endif %}
 			</p>
+        	<a class="cust-btn cust-btn-accessibility" href="{{ url.register_url }} }}" style="margin-top: 60px; font-size: 19px; padding: 0 12px">REGISTER NOW</a>
+            <div class="apps col-sm-6 text-right header-right" style="padding: 0;">
+                <div class="text-left">
+                    <ul class="social-media-list">
+                        <li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter social-media" title="Twitter" aria-label="Twitter" role="img" style="color: black; font-size: 1.1em"></i></a></li>
+                        <li><a href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f social-media" title="Facebook" aria-label="Facebook" role="img" style="color: black; font-size: 1.1em"></i></a></li>
+                        <li><a href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram social-media" title="Instagram" aria-label="Instagram" role="img" style="color: black; font-size: 1.1em"></i></a></li>
+                    </ul>
+                </div>
+			</div>
 		</div>
 	</div>
 
