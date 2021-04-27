@@ -81,7 +81,7 @@ class SpeakerAdmin(admin.ModelAdmin):
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
-	fields = ['title', 'text', 'conference', 'parent', 'excerpt', 'img', 'slug']
+	fields = ['title', 'conference', 'parent', 'excerpt', 'img', 'slug', 'text', 'css']
 	inlines = [
 		# PageInline,
 	]

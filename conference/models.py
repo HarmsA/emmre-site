@@ -225,6 +225,7 @@ class PitchSlam(models.Model):
 	description = models.TextField(blank=True, null=True)
 	conference = models.ForeignKey(Conference, related_name='conference_pitchslam', on_delete=models.CASCADE, blank=True, null=True)
 	imgs = models.ManyToManyField(Image, related_name='pitchslam', blank=True)
+	css = models.TextField(blank=True, null=True)
 
 	def __str__(self):
 		return f'{self.conference} Pitch-Slam'
@@ -283,6 +284,7 @@ class Page(models.Model):
 	img = models.ForeignKey(Image, related_name='pages', blank=True, null=True, on_delete=models.CASCADE)
 	parent = models.ForeignKey('self', related_name='children', null=True, blank=True, on_delete=models.CASCADE)
 	excerpt = models.TextField(blank=True, null=True, verbose_name='Intro for link')
+	css = models.TextField(blank=True, null=True)
 
 	@staticmethod
 	def parsecontentforimages(text):

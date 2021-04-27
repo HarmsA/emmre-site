@@ -2,6 +2,15 @@
 
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
+{% block head %}
+	<style>
+		{% if pitchslam.css %}
+			{{ pitchslam.css|safe }}
+		{% endif %}
+	</style>
+{% endblock head %}
+
+
 {% block content %}
 	<style>
 		@media screen and (max-width: 992px) {

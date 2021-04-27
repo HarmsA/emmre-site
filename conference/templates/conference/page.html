@@ -1,6 +1,14 @@
 {% extends 'conference/static_templates/base.html' %}
-
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+{% block head %}
+
+	<style>
+		{% if page.css %}
+			{{ page.css|safe }}
+		{% endif %}
+
+	</style>
+{% endblock %}
 
 {% block content %}
 
