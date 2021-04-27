@@ -1,8 +1,8 @@
-/*.navbar{*/
-	/*width: 100%;*/
-	/*margin: 0;*/
-	/*padding: 0;*/
-/*}*/
+.navbar{
+	background-color: white;
+	width: 80%;
+	margin: auto
+}
 /*.heading_title, .heading_title_variable {*/
 	/*text-transform: uppercase;*/
 	/*letter-spacing: 3px;*/
@@ -23,7 +23,7 @@
 	padding:20px 20px;
 	color: #FFFFFF;
 	display: flex;
-	align-items: left;
+	/*align-items: left;*/
 	justify-content: space-around;
 }
 
@@ -96,8 +96,9 @@ a.nav-link.text-color-accessibility{
 	position: absolute;
 }
 .child-a-tag {
-	/*padding: 8px 6px;*/
-	/*font-weight: bold;*/
+	padding: 10px 15px;
+	width: 100%;
+	display: block;
 }
 .child-a-tag:hover, .small-children-links:hover {
 	text-decoration: none;
@@ -120,8 +121,8 @@ a.nav-link.text-color-accessibility{
 	height: 100px;
 }
 .text-center {
-	margin: 0 auto;
-	/*width: 100%;*/
+	margin: 0 auto 20px auto;
+	width: 100%;
 	text-align: center;
 	display: inline-block;
 }
@@ -232,7 +233,7 @@ a.nav-link.text-color-accessibility{
 		z-index: 1;
 	}
 	.apps {
-		padding: 20px 0 0 20px;
+		padding: 5px 0 0 100px;
 	    vertical-align: top;
 
 	}
@@ -245,7 +246,7 @@ a.nav-link.text-color-accessibility{
 		/*position: absolute;*/
 	}
 	.small-children-links .child-a-tag {
-		/*position: absolute;*/
+		position: absolute;
 		/*width: 200px;*/
 		/*margin-top: -10px;*/
 	}
@@ -311,7 +312,7 @@ a.nav-link.text-color-accessibility{
 		/*padding: 1px;*/
 	}
 	.header-right {
-		padding: 0!important;
+		/*padding: 0!important;*/
 	}
 	.conference-date {
 		border-top: 10px solid white;
