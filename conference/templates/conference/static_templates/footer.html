@@ -2,38 +2,25 @@
 {% block footer %}
 
 <div class="container" style="margin: 30px auto 0 auto; width: 75%; text-align: center">
-	<nav class="navbar" style="margin: 10px auto; width: 75%; text-align: center; font-weight: lighter; f">
+	<nav class="navbar" id="footer-container" style="margin: 10px auto; text-align: center;">
 		{% for menu_item in menu_items %}
 			{% if menu_item.is_footer %}
-				<div class="menu-item" style="margin: 0 0px">
-					<a href="{{ menu_item.link }}" class="{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility" style="margin: auto -0px; color: #BBBBBB; font-weight: normal">{{ menu_item.name|upper }}</a>
+				<div class="menu-item" style="margin: 0;">
+					<a href="{{ menu_item.link }}" class="nav-items footer-links{% if request.path == menu_item.link %}active{% endif %} nav-link text-color-accessibility"
+                       style="margin: auto 0;">{{ menu_item.name|upper }}</a>
 				</div>
 			{% endif %}
 		{% endfor %}
 	</nav>
 </div>
 
-{#<nav class="navbar navbar-expand-md navbar-light bg-light pt-5">#}
-{#  <div class="text-center">#}
-{#		<ul class="main-footer-nav text-center">#}
-{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'register' %}">REGISTER</a> </li>#}
-{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'about' %}">ABOUT</a> </li>#}
-{#			<li class="nav-item"><a class="hover-underline-animation" href="http://www.writersdigest.com/wd-events/conference-code-of-conduct">CODE OF CONDUCT</a> </li>#}
-{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'newsletter' %}">NEWSLETTER</a> </li>#}
-{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'faq' %}">FAQ</a> </li>#}
-{#			<li class="nav-item"><a class="hover-underline-animation" href="https://www.aimmedia.com/privacy-policy/">PRIVACY</a> </li>#}
-{#			<li class="nav-item"><a class="hover-underline-animation" href="{% url 'contact_us' %}">CONTACT US</a> </li>#}
-{#		</ul>#}
-{#  </div>#}
-{#</nav>#}
-
 <nav class="navbar navbar-expand-md navbar-light">
   <div class="text-center">
 	<ul class="footer-link-list">
 		<li style="margin-right: 0"><img src="{{ settings.footer.logo.url }}" alt="{{ settings.footer.logo.alt }}" role="img" style="width: 50%;"></li>
-		<li style="margin-left: 0"><a class="text-color-accessibility" href="https://twitter.com/WritersDigest"><i class="fab fa-twitter" title="Twitter" aria-label="Twitter"  role="img" style="color: black; font-size: 1.1em"></i></a></li>
-		<li><a class="text-color-accessibility" href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f" title="Facebook" aria-label="Facebook"  role="img" style="color: black; font-size: 1.1em"></i></a></li>
-		<li><a class="text-color-accessibility" href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram" title="Instagram" aria-label="Instagram"  role="img" style="color: black; font-size: 1.1em"></i></a></li>
+		<li style="margin-left: 0"><a class="text-color-accessibility" href="https://twitter.com/WritersDigest"><i class="fab fa-twitter footer-social-media" title="Twitter" aria-label="Twitter"  role="img" style=" font-size: 1.1em"></i></a></li>
+		<li><a class="text-color-accessibility" href="https://www.facebook.com/writersdigest"><i class="fab fa-facebook-f footer-social-media" title="Facebook" aria-label="Facebook"  role="img" style="font-size: 1.1em"></i></a></li>
+		<li><a class="text-color-accessibility" href="https://www.instagram.com/writersdigest/"><i class="fab fa-instagram footer-social-media" title="Instagram" aria-label="Instagram"  role="img" style="font-size: 1.1em"></i></a></li>
 	</ul>
   </div>
 </nav>

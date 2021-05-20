@@ -12,11 +12,11 @@
 			{{ settings.speakers.text|safe }}
 		{% endif %}
 	</div>
-	<div class="row justify-content-center p-5">
+	<div class="row justify-content-center pb-5">
 		{% for speaker in speakers %}
 				{% if speaker.is_keynote %}
 					<a href="{% url 'speaker' speaker.slug %}">
-						<div class="card baseBlock flex-column justify-content-between text-center" style="width: fit-content; min-width: 75px; margin: 10px; padding: 10px">
+						<div class="card baseBlock flex-column justify-content-between text-center keynote-speakers" style="width: fit-content; min-width: 75px; margin: 10px; padding: 10px">
 						<div class="card-img-top"> {% thumbnail speaker.img 400 %}</div>
 {#							<img class="card-img-top" src="" alt="">#}
 						<p class="card-text speaker-text-color text-color-accessibility" style="margin: 5px 0; color: black">
@@ -34,7 +34,7 @@
 	<div class="row justify-content-center">
 		{% for speaker in speakers %}
 			{% if not speaker.is_keynote %}
-				<div class="card baseBlock flex-column justify-content-between text-center"
+				<div class="card baseBlock flex-column justify-content-between text-center speakers-card"
 				     style="width: fit-content; min-width: 50px; margin: 10px; padding: 10px">
 					<a href="{% url 'speaker' speaker.slug %}">
 						<div class="card-img-top">{% thumbnail speaker.img 200 %}</div>

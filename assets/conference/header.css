@@ -52,7 +52,6 @@ a.nav-link.text-color-accessibility{
 	margin: auto;
 	width: 100%;
 	text-align: center;
-	/*border: 1px solid gray;*/
 }
 
 #navbarText.collapse.navbar-collapse ul li {
@@ -207,6 +206,9 @@ a.nav-link.text-color-accessibility{
 	text-decoration: none;
     color: #F42515;
 }
+.text-center {
+	width: 100%;
+}
 @media (min-width: 992px) {
 	.hover-underline-animation {
 		/*width: 50%;*/
@@ -239,7 +241,7 @@ a.nav-link.text-color-accessibility{
 	}
 	.logo > img {
 	    vertical-align: baseline;
-		padding: 10px 0 0 0px;
+		padding: 10px 0 0 0;
 
 	}
 	.menu-item{
@@ -251,7 +253,9 @@ a.nav-link.text-color-accessibility{
 		/*margin-top: -10px;*/
 	}
 }
+
 @media only screen and (max-width: 991px) {
+
 	.active {
 		border-bottom: 2px solid #F42515;
 		text-decoration: none;
@@ -262,14 +266,14 @@ a.nav-link.text-color-accessibility{
 		text-decoration: none;
 		color: #F42515;
 	}
-	.apps {
+	.social-media-list {
 		display: none;
 	}
 	.active {
 		border-bottom: none;
 	}
 	.conference-date {
-		display: none;
+		/*display: none;*/
 	}
 	.mobile-conference-date {
 		display: inline-block;
@@ -315,8 +319,8 @@ a.nav-link.text-color-accessibility{
 		/*padding: 0!important;*/
 	}
 	.conference-date {
-		border-top: 10px solid white;
 		display: inline-block;
+
 	}
 	#navbarText.collapse.navbar-collapse ul li {
 		display: block;
@@ -344,5 +348,17 @@ a.nav-link.text-color-accessibility{
 	text-decoration: none;
 	font-weight: normal;
 	color: black;
+	}
+	.apps {
+		width: 100%;
+		text-align: center;
+		border-top: 20px solid white ;
+		padding-top: 20px;
+	}
+	p {
+		margin-bottom: 0;
+	}
+	.logo {
+		margin: 20px;
 	}
 }

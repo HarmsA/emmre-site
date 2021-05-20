@@ -32,22 +32,23 @@
 			{% endif %}
 		</div>
 
-	<div class="row">
+	<div class="row justify-content-center">
 		{% for detail in page.children.all %}
 {#            <div class="col-sm-4">#}
-
-				<a class="col-sm-4 card baseBlock text-center" style="max-width: 250px; min-width: 250px; height: 300px; margin: 10px; padding: 15px" href="{% url 'page' slug=detail.slug %}">
+				<div class="card baseBlock flex-column justify-content-between text-center page-children-card"
+				     style="width: fit-content; min-width: 50px; margin: 10px; padding: 10px">
+				<a class="col-sm-4 text-center" style="max-width: 250px; min-width: 250px; height: 300px; margin: 10px; padding: 15px" href="{% url 'page' slug=detail.slug %}">
 {#					<div  style="max-width: 250px; min-width: 50px; height: 350px; margin: 10px; padding: 15px">#}
 						<h3 class="text-heading uk-text-bold  text-center" style="width: 100%">{{ detail.title|upper }}</h3>
-						<div class="card-img-top p-3">
+						<div class="card-img-top pt-3 pb-3">
 							{{ detail.img.thumb|safe }}
 						</div>
                     <p class="text-center">
-						{{ detail.excerpt|capfirst|safe|truncatewords_html:10 }}
+						{{ detail.excerpt|capfirst|safe|truncatewords_html:9 }}
                     </p>
 {#					</div>#}
 				</a>
-{#            </div>#}
+            </div>
 		{% endfor %}
 	</div>
 </div>

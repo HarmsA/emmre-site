@@ -1,28 +1,27 @@
 {% extends 'conference/static_templates/base.html' %}
-
+{% load thumbnail %}
 {% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
 
 {% block content %}
 
-<div class="container ">
-	<h1>{{ agent.first_name }} {{ agent.last_name }}</h1>
-	<div class="row">
+<div class="container">
+	<h1>{{ agent.first_name|upper }} {{ agent.last_name|upper }}</h1>
+	<div class="row" style="display: inline-block">
 		<div class="speaker_image">
-			<img src="{{ agent.img.url }}" alt="{{ agent.img.alt }}">
+{#			<img src="{{ agent.img.url }}" alt="{{ agent.img.alt }}">#}
+            {% thumbnail agent.img 600 %}
 		</div>
-		<p class="speaker-description text-color-accessibility">
+		<p class="text-color-accessibility" style="margin-top: 0!important; color: black;">
 			{{ agent.description|safe }}
 		</p>
-
-	</div>
 		<div class="text-color-accessibility">
 		Topics Covered:
 			{% for topic in agent.topic.all %}
-				{{ topic }},
-
+                {{ topic }},
 			{% endfor %}
 
 		</div>
+	</div>
 </div>
 
 {% endblock content %}

@@ -3,14 +3,14 @@
 
 <div class="header_background">
 	<div class="container" style="width: 100%">
-		<div class="row text-right d-flex justify-content-between" style="display: inline-table;">
+		<div class="row text-right d-flex justify-content-between" style="width: auto">
 			<div class="logo col-lg-6">
                 <a href="{% url "home" %}"><img src="{{ settings.header.logo.url }}" alt="{{ settings.header.logo.alt }}" role="img" style="width: auto"></a>
 			</div>
 
 			<div class="apps col-sm-6 text-right header-right" style="">
                 <div class="text-right">
-                    <div class="text-center" style="width: auto">
+                    <div class="text-center">
 
                         <ul class="social-media-list">
                             <li><a href="https://twitter.com/WritersDigest"><i class="fab fa-twitter social-media" title="Twitter" aria-label="Twitter" role="img"></i></a></li>
@@ -60,7 +60,7 @@
 							<div class="menu-display">
 								{% for child in children %}
 {#									<div class="menu-item small-children-links" style="left:50%;transform: translateX(-50%)">#}
-										<a class="child-a-tag text-color-accessibility" href="{{ child.link }}" style="" >{{ child.name|upper }} </a>
+										<a class="child-a-tag text-gitcolor-accessibility" href="{{ child.link }}" style="" >{{ child.name|upper }} </a>
 {#									</div>#}
 								{% endfor %}
 							</div>
@@ -75,4 +75,31 @@
 		{% endif %}
 	</nav>
 </div>
+<script>
+jQuery(document).ready(function($) {
+  var alterClass = function() {
+    var ww = document.body.clientWidth;
+    if (ww < 992) {
+        $('.container .justify-content-between').removeClass('justify-content-between');
+        $('.container .d-flex').removeClass('d-flex');
+        $('.col-sm-6').removeClass('col-sm-6');
+        $('.header-right').removeClass('header-right');
+        $('.container .text-right').removeClass('text-right');
+        $('.header_background .container').removeClass('container');
+    } else if (ww >= 992) {
+        $('.header_background div').first().addClass('container');
+        $('.container div').first().addClass('justify-content-between').addClass('d-flex').addClass('text-right').addClass('row');
+        $('.container .row .apps').addClass('col-sm-6').addClass('text-right').addClass('header-right');
+        $('.apps div').first().addClass('text-right');
+    }
+  };
+  $(window).resize(function(){
+    alterClass();
+  });
+  //Fire it when the page first loads:
+  alterClass();
+});
+
+
+</script>
 {% endblock header %}
