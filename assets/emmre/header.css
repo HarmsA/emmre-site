@@ -1,0 +1,143 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.header-font{
+    font-size: 14px;
+}
+.footer-title{
+    font-size: 12px;
+}
+
+.container{
+    padding: 0 5%;
+}
+nav.navbar{
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+div #navbarToggler.menu-item.nav-item.collapse.navbar-collapse{
+    padding: 0 10px;
+}
+#navbarNav ul li {
+    padding-right: 10px;
+    font-family: Graphik;
+    font-size: 14px;
+}
+.logo {
+    padding-bottom: 20px;
+}
+button.login {
+    max-height: 50px;
+    background-color: #FF6666;
+    border-radius: 20px;
+    padding: 2px 20px;
+    vertical-align: sub;
+}
+button.try_it_free{
+    margin: 0 5px;
+    vertical-align: sub;
+}
+button.try_it_free {
+    max-height: 50px;
+    background-color: #FFD569;
+    border-radius: 10px;
+    padding: 4px 20px;
+    /*vertical-align: sub;*/
+    font-weight: bolder;
+
+}
+.login {
+    height: 30px;
+}
+.try_it_free{
+    height: 36px;
+}
+.try_it_free .nav-link{
+    padding: 0 0;
+}
+.login:hover {
+    background-color: #FF9494;
+}
+button.login a.nav-link{
+    color: white;
+    padding: 0;
+}
+.navbar-brand {
+  padding: 0;
+}
+nav div a.nav-link{
+    padding: .5rem 0;
+    /*font-size: 12px;*/
+}
+/*.navbar-nav .nav-link {*/
+/*    padding-top: 0;*/
+/*    padding-bottom: 0;*/
+/*    height: 50px;*/
+/*    line-height: 50px;*/
+/*}*/
+.navbar div a {
+    color: black
+}
+@media screen and (min-width:481px){
+    .logo {
+    padding-bottom: 0px;
+    }
+
+}
+
+@media screen and (min-width:767px) {
+}
+@media screen and (min-width:992px) {
+    nav.navbar div#navbarNav{
+        float: right;
+        padding-top: 5px;
+    }
+    nav.navbar{
+        /*padding-left: 160px;*/
+    }
+    .navbar-nav{
+        /*padding-left: 75px;*/
+    }
+}
+
+@media screen and (min-width:1024px){
+
+        .logo {
+        /*padding-bottom: 0px;*/
+    }
+}
+.footer{
+    background-color: #4A4967;
+    color: white;
+    padding: 100px 0;
+}
+.table td, .table th{
+    padding: .25rem .75rem;
+    margin: 0 1rem;
+}
+thead > tr{
+    color: white;
+    font-size: 12px;
+}
+tbody > tr{
+    color: white;
+    font-size: 10px;
+}
+.footer_btn{
+    /*width: 394px;*/
+    /*text-align: left;*/
+    padding: 3px 35px;
+    margin-top: 25px;
+    background-color: #FFD569;
+    border-radius: 8px;
+    vertical-align: top;
+    font-size: 18px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}

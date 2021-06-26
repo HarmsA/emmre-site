@@ -1,0 +1,37 @@
+
+    <div class="container text-center s4">
+        <h3>Turn Your Communication Platform Into Your Productivity Engine</h3>
+        <div class="row" style="display: flex; flex-wrap: wrap">
+             {% if request.user.is_staff %}
+                <p>settings.product.sect4_x_img</p>
+                <p>settings.product.sect4_x_img_alt</p>
+                <p>settings.product.sect4_x_body</p>
+            {% endif %}
+            <div class="col-md-4 col-sm-2">
+                <img src="{{ settings.product.sect4_1_img|safe}}" alt="{{ settings.product.sect4_1_img_alt|safe}}t" style="height: 150px">
+                <p>{{ settings.product.sect4_1_body|safe}}test</p>
+            </div>
+            <div class="col-md-4 col-sm-2">
+                <img src="{{ settings.product.sect4_2_img|safe}}" alt="{{ settings.product.sect4_2_img_alt|safe}}set">
+                <p>{{ settings.product.sect4_2_body|safe}}test</p>
+            </div>
+            <div class="col-md-4 col-sm-2">
+                <img src="{{ settings.product.sect4_3_img|safe}}" alt="{{ settings.product.sect4_3_img_alt|safe}}">
+                <p>{{ settings.product.sect4_3_body|safe}}setset</p>
+            </div>
+        </div>
+        <div class="row" style="display: flex; flex-wrap: wrap">
+            <div class="col-md-4 col-sm-2">
+                <img src="{{ settings.product.sect4_4_img|safe}}" alt="{{ settings.product.sect4_4_img_alt|safe}}">
+                <p>{{ settings.product.sect4_4_body|safe}}setset</p>
+            </div>
+            <div class="col-md-4 col-sm-2">
+                <img src="{{ settings.product.sect4_5_img|safe}}" alt="{{ settings.product.sect4_5_img_alt|safe}}">
+                <p>{{ settings.product.sect4_5_body|safe}}setset</p>
+            </div>
+            <div class="col-md-4 col-sm-2">
+                <img src="{{ settings.product.sect4_6_img|safe}}" alt="{{ settings.product.sect4_6_img_alt|safe}}">
+                <p>{{ settings.product.sect4_6_body|safe}}setset</p>
+            </div>
+        </div>
+    </div>

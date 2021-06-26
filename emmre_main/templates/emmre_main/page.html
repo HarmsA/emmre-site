@@ -1,0 +1,63 @@
+{% extends 'emmre_main/static_templates/base.html' %}
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+{% block head %}
+
+	<style>
+		{% if page.css %}
+			{{ page.css|safe }}
+		{% endif %}
+
+	</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+{#	<h1 class="text-heading uk-text-bold">#}
+{#		{% if request.user.is_staff %}#}
+{#			{{ page.title|upper|default:"conference.pages.title" }}#}
+{#		{% else %}#}
+{#			{{ page.title|upper }}#}
+{#		{% endif %}#}
+{#	</h1>#}
+		<div class="">
+			{% if request.user.is_staff %}
+				{{ page.text|safe|default:"conference.pages.text" }}
+			{% else %}
+				{{ page.text|safe }}
+			{% endif %}
+
+			{% if page.parent.slug %}
+			   <span style="font-weight: bold">Back To: </span><a href="{% url 'page' slug=page.parent.slug %}">{{ page.parent.title }}</a>
+			{% endif %}
+		</div>
+
+	<div class="row justify-content-center">
+		{% for detail in page.children.all %}
+{#            <div class="col-sm-4">#}
+				<div class="card baseBlock flex-column justify-content-between text-center page-children-card"
+				     style="width: fit-content; min-width: 50px; margin: 10px; padding: 10px">
+				<a class="col-sm-4 text-center" style="max-width: 250px; min-width: 250px; height: 300px; margin: 10px; padding: 15px" href="{% url 'page' slug=detail.slug %}">
+{#					<div  style="max-width: 250px; min-width: 50px; height: 350px; margin: 10px; padding: 15px">#}
+						<h3 class="text-heading uk-text-bold  text-center" style="width: 100%">{{ detail.title|upper }}</h3>
+						<div class="card-img-top pt-3 pb-3">
+							{{ detail.img.thumb|safe }}
+						</div>
+                    <p class="text-center">
+						{{ detail.excerpt|capfirst|safe|truncatewords_html:9 }}
+                    </p>
+{#					</div>#}
+				</a>
+            </div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+

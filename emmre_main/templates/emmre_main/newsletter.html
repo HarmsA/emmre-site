@@ -1,0 +1,32 @@
+{% extends 'emmre_main/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="newsletter">
+		<h1 class="text-heading">
+			STAY INFORMED
+		</h1>
+
+		<p>Bookmark this site, follow us <span><a href="https://twitter.com/writersdigest">@WritersDigest</a></span>, and be sure to sign up for our events
+			e-newsletter for updates on the latest #NWC20 speakers and sessions added to the program,
+			delivered to your inbox!
+		</p>
+		<!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+<![endif]-->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+<script>
+  hbspt.forms.create({
+	region: "na1",
+	portalId: "8195114",
+	formId: "6a8913cd-98e7-4827-b431-70b02a42d5c3"
+});
+</script>
+	</div>
+</div>
+
+
+{% endblock content %}

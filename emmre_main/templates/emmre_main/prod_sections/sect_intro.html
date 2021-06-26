@@ -1,0 +1,98 @@
+<style>
+
+    .sect1-text h1, .sect1-text p{
+        color: white;
+    }
+    .select1-btn{
+        display: block;
+        width: 100%;
+        margin: 20px auto;
+        text-align: center;
+    }
+    .sect1-text {
+        padding-top: 25px;
+        width: 100%;
+    }
+    .sect1-video img {
+        margin: auto;
+        {#width: auto;#}
+    }
+
+    .select1-btn button{
+        padding: 3px 25px;
+        margin-top: 25px;
+        background-color: #FFD569;
+        border-radius: 8px;
+        vertical-align: top;
+    }
+    .sect1-video img {
+        margin-bottom: -50px;
+    }
+    .sect1-video {
+        width: 100%;
+        text-align: center;
+    }
+    @media only screen and (min-width: 992px) {
+        .sect1-text{
+            width: 95%;
+        }
+        .sect1-text h1{
+            padding-top: 30px;
+        }
+        .sect1-video {
+            display: inline;
+            width: 40%;
+        }
+        .sect1-video img {
+            {#margin-left: 57px;#}
+        }
+        .select1-btn{
+            display: inline;
+            width: 50%;
+        }
+    }
+    @media only screen and (min-width: 1200px){
+        .sect1-text{
+            width: 75%;
+        }
+        .sect1-text h1{
+            padding-top: 100px;
+        }
+        .sect1-video {
+            display: inline;
+            width: 40%;
+        }
+        .sect1-video img {
+            margin-left: 57px;
+        }
+        .select1-btn{
+            display: inline;
+            width: 50%;
+        }
+    }
+</style>
+<div class="sect1">
+<div class="sect1-bg" style="background: url({{ settings.product.sect1_background_img.url }}); background-repeat: no-repeat; background-size: cover;">
+    <div class="container">
+        <div class="sect1-text">
+             {% if request.user.is_staff %}
+                    <p>settings.product.sect1_heading</p>
+                    <p>settings.product.sect1_body</p>
+                    <h1>{{ settings.product.sect1_heading|safe|default:"settings.product.sect1_heading"  }}</h1>
+                    <p>{{ settings.product.sect1_body|safe|default:"settings.product.sect1_body"  }}</p>
+
+                {% else %}
+                    <h1>{{ settings.product.sect1_heading }}</h1>
+                    <p>{{ settings.product.sect1_body }}</p>
+                {% endif %}
+
+        </div>
+        <div class="select1-btn">
+            <button><a href="">{{ settings.product.sect1_button_text }}</a></button>
+        </div>
+        <div class="sect1-video">
+            <img src="{{ settings.product.sect1_video.url }}" width="447" height="286" alt="{{ settings.product.sect1_video.alt }}">
+        </div>
+    </div>
+</div>
+</div>

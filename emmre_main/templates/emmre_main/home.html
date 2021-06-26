@@ -1,0 +1,16 @@
+{% extends 'emmre_main/static_templates/base.html' %}
+
+{% block title %}Emmre {{ title }}{% endblock title %}
+
+
+{% block content %}
+{#<div class="main-wrapper" style="max-width: 1200px">#}
+
+    {% include 'emmre_main/prod_sections/sect_intro.html' %}
+    {% include 'emmre_main/prod_sections/sect_top_platform.html' %}
+    {% include 'emmre_main/prod_sections/sect_split_companies.html' %}
+    {% include 'emmre_main/prod_sections/set_communication_platform.html' %}
+    {% include 'emmre_main/prod_sections/sect_blog_cards.html' %}
+
+{#</div>#}
+{% endblock content %}

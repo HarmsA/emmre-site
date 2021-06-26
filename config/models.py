@@ -1,5 +1,5 @@
 from django.db import models
-from conference.managers import Manager
+from emmre_main.managers import Manager
 from django.db.models import Q
 from django.utils.text import slugify
 from django.utils.html import escape
@@ -13,7 +13,7 @@ from django.template import Context, Template, RequestContext
 from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import mark_safe
-from conference.models import Site
+from emmre_main.models import Site
 
 
 class SettingFolder(models.Model):

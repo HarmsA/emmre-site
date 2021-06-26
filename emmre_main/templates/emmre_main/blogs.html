@@ -1,0 +1,144 @@
+{% extends 'emmre_main/static_templates/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<style>
+    .pagination{
+        margin: 10px auto;
+        clear: both;
+    }
+    .step-links{
+        width: 100%;
+        text-align: center;
+    }
+    .subscribe{
+        float: right;
+    }
+    .author p{
+        margin-bottom: 0rem;
+    }
+@media only screen and (max-width: 576px) {
+    .blog-types .row{
+        flex-wrap: wrap !important;
+    }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 990px) {
+
+    .blogs{
+        float: none;
+        width: 100%;
+    }
+    .blog-types {
+        flex-wrap: nowrap;
+    }
+}
+@media only screen and (min-width: 991px) {
+
+    .blogs{
+        float: left;
+        width: 70%;
+    }
+    .blog-types {
+        flex-wrap: nowrap;
+    }
+}
+@media only screen and (min-width: 577px) and (max-width: 720px) {
+    .blog-header >.container> h1{
+        text-align: center;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .blog-types{
+        flex-wrap: wrap !important;
+    }
+    .card{
+        {#width: 280px;#}
+    }
+    .card-img{
+        height: auto;
+    }
+}
+    @media only screen and (max-width: 769px) {
+        .blog-types .row{
+            flex-wrap: wrap !important;
+        }
+    }
+</style>
+
+
+    <div class="blog-header" style="background-color: #BABFD1; padding: 70px 0; margin-bottom: 20px">
+    <div class="container">
+
+        <h1>Blog</h1>
+    </div>
+    </div>
+<div class="" style="background-color: #E8EAF1; padding-top: 50px; padding-bottom: 50px; width: 100%" >
+    <div class="container">
+
+        <div class="row blog-types" style="margin-left: 0; margin-right: 0; justify-content: center">
+
+        {% for blog in first_blog_category %}
+        {#    {% for blog in category.blog.all %}#}
+        {#        {% if forloop.first %}#}
+                <div class="card col-lg-4 m-2" style=" padding-top: 15px">
+                <a href="{% url 'blog' blog.slug %}">
+                  <img class="card-img" src="{{ blog.img.url }}" alt="Card image cap" style="">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ blog.category.name }}</h5>
+                    <p class="card-text">{{ blog.short_description|safe|truncatechars:100 }}</p>
+        {#            <p class="card-text">{{ blog.date_published|safe }}</p>#}
+                  </div>
+                </a>
+                </div>
+        {#        {% endif %}#}
+        {#    {% endfor %}#}
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="blogs">
+
+        {% for blog in blogs %}
+            <div class="pt-3 row pb-5" >
+                <div class="author col-sm-4">
+                    <p>{{ blog.date_published }}</p>
+                    <p>by {{ blog.author }}</p>
+                </div>
+                <div class="blog-body col-sm-8">
+                    <h3 style="color: #1A8EFF">{{ blog.title|safe }}</h3>
+                    <img src="{{ blog.img.url }}" alt="" style="width: 100%">
+                    <p style="font-size: 14px">{{ blog.short_description|safe }}</p>
+                    <a href="{% url 'blog' blog.slug|safe %}">Continue Reading...</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <div class="subscribe pt-5 text-center">
+        {% include 'emmre_main/inc/subscribe.html' %}
+    </div>
+</div>
+<div class="pagination container">
+    <span class="step-links">
+        {% if blogs.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ blogs.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+        </span>
+
+        {% if blogs.has_next %}
+            <a href="?page={{ blogs.next_page_number }}">next</a>
+            <a href="?page={{ blogs.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %}

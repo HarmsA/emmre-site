@@ -1,4 +1,4 @@
-from conference.models import Site
+from emmre_main.models import Site
 from django.core.exceptions import ObjectDoesNotExist
 try:
 	from urllib.parse import urlparse

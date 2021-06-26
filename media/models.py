@@ -4,7 +4,7 @@ from django.urls import reverse
 from media.storage import s3_storage
 from django.utils.text import slugify
 from django.utils.safestring import mark_safe
-from conference.managers import Manager
+from emmre_main.managers import Manager
 
 status_codes = (
 	(100, 'Continue'),

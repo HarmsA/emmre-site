@@ -1,0 +1,27 @@
+
+{% block content %}
+    <style>
+        .updates{
+            font-size: 14px;
+        }
+        .privacy{
+            font-size: 10px;
+        }
+        .subscribe-container{
+            width: 210px;
+            background-color: #F0F0F0;
+        }
+    </style>
+    <div class="subscribe-container">
+
+<h6>Subscribe to Emmre</h6>
+    <p class="updates">Get our blog updates, product updates and other insights delivered right to your inbox.</p>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p class="privacy">Emmre respects your privacy.  For more inormation, see our Privacy Policy.</p>
+    <button type="submit">SUBSCRIBE</button>
+    </form>
+    </div>
+
+{% endblock content %}

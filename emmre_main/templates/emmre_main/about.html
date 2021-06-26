@@ -1,0 +1,142 @@
+{% extends 'emmre_main/static_templates/base.html' %}
+
+{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+
+{% block content %}
+<style>
+    .about-background-container{
+        border-top: 1px solid white;
+    }
+    .about-background-container{
+    }
+    .about-text{
+        background-color: white;
+        width: 65%;
+        margin-top: 250px;
+    }
+    .about-text h1{
+        text-align: center;
+        padding: 30px;
+    }
+     .about-text h3{
+         padding-bottom: 30px;
+         text-align: center;
+         font-size: 20px;
+     }
+     .about-text p{
+         font-size: 16px;
+     }
+     .founder-info{
+         text-align: center;
+     }
+     .founder-img, .founder-p{
+         padding-top: 10px;
+         display: inline-block;
+         margin-bottom: 0;
+     }
+     .founder-p p{
+         margin-bottom: 0;
+         text-align: left;
+     }
+     .emmre-meaning{
+         padding: 30px 10% 0 12%;
+     }
+     .emmre-logo{
+         padding-right: 4%;
+         width: 30%;
+         height: 50px;
+         display: inline-block;
+         vertical-align: top;
+     }
+     .meaning-text{
+         width: 60%;
+         display: inline-block;
+         padding-top: 15px;
+     }
+     .meaning-text p {
+         font-size: 16px;
+     }
+     .mission-promise{
+         background-color: #8EB681;
+         padding: 30px 10% 0 10%;
+
+     }
+     .promise, .mission {
+         {#padding-top: 50px;#}
+         display: inline-block;
+         color: white;
+         width: 30%;
+         text-align: center;
+         vertical-align: top;
+         padding: 50px 20px;
+     }
+     .mission{
+         margin-right: 70px;
+     }
+     .promise{
+         margin-left: 70px;
+     }
+</style>
+
+<div class="about-container">
+    <div class="about-background-container" style="background: url({{ settings.about.background_img.url}}); background-repeat: no-repeat; background-size: contain;">
+        <div class="container about-text">
+            <h1>The Emmre Story</h1>
+            <h3>We Know Executives and Executive Assistants because that's who we are.</h3>
+            <div>
+                <p>At Emmre, we wanted to build something specifically for you! As the CEO of an organization,
+                    I know the pressures that pull at your time and energy. Three years ago I was working too much,
+                    getting too little done, and working with tools that weren’t created for the unique partnership
+                    between an Executive and Executive Assistant.</p>
+                <p>I knew their had to be a better way. So I began building Emmre with one goal in mind, to get
+                    time back! For the last year, I’ve been using it every day with my EA. We’ve been working to
+                    ensure it allows the highest levels of collaboration and the ability for us to focus on what
+                    matters most by doing what we do best.</p>
+                <p>We’ve been where you’ve been - frustrated by the tools currently available. I believe the
+                    relationship between an executive assistant and executive can be one of the most powerful
+                    partnerships in the workforce.</p>
+                <p>Our goal is to help you harness that partnership and achieve your goals! </p>
+            </div>
+            <div class="founder-info">
+                <div class="founder-img">
+                    <img src="" alt="Founder Don Harms">
+                </div>
+                <div class="founder-p">
+                    <p>Don Harms</p>
+                    <p>Founder & CEO</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="emmre-meaning container">
+        <div class="emmre-logo">
+            <img src="https://emmre.s3.us-east-2.amazonaws.com/images/emmreFinal.svg" alt="">
+        </div>
+        <div class="meaning-text">
+            <h3>Emmre means time.</h3>
+            <p>My goal when starting Emmre was to give back to the community of busy Executives and
+                Executive Assestants.</p>
+            <p>Give back time.</p>
+            <p>I had the privilege of living in Ghana, West Africa, for three years with my family.
+                Emmre is the word for time in the local dialect of the people we got to live with.</p>
+            <p><b>It just fit!</b></p>
+        </div>
+    </div>
+{#    </div>#}
+</div>
+<div class="mission-promise">
+<div class="container" style="text-align: center; justify-content: space-around">
+
+    <div class="mission container">
+        <h3>Our Mission</h3>
+        <p>To build a product and company that creates a meaningful impact on peoples’ lives.  </p>
+    </div>
+    <div class="promise container">
+        <h3>Our Promise</h3>
+        <p>We are using the product everyday right alongside of you. We want to hear from you
+            so we can improve our product everyday.</p>
+    </div>
+</div>
+</div>
+
+{% endblock content %}

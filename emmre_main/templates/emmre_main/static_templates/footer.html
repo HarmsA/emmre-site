@@ -1,0 +1,118 @@
+<style>
+    .footer-links{
+        padding-left: 10%;
+    }
+    .footer-links li{
+        display: inline-block;
+        padding-right: 20px;
+        {#padding-top: 15px;#}
+    }
+    .footer_menu_wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .footer_menu{
+        /*float: none;*/
+        /*width: 15%;*/
+        margin: 1.5rem 2.2rem 0 0;
+        text-transform: uppercase;
+        list-style: none;
+    }
+    li >span {
+        font-family: GraphikMedium;
+        /*border: 1px solid red;*/
+        padding-bottom: 10px;
+    }
+    .footer_menu > li > ul li {
+        float: none;
+        /*width: 91px;*/
+        /*margin: 4rem 7.5rem 0 0;*/
+        text-transform: uppercase;
+        list-style: none;
+    }
+@media only screen and (max-width: 1000px) {
+    .footer_menu_wrap{
+        justify-content: center;
+    }
+    .footer_menu_wrap:first-child{
+        text-align: center;
+    }
+    .footer_menu{
+        margin: 15px;
+        width: auto;
+    }
+    .footer_menu > li > ul {
+        text-align: center;
+        width: 100%;
+    }
+}
+</style>
+{% block footer %}
+<div class="footer">
+
+<div class="container ">
+    <div class=" footer_menu_wrap">
+        <div class="col-lg-4">
+            <h3>Ready to Get Started?</h3>
+            <button class="footer_btn btn">TRY FOR FREE</button>
+        </div>
+        <div class="col-lg-8">
+        <nav class="footer_menu_wrap">
+            <ul class="footer_menu">
+                <li>
+                    <span>PRODUCT</span>
+                    <ul>
+                        <li>Product details</li>
+                        <li>@harms.com</li>
+                        <li>details</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="footer_menu">
+                <li>
+                    <span>PLANS</span>
+                    <ul>
+                        <li>Plan</li>
+                        <li>details</li>
+                        <li>products</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="footer_menu">
+                <li>
+                    <span>BLOG</span>
+                    <ul>
+                        <li>details</li>
+                        <li>Blog</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="footer_menu">
+                <li>
+                <span>ABOUT</span>
+                    <ul>
+                        <li>about</li>
+                        <li>me</li>
+                        <li>details</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="footer_menu">
+                <li>
+                    <span>CONTACT</span>
+                    <ul>
+                        <li>@emmre.com</li>
+                        <li>555-555-5555</li>
+                        <li>Twitter</li>
+                        <li>FaceBook</li>
+                    </ul>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock footer %}
