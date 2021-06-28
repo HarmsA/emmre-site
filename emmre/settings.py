@@ -244,7 +244,7 @@ CACHES = {
 
 CACHE_MIDDLEWARE_SECONDS = 3600
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
 
 SECURE_BROWSER_XSS_FILTER = True
