@@ -25,6 +25,7 @@ urlpatterns = [
     path('config/', include('config.urls', namespace='config')),
     path('media/', include('media.urls', namespace='media')),
     path('accessibility/', views.accessibility, name="accessibility"),
+    path('tinymce/', include('tinymce.urls')),
 ]
 
 if DEBUG:
