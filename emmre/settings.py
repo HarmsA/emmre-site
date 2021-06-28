@@ -77,7 +77,6 @@ INSTALLED_APPS = [
     # 'cachalot',
 ]
 
-django_heroku.settings(locals())
 
 if STAGE == 'live':
     INSTALLED_APPS += ['cachalot']
@@ -87,6 +86,7 @@ if DEBUG:
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -180,12 +180,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = get_environment_variable('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = get_environment_variable('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = get_environment_variable('AWS_STORAGE_BUCKET_NAME')
-AWS_DEFAULT_ACL = "public-read"
-AWS_QUERYSTRING_AUTH = False
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = get_environment_variable('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = get_environment_variable('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = get_environment_variable('AWS_STORAGE_BUCKET_NAME')
+# AWS_DEFAULT_ACL = "public-read"
+# AWS_QUERYSTRING_AUTH = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -243,6 +243,9 @@ CACHES = {
 }
 
 CACHE_MIDDLEWARE_SECONDS = 3600
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+django_heroku.settings(locals())
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
