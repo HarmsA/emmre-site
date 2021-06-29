@@ -293,7 +293,7 @@ INTERNAL_IPS = [
     '104.166.252.133',  # Adam's House
 
 ]
-ALLOWED_HOSTS = ['https://emmre.herokuapp.com/']
+ALLOWED_HOSTS = ['emmre.com', '.emmre.herokuapp.com']
 
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.history.HistoryPanel',
