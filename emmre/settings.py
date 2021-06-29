@@ -46,20 +46,14 @@ if not STAGE:
     sys.exit()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vk2in43)9ukh5qjl_*)7hgsm5q_(z1_*-ke(8f#zt)$)#3)l4g'
+SECRET_KEY = get_environment_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 if STAGE in ['local', 'dev']:
     DEBUG = True
 
-ALLOWED_HOSTS = [
-    # ".writersdigestconference.com",
-    # "writersdigestconference.us-east-1.elasticbeanstalk.com",
-]
-
 SITE_ID = 2
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -125,44 +119,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'emmre.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# if STAGE == 'local':
-# 	DATABASES = {
-# 		'default': {
-# 			'ENGINE': 'django.db.backends.mysql',
-# 			'NAME': get_environment_variable('database_name'),
-# 			'USER': get_environment_variable('database_user'),
-# 			'PASSWORD': get_environment_variable('database_password'),
-# 			'HOST': get_environment_variable('database_host'),
-# 			'PORT': '3306',
-# 		},
-# 	}
-# 	# DATABASES = {
-# 	# 	'default': {
-# 	# 		'ENGINE': 'django.db.backends.sqlite3',
-# 	# 		'NAME': BASE_DIR / 'db.sqlite3',
-# 	# 	}
-# 	# }
-# elif STAGE == "live":
-# 	DATABASES = {
-# 		'default': {
-# 			'ENGINE': 'django.db.backends.mysql',
-# 			'NAME': get_environment_variable('database_name'),
-# 			'USER': get_environment_variable('database_user'),
-# 			'PASSWORD': get_environment_variable('database_password'),
-# 			'HOST': get_environment_variable('database_host'),
-# 			'PORT': '3306',
-# 		},
-# 	}
 
-# Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -244,7 +208,6 @@ CACHES = {
 
 CACHE_MIDDLEWARE_SECONDS = 3600
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
 
 SECURE_BROWSER_XSS_FILTER = True
