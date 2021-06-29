@@ -73,7 +73,7 @@ INSTALLED_APPS = [
     'media.apps.MediaConfig',
     'config.apps.ConfigConfig',
     'fontawesome-free',
-    'tinymce',
+    # 'tinymce',
     # 'cachalot',
 ]
 
@@ -229,7 +229,7 @@ if STAGE == 'live':
 # 	EMAIL_TIMEOUT = 5
 
 ADMINS = [
-    ["Adam Harms", "aharms@aimmedia.com"],
+    ["Adam Harms", "aharms@gmail.com"],
 ]
 
 CACHES = {
