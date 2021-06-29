@@ -39,8 +39,8 @@ if os.path.exists(environment_variables_path):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-STAGE = get_environment_variable('stage', 'live')
-
+# STAGE = get_environment_variable('stage', 'live')
+STAGE = 'live'
 if not STAGE:
     print("Stage not set.")
     sys.exit()
