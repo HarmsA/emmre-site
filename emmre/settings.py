@@ -291,9 +291,9 @@ TINYMCE_EXTRA_MEDIA = {
 INTERNAL_IPS = [
     '127.0.0.1',  # localhost
     '104.166.252.133',  # Adam's House
-
 ]
-ALLOWED_HOSTS = ['emmre.com', '.emmre.herokuapp.com']
+
+ALLOWED_HOSTS = ['*']
 
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.history.HistoryPanel',
