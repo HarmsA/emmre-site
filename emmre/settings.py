@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os, json, sys
 import django_heroku
+import dj_database_url
+
 
 
 def get_environment_variable(name, default=None):
@@ -49,10 +51,11 @@ if not STAGE:
 SECRET_KEY = get_environment_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-if STAGE in ['local', 'dev']:
-    DEBUG = True
-
+# DEBUG = True
+# if STAGE in ['local', 'dev']:
+#     DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 SITE_ID = 2
 
 INSTALLED_APPS = [
@@ -120,12 +123,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'emmre.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEVELOPMENT_MODE is True:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    if os.getenv("DATABASE_URL", None) is None:
+        raise Exception("DATABASE_URL environment variable not defined")
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
 
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -157,12 +167,10 @@ AWS_QUERYSTRING_AUTH = False
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Chicago'
-
-USE_I18N = False
-
-USE_L10N = False
-
-USE_TZ = False
+# Set to true by digitalocean ref
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
