@@ -39,8 +39,8 @@ if os.path.exists(environment_variables_path):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# STAGE = get_environment_variable('stage', 'live')
-STAGE = 'live'
+STAGE = get_environment_variable('stage', 'live')
+STAGE = 'local'
 if not STAGE:
     print("Stage not set.")
     sys.exit()
@@ -49,7 +49,7 @@ if not STAGE:
 SECRET_KEY = get_environment_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 if STAGE in ['local', 'dev']:
     DEBUG = True
 
@@ -210,8 +210,8 @@ CACHE_MIDDLEWARE_SECONDS = 3600
 
 django_heroku.settings(locals())
 
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
 # Stores cache in db for local to not kick you out of admin when server is restarted
