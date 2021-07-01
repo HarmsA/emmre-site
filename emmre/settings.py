@@ -41,8 +41,8 @@ if os.path.exists(environment_variables_path):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-STAGE = get_environment_variable('stage', 'live')
-STAGE = 'local'
+# STAGE = get_environment_variable('stage', 'live')
+STAGE = 'dev'
 if not STAGE:
     print("Stage not set.")
     sys.exit()
@@ -54,8 +54,9 @@ SECRET_KEY = 'vk2in43)9ukh5qjl_*)7hgsm5q_(z1_*-ke(8f#zt)$)#3)l4g'
 # DEBUG = True
 # if STAGE in ['local', 'dev']:
 #     DEBUG = True
-DEBUG = os.getenv("DEBUG", "False") == "True"
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+# DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = True
+# DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 SITE_ID = 2
 
 INSTALLED_APPS = [
