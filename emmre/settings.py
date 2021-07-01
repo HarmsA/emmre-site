@@ -218,8 +218,8 @@ CACHE_MIDDLEWARE_SECONDS = 3600
 
 django_heroku.settings(locals())
 
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
 # Stores cache in db for local to not kick you out of admin when server is restarted
