@@ -1,1 +1,1 @@
-web: gunicorn emmre.wsgi
+web: gunicorn emmre.wsgi --log-file -

@@ -48,7 +48,7 @@ if not STAGE:
     sys.exit()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_environment_variable('SECRET_KEY')
+SECRET_KEY = 'vk2in43)9ukh5qjl_*)7hgsm5q_(z1_*-ke(8f#zt)$)#3)l4g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -271,7 +271,7 @@ INTERNAL_IPS = [
     '104.166.252.133',  # Adam's House
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'emmre.herokuapp.com', '127.0.0.1']
 
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.history.HistoryPanel',
