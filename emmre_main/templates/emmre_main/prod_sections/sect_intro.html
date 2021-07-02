@@ -72,7 +72,7 @@
     }
 </style>
 <div class="sect1">
-<div class="sect1-bg" style="background: url({{ settings.product.sect1_background_img.url }}); background-repeat: no-repeat; background-size: cover;">
+<div class="sect1-bg" style="background: url('https://emmre.s3.us-east-2.amazonaws.com/images/blue-Background-22.jpg'); background-repeat: no-repeat; background-size: cover;">
     <div class="container">
         <div class="sect1-text">
              {% if request.user.is_staff %}
@@ -82,15 +82,19 @@
                     <p>{{ settings.product.sect1_body|safe|default:"settings.product.sect1_body"  }}</p>
 
                 {% else %}
-                    <h1>{{ settings.product.sect1_heading }}</h1>
-                    <p>{{ settings.product.sect1_body }}</p>
+{#                    <h1>{{ settings.product.sect1_heading }}</h1>#}
+{#                    <p>{{ settings.product.sect1_body }}</p>#}
+                    <h1>Team Communication and Productivity in one tool!</h1>
+                    <p>Finally, communication and productivity brought together.  Emmre enables your team to collaborate and communicate in a way that actually gets things done and moves things forward.</p>
                 {% endif %}
 
         </div>
         <div class="select1-btn">
-            <button><a href="">{{ settings.product.sect1_button_text }}</a></button>
+{#            <button><a href="">{{ settings.product.sect1_button_text }}</a></button>#}
+            <button><a href="">TRY IT FREE TODAY - no credit card required</a></button>
         </div>
         <div class="sect1-video">
+{#            <img src="{{ settings.product.sect1_video.url }}" width="447" height="286" alt="{{ settings.product.sect1_video.alt }}">#}
             <img src="{{ settings.product.sect1_video.url }}" width="447" height="286" alt="{{ settings.product.sect1_video.alt }}">
         </div>
     </div>
