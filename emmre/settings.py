@@ -79,8 +79,8 @@ INSTALLED_APPS = [
 if STAGE == 'live':
     INSTALLED_APPS += ['cachalot']
 
-if DEBUG:
-    INSTALLED_APPS += ['debug_toolbar']
+# if DEBUG:
+#     INSTALLED_APPS += ['debug_toolbar']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
