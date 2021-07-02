@@ -143,7 +143,9 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
-
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
 
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -224,7 +226,6 @@ CACHES = {
 
 CACHE_MIDDLEWARE_SECONDS = 3600
 
-django_heroku.settings(locals())
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -305,3 +306,5 @@ CACHALOT_UNCACHABLE_TABLES = [
     'django_migrations',
     'django_session',
 ]
+
+django_heroku.settings(locals())
