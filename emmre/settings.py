@@ -84,7 +84,7 @@ if STAGE == 'live':
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -186,7 +186,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/assets/'
-STATIC_ROOT = str(BASE_DIR).rstrip("/") + "/static/"
+STATIC_ROOT = str(BASE_DIR).rstrip("/") + "static"
 STATICFILES_DIRS = [
     os.path.join(str(BASE_DIR), "assets"),
 ]
