@@ -1,33 +1,111 @@
 {% extends 'emmre_main/static_templates/base.html' %}
 
-{% block title %}Writer's Digest {{ conference }} Writing Conference{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+<style>
+     .even_container {
+         padding: 40px;
+     }
+    .even_h3{
+        text-align: right;
+        width: 60%;
+        float: right;
+        padding: 40px 0;
+    }
+    .even_h2{
+        text-align: right;
+        padding: 30px 0;
+        {#width: 80%;#}
+        float: right;
+    }
+    .odd_container{
+        padding: 40px;
+    }
+    .odd_row{
+        clear: both;
+    }
+    .odd_h2{
+        width: 80%;
+        text-align: left;
+        float: left;
+    }
+    .odd_h3{
+        width: 50%;
+        padding-top: 40px;
+        float: left;
+    }
+    .faq_heading{
+        width: 650px;
+        margin: auto;
+        text-align: center;
+    }
+    @media (min-width: 576px){
+        .even_container{
+            {#max-width: 90%;#}
+        }
+        {#.even_h3{#}
+        {#     width: 100%;#}
+        {#     text-align: center;#}
+        {# }#}
+        {#.even_h2{#}
+        {#     text-align: center;#}
+        {#    padding: 0;#}
+        {#    width: 100%;#}
+        {# }#}
+    }
+    @media only screen and (max-width: 700px) {
+    }
+    @media only screen and (max-width: 768px) {
+        .faq_heading{
+            width: auto;
+        }
+        .faq_container{
+            padding: 0;
+        }
+        .even_container {
+            {#padding: 40px;#}
+            {#text-align: center;#}
+        }
+        .even_h3{
+            width: 100%;
+            text-align: center;
+        }
+        .even_h2{
+            max-width: 100%;
+            text-align: center;
+            float: none;
+            margin: 0;
+        }
+        .odd_h2{
+            width: 100%;
+            text-align: center;
+            float: none;
+        }
+        .odd_h3{
+            width: 100%;
+            padding-top: 40px;
+            float: none;
+        }
+    }
+</style>
 
+
+{% endblock %}
 {% block content %}
 
-<div class="container">
-<h1>FREQUENTLY ASKED QUESTIONS (FOR VIRTUAL EVENT)</h1>
-<ul>
+<div class="faq_container">
+<div class="faq_heading">
 
-	{% for question in questions %}
-		<li>
-			<a href="#{{ question.id }}">{{ question.question }}</a>
-		</li>
-
-	{% endfor %}
-</ul>
-	{% for question in questions %}
-		<div class="pt-5" id="{{ question.id }}">
-			<div style="font-weight: bold">
-				{{ question.question }}
-			</div>
-			<div class="pt-2">
-				{{ question.answer|safe }}
-
-			</div>
-		</div>
-	{% endfor %}
-
+    <h2>The Top Communication and Productivity Platform for getting things done</h2>
+    <h5 style="padding: 5px 50px">Messages and Tasks seamlessly integrated means more focus, more transparency, and better priority.</h5>
+    <button>Talk to an Expert</button>
 </div>
 
+    {% include 'emmre_main/faq_page/sect_1.html' %}
+    {% include 'emmre_main/faq_page/sect_2.html' %}
+    {% include 'emmre_main/faq_page/sect_3.html' %}
+    {% include 'emmre_main/faq_page/sect_4.html' %}
+
+</div>
 
 {% endblock content %}

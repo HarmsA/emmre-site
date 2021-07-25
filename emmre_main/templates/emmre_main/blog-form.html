@@ -1,0 +1,120 @@
+{% extends 'emmre_main/static_templates/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<style>
+    .pagination{
+        margin: 10px auto;
+        clear: both;
+    }
+    .step-links{
+        width: 100%;
+        text-align: center;
+    }
+    .subscribe{
+        float: right;
+    }
+    .author p{
+        margin-bottom: 0rem;
+    }
+@media only screen and (max-width: 576px) {
+    .blog-types .row{
+        flex-wrap: wrap !important;
+    }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 990px) {
+
+    .blogs{
+        float: none;
+        width: 100%;
+    }
+    .blog-types {
+        flex-wrap: nowrap;
+    }
+}
+@media only screen and (min-width: 991px) {
+
+    .blogs{
+        float: left;
+        width: 70%;
+    }
+    .blog-types {
+        flex-wrap: nowrap;
+    }
+}
+@media only screen and (min-width: 577px) and (max-width: 720px) {
+    .blog-header >.container> h1{
+        text-align: center;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .blog-types{
+        flex-wrap: wrap !important;
+    }
+    .card{
+        {#width: 280px;#}
+    }
+    .card-img{
+        height: auto;
+    }
+}
+    @media only screen and (max-width: 769px) {
+        .blog-types .row{
+            flex-wrap: wrap !important;
+        }
+    }
+</style>
+
+
+    <div class="blog-header" style="background-color: #BABFD1; padding: 70px 0; margin-bottom: 20px">
+    <div class="container">
+
+        <h1>Blog</h1>
+    </div>
+    </div>
+<div class="" style="background-color: #E8EAF1; padding-top: 50px; padding-bottom: 50px; width: 100%" >
+    <div class="container">
+
+        <div class="row blog-types" style="margin-left: 0; margin-right: 0; justify-content: center">
+
+        {% for blog in first_blog_category %}
+        {#    {% for blog in category.blog.all %}#}
+        {#        {% if forloop.first %}#}
+                <div class="card col-lg-4 m-2" style=" padding-top: 15px">
+                <a href="{% url 'blog' blog.slug %}">
+                  <img class="card-img" src="{{ blog.img.url }}" alt="Card image cap" style="">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ blog.category.name }}</h5>
+                    <p class="card-text">{{ blog.short_description|safe|truncatechars:100 }}</p>
+        {#            <p class="card-text">{{ blog.date_published|safe }}</p>#}
+                  </div>
+                </a>
+                </div>
+        {#        {% endif %}#}
+        {#    {% endfor %}#}
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ blogform.as_p }}
+    </form>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ blogform.as_p }}
+    </form>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ blogform.as_p }}
+    </form>
+
+</div>
+
+
+{% endblock content %}

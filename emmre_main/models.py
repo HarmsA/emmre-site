@@ -83,13 +83,13 @@ class Blog(models.Model):
     date_published = models.DateField()
 
     is_featured = models.BooleanField(default=False)
-    slug = models.SlugField(max_length=100, blank=True, null=True)
+    slug = models.SlugField(max_length=100, blank=True, null=True, unique=True)
 
     def save(self, *args, **kwargs):
         if self.title and not self.slug:
             stripped = strip_tags(self.title)
-            remove_p = stripped[1:-1]
-            self.slug = slugify(remove_p)
+            # remove_p = stripped[1:-1]
+            self.slug = slugify(stripped + self.id)
         super(type(self), self).save(*args, **kwargs)
 
     def __str__(self):

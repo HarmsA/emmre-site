@@ -12,6 +12,8 @@ from ordered_set import OrderedSet
 from config.models import Setting as AdminSettings
 # from .context_processors import conference_page_info
 from .context_processors import what_site
+from .forms import BlogForm, CommentForm
+from django.shortcuts import get_object_or_404
 
 
 # def conference_page_info(request):
@@ -86,8 +88,17 @@ def blogs(request):
 
 
 def blog(request, slug):
+    if request.method == "POST":
+        print(request.POST)
+    comment_form = CommentForm()
+    blogs = Blog.objects.filter(slug=slug)
+    print(blogs)
+    blog = Blog.objects.get(slug=slug)
+    comments = Comment.objects.filter(comment__slug=slug)
     context = {
-
+        'blog':blog,
+        'comments':comments,
+        'comment_form':comment_form,
     }
     return render(request, 'emmre_main/blog.html', context=context)
 
@@ -124,6 +135,19 @@ def page(request, slug):
 
     }
     return render(request, 'emmre_main/page.html', context=context)
+
+
+def blogform(request):
+    blogform = BlogForm()
+
+    if request.method == "POST":
+        form = BlogForm(request.POST)
+        print(form)
+    context = {
+        'blogform': blogform
+    }
+    return render(request, 'emmre_main/blog-form.html', context=context)
+
 
 
 @require_safe

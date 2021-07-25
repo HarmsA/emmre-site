@@ -76,8 +76,8 @@ INSTALLED_APPS = [
 ]
 
 
-if STAGE == 'live':
-    INSTALLED_APPS += ['cachalot']
+# if STAGE == 'live':
+#     INSTALLED_APPS += ['cachalot']
 
 # if DEBUG:
 #     INSTALLED_APPS += ['debug_toolbar']
@@ -232,13 +232,13 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
 # Stores cache in db for local to not kick you out of admin when server is restarted
-if STAGE == 'local':
-    SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
-else:
-    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# if STAGE == 'local':
+#     SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+# else:
+#     SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
-SCRIPT_CACHE_TIME = 10 if DEBUG else 40  # minutes
-STYLE_CACHE_TIME = 10 if DEBUG else 40  # minutes
+# SCRIPT_CACHE_TIME = 10 if DEBUG else 40  # minutes
+# STYLE_CACHE_TIME = 10 if DEBUG else 40  # minutes
 
 TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "../assets/tinymce/tinymce.js")
 TINYMCE_DEFAULT_CONFIG = {
@@ -293,18 +293,18 @@ DEBUG_TOOLBAR_PANELS = [
     'cachalot.panels.CachalotPanel',
 ]
 
-CACHALOT_ENABLED = not DEBUG
-CACHALOT_UNCACHABLE_TABLES = [
-    'auth_group',
-    'auth_group_permissions',
-    'auth_permission',
-    'auth_user',
-    'auth_user_groups',
-    'auth_user_user_permissions',
-    'django_admin_log',
-    'django_content_type',
-    'django_migrations',
-    'django_session',
-]
+# CACHALOT_ENABLED = not DEBUG
+# CACHALOT_UNCACHABLE_TABLES = [
+#     'auth_group',
+#     'auth_group_permissions',
+#     'auth_permission',
+#     'auth_user',
+#     'auth_user_groups',
+#     'auth_user_user_permissions',
+#     'django_admin_log',
+#     'django_content_type',
+#     'django_migrations',
+#     'django_session',
+# ]
 
 django_heroku.settings(locals())
